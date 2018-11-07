@@ -1,0 +1,19 @@
+main
+	init_uc
+	keyscan
+		init_cols
+		init_rows
+		colscan
+	send_data_lcd
+		write_I2C
+			Soft_I2C_Start
+				Delay_1us
+				PutZerosToLATSda
+				PutZerosToLATScl
+			Soft_I2C_Write
+				Delay_1us
+				PutZerosToLATScl
+				PutZerosToLATSda
+			Soft_I2C_Stop
+				PutZerosToLATSda
+				Delay_1us

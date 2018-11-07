@@ -1,0 +1,72 @@
+C51 COMPILER V9.50a   UART                                                                 10/31/2015 23:29:43 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN Uart.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE Uart.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"types.h"
+   3          #include<stdio.h>
+   4          
+   5          #define STDIO_LIB 1
+   6          #define DOUBLE_BAUD 0
+   7          
+   8          #define XTAL 11.0592
+   9          #define BAUD 9600
+  10          #define LOADVAL (256-(((XTAL/(12*32)/BAUD))*1000*1000))
+  11          
+  12          void init_uart(void)
+  13          {
+  14   1              SCON=0x50;
+  15   1              TMOD|=0x20;
+  16   1              TH1=TL1=LOADVAL;
+  17   1      
+  18   1              #if DOUBLE_BAUD>0
+                              PCON=0x80;
+                      #endif
+  21   1      
+  22   1              #if STDIO_LIB>0
+  23   1                      TI=1;
+  24   1              #endif
+  25   1      
+  26   1              TR1=1;
+  27   1      }
+  28          
+  29          void uart_tx(u8 dat)
+  30          {
+  31   1              SBUF=dat;
+  32   1              while(TI==0);
+  33   1              TI=0;
+  34   1      } 
+  35          
+  36          /*void uart_tx_s(u8 *s)
+  37          {
+  38                  while(*s++)
+  39                   uart_tx(*s);
+  40          }  */
+  41          
+  42          u8 uart_rx(void)
+  43          {       
+  44   1              while(RI==0);
+  45   1              RI=0;
+  46   1              return SBUF;
+  47   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     33    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+C51 COMPILER V9.50a   UART                                                                 10/31/2015 23:29:43 PAGE 2   
+
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

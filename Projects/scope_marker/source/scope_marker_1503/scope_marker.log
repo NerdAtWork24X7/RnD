@@ -1,0 +1,19 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1503 -RA -DL -O11111114 -fo8 -N"C:\Users\sahil\Desktop\PIC Project\scope_marker\source\scope_marker_1503\scope_marker.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"C:\Users\sahil\Desktop\PIC Project\scope_marker\source\scope_marker_1503\" -SP"C:\Users\sahil\Desktop\PIC Project\tractor\source code\micro(different)\" -SP"C:\Users\sahil\Desktop\PIC Project\tractor\source code\micro\" -IP"C:\Users\sahil\Desktop\PIC Project\tractor\source code\micro\" -IP"C:\Users\sahil\Desktop\PIC Project\tractor\source code\micro(different)\" -IP"C:\Users\sahil\Desktop\PIC Project\scope_marker\source\scope_marker_1503\" "pwm3.c" "scope_marker.c" "tmr2.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_PWM_150x.mcl"	 
+hint: 0	1139	Available RAM: 112 [bytes], Available ROM: 2048 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F1503.c
+diagnostics: 1571	123	Compiled Successfully	P16F1503.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 23	123	Compiled Successfully	pwm3.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 283	123	Compiled Successfully	scope_marker.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 12	123	Compiled Successfully	tmr2.c
+diagnostics: 0	127	All files Compiled in 203 ms	 
+hint: 0	1144	Used RAM (bytes): 7 (6%)  Free RAM (bytes): 105 (94%)	Used RAM (bytes): 7 (6%)  Free RAM (bytes): 105 (94%)
+hint: 0	1144	Used ROM (program words): 607 (30%)  Free ROM (program words): 1441 (70%)	Used ROM (program words): 607 (30%)  Free ROM (program words): 1441 (70%)
+diagnostics: 0	125	Project Linked Successfully	scope_marker.mcppi
+diagnostics: 0	128	Linked in 16 ms	 
+diagnostics: 0	129	Project 'scope_marker.mcppi' completed: 438 ms	 
+diagnostics: 0	103	Finished successfully: 30 Sep 2017, 10:14:35	scope_marker.mcppi

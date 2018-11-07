@@ -1,0 +1,11 @@
+"delay.obj",
+"keypad.obj",
+"lcd8.obj",
+"main.obj",
+"Uart.obj",
+"I2C.obj",
+"EEPROM.obj",
+"rtc.obj" 
+TO "Master" 
+RAMSIZE(256) 
+CODE( 0X0000-0X1FFF )

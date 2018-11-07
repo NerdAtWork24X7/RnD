@@ -1,0 +1,63 @@
+[DEVICE]
+Name=P16F886
+Clock=4000000
+[MEMORY_MODEL]
+Value=0
+[BUILD_TYPE]
+Value=0
+[ACTIVE_TAB]
+Value=I2C.c
+[USE_EEPROM]
+Value=0
+[USE_HEAP]
+Value=0
+[HEAP_SIZE]
+Value=0
+[EEPROM_DEFINITION]
+Value=
+[FILES]
+Count=3
+File0=Motor_Counter.c
+File1=glcd.c
+File2=I2C.c
+[BINARIES]
+Count=0
+[IMAGES]
+Count=0
+ActiveImageIndex=-1
+[OPENED_FILES]
+Count=3
+File0=Motor_Counter.c
+File1=glcd.c
+File2=I2C.c
+[EEPROM]
+Count=0
+[ACTIVE_COMMENTS_FILES]
+Count=0
+[OTHER_FILES]
+Count=0
+[SEARCH_PATH]
+Count=3
+Path0=E:\Mikroelektronika\mikroC PRO for PIC\Defs\
+Path1=E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\
+Path2=C:\Users\Sahil\Desktop\PIC Project\motor_counter\source code\
+[HEADER_PATH]
+Count=1
+Path0=C:\Users\Sahil\Desktop\PIC Project\motor_counter\source code\
+[HEADERS]
+Count=3
+File0=glcd_dat.h
+File1=glcd.h
+File2=types.h
+[PLDS]
+Count=0
+[Useses]
+Count=3
+File0=Conversions
+File1=C_String
+File2=Software_I2C
+[EXPANDED_NODES]
+Node0=Sources
+Node1=Header Files
+Node2=Output Files
+Count=3

@@ -1,0 +1,8 @@
+_main: CODE, 2016 0 32
+_I2C_Stop: CODE, 1975 0 7
+_InitI2C: CODE, 2005 0 11
+_I2C_Write_Byte: CODE, 1982 0 7
+_I2C_Read_Byte: CODE, 1997 0 8
+_I2C_Send_ACK: CODE, 1989 0 8
+_I2C_Start: CODE, 1968 0 7
+Total: 80

@@ -1,0 +1,17 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1786 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\pr\adc_100\source\Voltmeter.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"C:\Users\Sahil\Desktop\PIC Project\pr\adc_100\source\" -IP"C:\Users\Sahil\Desktop\PIC Project\pr\adc_100\source\" "Voltmeter.c" "LCD.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_ADC.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 1086 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F1786.c
+diagnostics: 3182	123	Compiled Successfully	P16F1786.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 64	123	Compiled Successfully	Voltmeter.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 42	123	Compiled Successfully	LCD.c
+diagnostics: 0	127	All files Compiled in 327 ms	 
+hint: 0	1144	Used RAM (bytes): 377 (35%)  Free RAM (bytes): 709 (65%)	Used RAM (bytes): 377 (35%)  Free RAM (bytes): 709 (65%)
+hint: 0	1144	Used ROM (program words): 2671 (33%)  Free ROM (program words): 5521 (67%)	Used ROM (program words): 2671 (33%)  Free ROM (program words): 5521 (67%)
+diagnostics: 0	125	Project Linked Successfully	Voltmeter.mcppi
+diagnostics: 0	128	Linked in 219 ms	 
+diagnostics: 0	129	Project 'Voltmeter.mcppi' completed: 1124 ms	 
+diagnostics: 0	103	Finished successfully: 28 Jul 2016, 00:14:16	Voltmeter.mcppi

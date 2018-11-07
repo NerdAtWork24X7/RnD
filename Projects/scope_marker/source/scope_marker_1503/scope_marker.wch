@@ -1,0 +1,5 @@
+<WCH v="2">
+  <item n="PORTC" r="0" s="False" e="False" i="157"/>
+  <item n="OSCCON" r="1" s="False" e="False" i="49"/>
+  <item n="OSCSTAT" r="0" s="False" e="False" i="50"/>
+</WCH>

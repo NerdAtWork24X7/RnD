@@ -1,0 +1,25 @@
+Partlist exported from C:/Users/sahil/Desktop/PIC Project/tractor/schematic/relay_changed/v1/tractor.sch at 07-Apr-17 10:19 PM
+
+Qty Value      Device          Package      Parts                                                  Description                                       MF MPN OC_FARNELL OC_NEWARK SPICEMODEL SPICEPREFIX
+8              2,54/1,1        2,54/1,1     PAD_1, PAD_2, PAD_3, PAD_4, PAD_5, PAD_6, PAD_7, PAD_8 THROUGH-HOLE PAD                                                                                    
+1   1.5k       RR0603          R0603        R13                                                    RESISTOR, European symbol                                                     NONE       R          
+1   100nF      CC0603          C0603        C4                                                     CAPACITOR, European symbol                                                    NONE       C          
+2   100nf      CC0603          C0603        C2, C3                                                 CAPACITOR, European symbol                                                    NONE       C          
+2   10k        RR0603          R0603        R5, R6                                                 RESISTOR, European symbol                                                     NONE       R          
+1   10nF       CC0603          C0603        C5                                                     CAPACITOR, European symbol                                                    NONE       C          
+6   1K         RR0603          R0603        R7, R9, R14, R15, R16, R17                             RESISTOR, European symbol                                                     NONE       R          
+1   1N34       GF1             SMA-DO214AC  D2                                                     DIODE                                                                                               
+4   1k         RR0603          R0603        R1, R2, R3, R4                                         RESISTOR, European symbol                                                     NONE       R          
+1   1nf        CC0603          C0603        C1                                                     CAPACITOR, European symbol                                                    NONE       C          
+1   1uF        CC0603          C0603        C6                                                     CAPACITOR, European symbol                                                    NONE       C          
+3   220uf      C-US025-025X050 C025-025X050 C7, C8, C9                                             CAPACITOR, American symbol                                                                          
+1   317EMP     317EMP          SOT223       IC2                                                    Positive VOLTAGE REGULATOR                                                                          
+3   470        RR0603          R0603        R8, R11, R12                                           RESISTOR, European symbol                                                     NONE       R          
+1   BC547      BC547           TO92         T1                                                     NPN TRANSISTOR                                                                                      
+1   Fm4007     GF1             SMA-DO214AC  D3                                                     DIODE                                                                                               
+1   IRLML2402  IRLML5203       MICRO3       Q1                                                     HEXFET P-Channel Power MOSFET                                                                       
+1   LL4148     GF1             SMA-DO214AC  D1                                                     DIODE                                                                                               
+1   MCT2E      H11L1MS         DIL6-SMD     IC4                                                    6-Pin DIP Optocoupler                                    unknown    unknown                         
+1   PIC16F1824 PIC16F1824      SO-14        IC1                                                                                                                                                        
+1   RL703      RL703           RL703        K2                                                                                                                                                         
+1   TLP283-4   TLP283-4        MINI-FLAT-16 IC3                                                    TOSHIBA PHOTOCOUPLER GaAs IRED & PHOTO-TRANSISTOR        unknown    unknown                         

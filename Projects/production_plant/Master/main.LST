@@ -1,0 +1,111 @@
+C51 COMPILER V9.50a   MAIN                                                                 12/06/2015 10:44:32 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"keypad.h"
+   3          #include"lcd.h"
+   4          #include"delay.h"
+   5          #include"types.h"
+   6          #include"uart.h"
+   7          #include"EEPROM.h"
+   8          #include<string.h>
+   9          
+  10          void start_sys(void);
+  11          u8 flag=0;
+  12          extern u8 td_flag;
+  13          void reset (void)
+  14          {
+  15   1              lcd_cmd(0x01);          //Clear LCD
+  16   1              lcd_cmd(0x08);          //Switch OFF LCD
+  17   1              uart_tx('F');           //will send OFF signal to Slave
+  18   1              ((void (code *) (void)) 0x0000) ();        //software reset
+  19   1      
+  20   1      }
+  21          
+  22          void rev_val(u8 *value)
+  23          {
+  24   1              u8 temp,i,j;
+  25   1              for(i=0,j=strlen(value)-1;j>i;i++,j--)
+  26   1               {
+  27   2                      temp=value[i];
+  28   2                      value[i]=value[j];
+  29   2                      value[j]=temp;
+  30   2               }
+  31   1      }
+  32          
+  33          void start_sys()
+  34          {
+  35   1      
+  36   1              u8 disp,value[6]={0};
+  37   1              td_flag=5;
+  38   1              while(1)
+  39   1              {
+  40   2                      lcd_cmd(0x01);
+  41   2                      lcd_cmd(0x80);
+  42   2                      lcd_str("Enter the value");
+  43   2                      strcpy(value,get_value());
+  44   2                      rev_val(value); 
+  45   2                 
+  46   2                      lcd_cmd(0x01);
+  47   2                      lcd_cmd(0x80);
+  48   2                      lcd_str("Enter display");
+  49   2                      disp=get_disp();
+  50   2                      uart_tx_s(value);   delay_1ms(3);
+  51   2                      uart_tx(disp);
+  52   2                       
+  53   2                      if(flag==1)
+  54   2                       {
+  55   3                              flag=0;
+C51 COMPILER V9.50a   MAIN                                                                 12/06/2015 10:44:32 PAGE 2   
+
+  56   3                      write_EEPROM(value,disp);
+  57   3                       }
+  58   2              }
+  59   1      }
+  60                          
+  61          void system_init()
+  62          {
+  63   1                lcd_init();              //initialiaze LCD
+  64   1                init_uart();             //Initialize uart
+  65   1                uart_tx('S');
+  66   1                lcd_str("SV-CORP");
+  67   1                delay_1ms(3000);
+  68   1                lcd_cmd(0x01);
+  69   1                lcd_str("Intializing");
+  70   1                delay_1ms(2000);
+  71   1                read_EEPROM('A'); read_EEPROM('B'); read_EEPROM('C');
+  72   1                while(!colscan());
+  73   1      }               
+  74          
+  75          
+  76          void main()
+  77          {
+  78   1              while(1)
+  79   1              {
+  80   2                      if(keyscan()=='O')              //Check wether ON is pressed
+  81   2                      {
+  82   3                        system_init();
+  83   3                    start_sys();                  
+  84   3              }
+  85   2              }
+  86   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    297    ----
+   CONSTANT SIZE    =     56    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

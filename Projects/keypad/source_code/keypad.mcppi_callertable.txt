@@ -1,0 +1,6 @@
+main
+	init_uc
+	keyscan
+		init_cols
+		init_rows
+		colscan

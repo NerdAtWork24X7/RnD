@@ -1,0 +1,55 @@
+[DEVICE]
+Name=P16F676
+Clock=8000000
+[MEMORY_MODEL]
+Value=0
+[BUILD_TYPE]
+Value=0
+[ACTIVE_TAB]
+Value=main.c
+[USE_EEPROM]
+Value=0
+[USE_HEAP]
+Value=0
+[HEAP_SIZE]
+Value=0
+[EEPROM_DEFINITION]
+Value=
+[FILES]
+Count=1
+File0=main.c
+[BINARIES]
+Count=0
+[IMAGES]
+Count=0
+ActiveImageIndex=-1
+[OPENED_FILES]
+Count=3
+File0=main.c
+File1=types.h
+File2=..\..\flame detector\source code\flame_detector.c
+[EEPROM]
+Count=0
+[ACTIVE_COMMENTS_FILES]
+Count=0
+[OTHER_FILES]
+Count=0
+[SEARCH_PATH]
+Count=3
+Path0=E:\Mikroelektronika\mikroC PRO for PIC\Defs\
+Path1=E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\
+Path2=C:\Users\Sahil\Desktop\PIC Project\Gear_display\Gear_Indicator_v1.3\
+[HEADER_PATH]
+Count=1
+Path0=C:\Users\Sahil\Desktop\PIC Project\Gear_display\Gear_Indicator_v1.3\
+[HEADERS]
+Count=1
+File0=types.h
+[PLDS]
+Count=0
+[Useses]
+Count=1
+File0=EEPROM
+[EXPANDED_NODES]
+Node0=Sources
+Count=1

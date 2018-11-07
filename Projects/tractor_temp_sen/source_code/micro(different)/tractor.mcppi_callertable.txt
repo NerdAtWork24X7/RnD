@@ -1,0 +1,14 @@
+main
+	sys_init
+		port_init
+		ADC_Initialize
+		TMR0_Initialize
+	check_adc
+		ADC_GetConversion
+		Div_32x32_U
+	chk_wait_time
+interrupt
+	TMR0_ISR
+		TMR0_Reload
+		TMR0_CallBack_Half_Sec
+	ADC_ISR

@@ -1,0 +1,28 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1509 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\fish_tank\source code\fish_tank.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"C:\Users\Sahil\Desktop\PIC Project\fish_tank\source code\" "EEPROM.c" "fish_tank.c" "I2C.c" "LCD.c" "PWM.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_SoftI2C.mcl" "__Lib_PWM_150x.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 512 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F1509.c
+diagnostics: 2284	123	Compiled Successfully	P16F1509.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+warning: 20	1505	Suspicious pointer conversion	EEPROM.c
+diagnostics: 133	123	Compiled Successfully	EEPROM.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 42	123	Compiled Successfully	fish_tank.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 41	123	Compiled Successfully	I2C.c
+diagnostics: 0	122	Compilation Started	types.h
+warning: 49	1505	Suspicious pointer conversion	LCD.c
+warning: 112	1505	Suspicious pointer conversion	LCD.c
+warning: 113	1505	Suspicious pointer conversion	LCD.c
+warning: 144	1505	Suspicious pointer conversion	LCD.c
+diagnostics: 175	123	Compiled Successfully	LCD.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 132	123	Compiled Successfully	PWM.c
+diagnostics: 0	127	All files Compiled in 561 ms	 
+hint: 0	1144	Used RAM (bytes): 192 (38%)  Free RAM (bytes): 320 (62%)	Used RAM (bytes): 192 (38%)  Free RAM (bytes): 320 (62%)
+hint: 0	1144	Used ROM (program words): 5696 (70%)  Free ROM (program words): 2496 (30%)	Used ROM (program words): 5696 (70%)  Free ROM (program words): 2496 (30%)
+diagnostics: 0	125	Project Linked Successfully	fish_tank.mcppi
+diagnostics: 0	128	Linked in 187 ms	 
+diagnostics: 0	129	Project 'fish_tank.mcppi' completed: 1014 ms	 
+diagnostics: 0	103	Finished successfully: 28 Mar 2016, 21:49:17	fish_tank.mcppi

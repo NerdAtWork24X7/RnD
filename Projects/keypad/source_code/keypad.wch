@@ -1,0 +1,6 @@
+<WCH v="2">
+  <item n="PORTB" r="0" s="False" e="False" i="82"/>
+  <item n="PORTC" r="2" s="False" e="False" i="83"/>
+  <item n="PORTA" r="0" s="False" e="False" i="81"/>
+  <item n="RC6_bit" r="0" s="False" e="False" i="419"/>
+</WCH>

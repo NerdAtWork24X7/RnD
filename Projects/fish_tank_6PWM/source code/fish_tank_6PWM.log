@@ -1,0 +1,25 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F886 -RA -DL -O11111114 -fo8 -N"C:\Users\sahil\Desktop\PIC Project\fish_tank_6PWM\source code\fish_tank_6PWM.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\sahil\Desktop\PIC Project\fish_tank_6PWM\source code\" -IP"C:\Users\Sahil\Desktop\PIC Project\fish_tank_6PWM\source code\" "EEPROM.c" "fish_tank.c" "I2C.c" "LCD.c" "PWM.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_I2C_c34.mcl" "__Lib_PWM_c21.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F886.c
+diagnostics: 909	123	Compiled Successfully	P16F886.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	__Lib_GlcdFonts.c
+diagnostics: 1207	123	Compiled Successfully	__Lib_GlcdFonts.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 147	123	Compiled Successfully	EEPROM.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 50	123	Compiled Successfully	fish_tank.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 41	123	Compiled Successfully	I2C.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 198	123	Compiled Successfully	LCD.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 133	123	Compiled Successfully	PWM.c
+diagnostics: 0	127	All files Compiled in 10172 ms	 
+hint: 0	1144	Used RAM (bytes): 118 (34%)  Free RAM (bytes): 234 (66%)	Used RAM (bytes): 118 (34%)  Free RAM (bytes): 234 (66%)
+hint: 0	1144	Used ROM (program words): 5920 (72%)  Free ROM (program words): 2272 (28%)	Used ROM (program words): 5920 (72%)  Free ROM (program words): 2272 (28%)
+diagnostics: 0	125	Project Linked Successfully	fish_tank_6PWM.mcppi
+diagnostics: 0	128	Linked in 62 ms	 
+diagnostics: 0	129	Project 'fish_tank_6PWM.mcppi' completed: 15453 ms	 
+diagnostics: 0	103	Finished successfully: 23 Jul 2017, 01:04:40	fish_tank_6PWM.mcppi

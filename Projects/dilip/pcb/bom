@@ -1,0 +1,49 @@
+Partlist
+
+Exported from dilip.sch at 08-Apr-17 12:24 PM
+
+EAGLE Version 7.7.0 Copyright (c) 1988-2016 CadSoft
+
+Assembly variant: 
+
+Part     Value          Device        Package       Library        Sheet
+
+C1                      C2.5/6        C2.5-6        capacitor-wima 1
+C2                      C2.5/6        C2.5-6        capacitor-wima 1
+D2       1N4004         1N4004        DO41-10       diode          1
+D3       1N4004         1N4004        DO41-10       diode          1
+D4       1N4004         1N4004        DO41-10       diode          1
+DIS1     TUXGR_16X2_R2  TUXGR_16X2_R2 TUXGR_16X2_R2 display-lcd    1
+IC1      4094N          4094N         DIL16         40xx           1
+IC2      PIC16F676P     PIC16F676P    DIL14         microchip      1
+IC3      7805T          7805T         TO220H        linear         1
+K1       G5L            G5L           G5LE          relay          1
+K2       G5L            G5L           G5LE          relay          1
+LED_5V                  LED3MM        LED3MM        led            1
+LED_12V                 LED3MM        LED3MM        led            1
+LED_R1                  LED3MM        LED3MM        led            1
+LED_R2                  LED3MM        LED3MM        led            1
+Q1       BC548          BC548         TO92-EBC      transistor-npn 1
+Q2       BC548          BC548         TO92-EBC      transistor-npn 1
+R1                      R-TRIMMT93YA  RTRIMT93YA    rcl            1
+R2                      R-EU_0207/10  0207/10       resistor       1
+R3                      R-EU_0207/10  0207/10       resistor       1
+R4                      R-EU_0207/10  0207/10       resistor       1
+R5                      R-EU_0207/10  0207/10       resistor       1
+R6                      R-EU_0207/10  0207/10       resistor       1
+R7                      R-EU_0207/10  0207/10       resistor       1
+R8                      R-EU_0207/10  0207/10       resistor       1
+R9                      R-EU_0207/10  0207/10       resistor       1
+R10                     R-EU_0207/10  0207/10       resistor       1
+R11                     R-EU_0207/10  0207/10       resistor       1
+R12                     R-EU_0207/10  0207/10       resistor       1
+R13                     R-EU_0207/10  0207/10       resistor       1
+S1                      40-XX         B3F-40XX      switch-omron   1
+S2                      40-XX         B3F-40XX      switch-omron   1
+S3                      40-XX         B3F-40XX      switch-omron   1
+S4                      40-XX         B3F-40XX      switch-omron   1
+X2       22-23-2021     22-23-2021    22-23-2021    con-molex      1
+X3       22-23-2041     22-23-2041    22-23-2041    con-molex      1
+X4       22-23-2041     22-23-2041    22-23-2041    con-molex      1
+X5       22-23-2051     22-23-2051    22-23-2051    con-molex      1
+X6       22-23-2051     22-23-2051    22-23-2051    con-molex      1

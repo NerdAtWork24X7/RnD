@@ -1,0 +1,31 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F887 -RA -DL -O11111114 -fo8 -N"D:\PIC Project\digital clock\source\digital clock.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"D:\PIC Project\digital clock\source\" -SP"C:\Users\sahil\Desktop\PIC Project\digital clock\source\" -IP"C:\Users\Sahil\Desktop\PIC Project\digital clock\source\" -IP"D:\PIC Project\digital clock\source\" "digital_clock_SPI.C" "disp_time.c" "I2C.c" "matrix_driver.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_SoftI2C.mcl" "__Lib_SPI_c345.mcl" "__Lib_UART_c67.mcl"	 
+warning: 0	1501	Specified search path does not exist: 'C:\Users\sahil\Desktop\PIC Project\digital clock\source'	 
+warning: 0	1502	Specified include path does not exist: 'C:\Users\Sahil\Desktop\PIC Project\digital clock\source'	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F887.c
+diagnostics: 965	123	Compiled Successfully	P16F887.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+warning: 18	1509	Generated baud rate is 9615 bps (error = 0.16 percent)	digital_clock_SPI.C
+diagnostics: 38	123	Compiled Successfully	digital_clock_SPI.C
+diagnostics: 0	122	Compilation Started	types.h
+hint: 146	1163	Variable 'j' has been declared, but not used	disp_time.c
+diagnostics: 220	123	Compiled Successfully	disp_time.c
+hint: 97	1164	Variable 'row' has been eliminated by optimizer	disp_time.c
+hint: 97	1164	Variable 'col' has been eliminated by optimizer	disp_time.c
+hint: 97	1164	Variable 'temp' has been eliminated by optimizer	disp_time.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 62	123	Compiled Successfully	I2C.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 474	123	Compiled Successfully	matrix_driver.c
+hint: 187	1164	Variable 'dat' has been eliminated by optimizer	matrix_driver.c
+hint: 211	1164	Variable 'font_lenght' has been eliminated by optimizer	matrix_driver.c
+hint: 374	1164	Variable 'seg' has been eliminated by optimizer	matrix_driver.c
+diagnostics: 0	127	All files Compiled in 875 ms	 
+hint: 0	1144	Used RAM (bytes): 120 (34%)  Free RAM (bytes): 232 (66%)	Used RAM (bytes): 120 (34%)  Free RAM (bytes): 232 (66%)
+hint: 0	1144	Used ROM (program words): 3545 (43%)  Free ROM (program words): 4647 (57%)	Used ROM (program words): 3545 (43%)  Free ROM (program words): 4647 (57%)
+diagnostics: 0	125	Project Linked Successfully	digital clock.mcppi
+diagnostics: 0	128	Linked in 328 ms	 
+diagnostics: 0	129	Project 'digital clock.mcppi' completed: 1906 ms	 
+diagnostics: 0	103	Finished successfully: 14 May 2018, 10:27:00	digital clock.mcppi

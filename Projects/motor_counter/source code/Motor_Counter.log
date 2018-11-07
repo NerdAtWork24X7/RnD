@@ -1,0 +1,24 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F886 -RA -DL -O11111114 -fo4 -N"C:\Users\Sahil\Desktop\PIC Project\motor_counter\source code\Motor_Counter.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\motor_counter\source code\" -IP"C:\Users\Sahil\Desktop\PIC Project\motor_counter\source code\" "Motor_Counter.c" "glcd.c" "I2C.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_SoftI2C.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F886.c
+diagnostics: 917	123	Compiled Successfully	P16F886.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	glcd.h
+hint: 15	1163	Variable 'i' has been declared, but not used	Motor_Counter.c
+hint: 25	1163	Variable 'temp' has been declared, but not used	Motor_Counter.c
+hint: 47	1163	Variable 'i' has been declared, but not used	Motor_Counter.c
+diagnostics: 53	123	Compiled Successfully	Motor_Counter.c
+diagnostics: 0	122	Compilation Started	glcd_dat.h
+diagnostics: 232	123	Compiled Successfully	glcd.c
+hint: 182	1164	Variable 'a' has been eliminated by optimizer	glcd.c
+hint: 197	1164	Variable 'a' has been eliminated by optimizer	glcd.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 59	123	Compiled Successfully	I2C.c
+diagnostics: 0	127	All files Compiled in 265 ms	 
+hint: 0	1144	Used RAM (bytes): 134 (38%)  Free RAM (bytes): 218 (62%)	Used RAM (bytes): 134 (38%)  Free RAM (bytes): 218 (62%)
+hint: 0	1144	Used ROM (program words): 5166 (63%)  Free ROM (program words): 3026 (37%)	Used ROM (program words): 5166 (63%)  Free ROM (program words): 3026 (37%)
+diagnostics: 0	125	Project Linked Successfully	Motor_Counter.mcppi
+diagnostics: 0	128	Linked in 125 ms	 
+diagnostics: 0	129	Project 'Motor_Counter.mcppi' completed: 546 ms	 
+diagnostics: 0	103	Finished successfully: 12 Mar 2016, 22:39:25	Motor_Counter.mcppi

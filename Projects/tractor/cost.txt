@@ -1,0 +1,11 @@
+ Bill
+1)Hardware cost = Rs10000  (shailesh)
+2)Software cost =  Rs10000 (Sahil)
+  Total         =   Rs20000/-
+
+Quotation
+1)Hardware Redesign cost =Rs 7500/-  (Sahil)
+2)Software Redesign Cost =Rs 7500/-  (Sahil)
+3)Tooling and PCB        =Rs 10000/- (shailesh)
+4)Maintenance 1year cost =Rs 5000/-  (shailesh)
+ Total =                  Rs 30000    

@@ -1,0 +1,15 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F676 -RA -DL -O11111114 -fo4 -N"C:\Users\Sahil\Desktop\PIC Project\flame detector\source code\flame_detector.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\flame detector\source code\" "flame_detector.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_ADC_A_B.mcl"	 
+hint: 0	1139	Available RAM: 48 [bytes], Available ROM: 1024 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F676.c
+diagnostics: 372	123	Compiled Successfully	P16F676.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 74	123	Compiled Successfully	flame_detector.c
+diagnostics: 0	127	All files Compiled in 62 ms	 
+hint: 0	1144	Used RAM (bytes): 7 (15%)  Free RAM (bytes): 41 (85%)	Used RAM (bytes): 7 (15%)  Free RAM (bytes): 41 (85%)
+hint: 0	1144	Used ROM (program words): 241 (24%)  Free ROM (program words): 783 (76%)	Used ROM (program words): 241 (24%)  Free ROM (program words): 783 (76%)
+diagnostics: 0	125	Project Linked Successfully	flame_detector.mcppi
+diagnostics: 0	128	Linked in 16 ms	 
+diagnostics: 0	129	Project 'flame_detector.mcppi' completed: 203 ms	 
+diagnostics: 0	103	Finished successfully: 21 Feb 2016, 16:40:13	flame_detector.mcppi

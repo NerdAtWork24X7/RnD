@@ -1,0 +1,113 @@
+C51 COMPILER V9.50a   LCD8                                                                 12/06/2015 10:44:32 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE LCD8
+OBJECT MODULE PLACED IN lcd8.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE lcd8.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"types.h"
+   3          #include"delay.h"
+   4          
+   5          #define LCD_DATA P2
+   6          
+   7          sbit rs=P0^0;
+   8          sbit rw=P0^1;
+   9          sbit en=P0^2;
+  10          
+  11          void lcd_write(u8 dat)
+  12          {
+  13   1              LCD_DATA=dat;
+  14   1              rw=0;
+  15   1              en=1;   //high to low pulse required for writing
+  16   1              delay_1ms(2);
+  17   1              en=0;
+  18   1      }
+  19          
+  20          void lcd_cmd(u8 cmd)
+  21          {
+  22   1              rs=0;   //select the commad register
+  23   1              lcd_write(cmd);
+  24   1      }
+  25          
+  26          void lcd_char(u8 ch)
+  27          {       
+  28   1              rs=1;   //select the write resgister
+  29   1              lcd_write(ch);
+  30   1      }
+  31          
+  32          void lcd_init(void)
+  33          {
+  34   1              delay_1ms(16);
+  35   1              lcd_cmd(0x38);
+  36   1              lcd_cmd(0x80);
+  37   1              lcd_cmd(0x02);
+  38   1              lcd_cmd(0x06);
+  39   1              lcd_cmd(0x0c);
+  40   1      }
+  41          
+  42          void lcd_str(u8* s)
+  43          {
+  44   1              while(*s)
+  45   1               lcd_char(*s++);
+  46   1      }
+  47          
+  48          /*void lcd_uint(u16 n)
+  49          {       
+  50                  u8 arr[5]={0};
+  51                  s8 i=0;
+  52          
+  53                  if(n==0)
+  54                    lcd_char('0');
+  55                  
+C51 COMPILER V9.50a   LCD8                                                                 12/06/2015 10:44:32 PAGE 2   
+
+  56                  else
+  57                    {
+  58                          while(n>0)
+  59                           {
+  60                                  arr[i++]=(n%10)+48;
+  61                                  n/=10;
+  62                           }
+  63                          
+  64                          for(--i;i>=0;i--)
+  65                           {
+  66                                  lcd_char(arr[i]);
+  67                           }
+  68                    }
+  69          }
+  70          
+  71          void lcd_float(float f)
+  72          {
+  73                  u16 t;
+  74                  u8 i;
+  75                  t=f;
+  76          
+  77                  lcd_uint(t);
+  78                  lcd_char('.');
+  79          
+  80                  for(i=0;i<6;i++)
+  81                   {
+  82                          f=(f-t)*10;
+  83                          t=f;
+  84                          lcd_uint(t); //char_lcd(t+48);
+  85                   }
+  86          
+  87           }*/
+  88           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     95    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,25 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F883 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\lcd_driver\lcd_driver.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\lcd_driver\" -IP"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\lcd_driver\" "lcd_driver.c" "glcd.c" "i2c_slave.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_I2C_c34.mcl"	 
+hint: 0	1139	Available RAM: 240 [bytes], Available ROM: 4096 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F883.c
+diagnostics: 917	123	Compiled Successfully	P16F883.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	i2c_slave.h
+hint: 12	1163	Variable 'i' has been declared, but not used	lcd_driver.c
+hint: 12	1163	Variable 'temp' has been declared, but not used	lcd_driver.c
+diagnostics: 68	123	Compiled Successfully	lcd_driver.c
+diagnostics: 0	122	Compilation Started	glcd_dat.h
+hint: 196	1163	Variable 'i' has been declared, but not used	glcd.c
+hint: 197	1163	Variable 'a' has been declared, but not used	glcd.c
+diagnostics: 244	123	Compiled Successfully	glcd.c
+hint: 182	1164	Variable 'a' has been eliminated by optimizer	glcd.c
+hint: 209	1164	Variable 'a' has been eliminated by optimizer	glcd.c
+diagnostics: 0	122	Compilation Started	i2c_slave.c
+diagnostics: 59	123	Compiled Successfully	i2c_slave.c
+diagnostics: 0	127	All files Compiled in 1623 ms	 
+hint: 0	1144	Used RAM (bytes): 47 (20%)  Free RAM (bytes): 193 (80%)	Used RAM (bytes): 47 (20%)  Free RAM (bytes): 193 (80%)
+hint: 0	1144	Used ROM (program words): 2575 (63%)  Free ROM (program words): 1521 (37%)	Used ROM (program words): 2575 (63%)  Free ROM (program words): 1521 (37%)
+diagnostics: 0	125	Project Linked Successfully	lcd_driver.mcppi
+diagnostics: 0	128	Linked in 78 ms	 
+diagnostics: 0	129	Project 'lcd_driver.mcppi' completed: 2621 ms	 
+diagnostics: 0	103	Finished successfully: 04 May 2016, 01:01:24	lcd_driver.mcppi

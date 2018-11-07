@@ -1,0 +1,18 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\digital clock\source_code\Digital_Clock.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\digital clock\source_code\" -IP"C:\Users\Sahil\Desktop\PIC Project\digital clock\source_code\" "Digital_Clock.c" "I2C.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_Conversions.mcl" "__Lib_SoftI2C.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F877.c
+diagnostics: 624	123	Compiled Successfully	P16F877.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 102	123	Compiled Successfully	Digital_Clock.c
+diagnostics: 0	122	Compilation Started	types.h
+hint: 35	1163	Variable 'temp' has been declared, but not used	I2C.c
+diagnostics: 58	123	Compiled Successfully	I2C.c
+diagnostics: 0	127	All files Compiled in 93 ms	 
+hint: 0	1144	Used RAM (bytes): 18 (5%)  Free RAM (bytes): 334 (95%)	Used RAM (bytes): 18 (5%)  Free RAM (bytes): 334 (95%)
+hint: 0	1144	Used ROM (program words): 893 (11%)  Free ROM (program words): 7299 (89%)	Used ROM (program words): 893 (11%)  Free ROM (program words): 7299 (89%)
+diagnostics: 0	125	Project Linked Successfully	Digital_Clock.mcppi
+diagnostics: 0	128	Linked in 63 ms	 
+diagnostics: 0	129	Project 'Digital_Clock.mcppi' completed: 297 ms	 
+diagnostics: 0	103	Finished successfully: 27 Mar 2016, 21:53:01	Digital_Clock.mcppi

@@ -1,0 +1,11 @@
+*.mcl
+*.dlt
+*.dbg
+*.cp
+*.ini
+*.brk
+*.bmk
+*.pdsbak
+*.zip
+All_Resources/
+*.pdf

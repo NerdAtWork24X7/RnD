@@ -1,0 +1,30 @@
+Partlist exported from C:/Users/Sahil/Desktop/PIC Project/fish_tank/PCB/fish_tank.sch at 03-Mar-16 9:50 PM
+
+Qty Value           Device          Package           Parts              Description                                                                  
+4   push button                     B3F-10XX          S3, S4, S5, S6     OMRON SWITCH                                                                 
+1   LED3MM                          LED3MM            LED1               LED                                                                          
+1   3pin connector                           	      SV1                AMP MT6 CONNECTOR                                                            
+2   2pin connector                  		      J7, J8             AMP connector                                                                
+1   FUSE HOLDER                     SH25              F1                 FUSE HOLDER grid 25 mm, OGN0031 8211, Schurter (Buerklin)                    
+1   1000uf          C5/2.5          C5B2.5            C6                 CAPACITOR                                                                    
+2   100nf           C2.5/4          C2.5-4            C1, C2             CAPACITOR                                                                    
+2   100nf           C5/2.5          C5B2.5            C3, C13            CAPACITOR                                                                    
+2   10k             R-EU_0207/7     0207/7            R1, R3             RESISTOR, European symbol                                                    
+1   10k             Trimmer         RTRIM64W          R4                 Trimm resistor                                                               
+1   12v             TRANSFORMER     U15               TR1                TRANSFORMER                                                                  
+5   1N4001          Diode           DO35Z10           D1, D2, D3, D4, D5 Reference DIODE                                                              
+1   1k              Resistor        0204/5            R2                 RESISTOR, European symbol                                                    
+1   24C08           EEPROM          DIL8              IC4                Serial EEPROM                                                                
+1   2P2T            Switch          2P2T              S2                 SLIDE SWITCH 2P2T Part No. SS-22F05-G(A)4                                    
+1   33khz           CRYSTAL         TC26H             Q3                 CRYSTAL                                                                      
+1   4 pin connector connector       22-23-2041        X4                 .100" (2.54mm) Center Header - 4 Pin                                         
+1   47uf            C5/2.5          C5B2.5            C5                 CAPACITOR                                                                    
+2   4k7             RESISTOR Bank   RN-9              RN1, RN3           RESISTOR NETWORK                                                             
+2   5 pin connector connector      22-23-2051        X1, X2             .100" (2.54mm) Center Header - 5 Pin                                         
+1   7 pin connector connector     22-23-2071        X3                  .100" (2.54mm) Center Header - 7 Pin                                         
+1   LM7805          7805T           TO220H            IC1                Positive VOLTAGE REGULATOR                                                   
+1   DS1307 (RTC)    DIL8            DIL08             IC3                Dual In Line / Socket                                                        
+1   PIC16F1503      		    DIL14             IC2                14-Pin, Flash-Based 8-Bit CMOS Microcontroller                               
+1   PIC16F1509      		    DIP254P762X533-20 U$1                CMOS Microcontrollers                                                        
+1   LI BATTERY      				      G2                 LI BATTERY Sonnenschein                                                      
+1   LCD 16x2 display 

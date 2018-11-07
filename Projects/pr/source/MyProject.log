@@ -1,0 +1,15 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F877A -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\pr\source\MyProject.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\pr\source\" "Timer.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F877A.c
+diagnostics: 666	123	Compiled Successfully	P16F877A.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	Timer.c
+diagnostics: 191	123	Compiled Successfully	Timer.c
+diagnostics: 0	127	All files Compiled in 78 ms	 
+hint: 0	1144	Used RAM (bytes): 10 (3%)  Free RAM (bytes): 342 (97%)	Used RAM (bytes): 10 (3%)  Free RAM (bytes): 342 (97%)
+hint: 0	1144	Used ROM (program words): 345 (4%)  Free ROM (program words): 7847 (96%)	Used ROM (program words): 345 (4%)  Free ROM (program words): 7847 (96%)
+diagnostics: 0	125	Project Linked Successfully	MyProject.mcppi
+diagnostics: 0	128	Linked in 62 ms	 
+diagnostics: 0	129	Project 'MyProject.mcppi' completed: 421 ms	 
+diagnostics: 0	103	Finished successfully: 09 Jul 2016, 22:46:19	MyProject.mcppi

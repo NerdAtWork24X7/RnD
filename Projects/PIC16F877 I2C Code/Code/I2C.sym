@@ -1,0 +1,194 @@
+__S0 2008 0 ABS
+__S1 71 0 ABS
+__S2 0 0 ABS
+_PEN 48A 0 ABS
+_SEN 488 0 ABS
+__Hintentry 0 0 CODE
+__Lintentry 0 0 CODE
+_I2C_Read_Byte 7CD 0 CODE
+_RCEN 48B 0 ABS
+?_I2C_Read_Byte 70 0 COMMON
+_main 7E0 0 CODE
+btemp 7E 0 ABS
+_exit 0 0 CODE
+start 0 0 CODE
+__size_of_I2C_Send_ACK 0 0 ABS
+_SSPIF 63 0 ABS
+reset_vec 0 0 CODE
+_ACKEN 48C 0 ABS
+_ACKDT 48D 0 ABS
+wtemp0 7E 0 ABS
+__Hconfig 2008 0 CONFIG
+__Lconfig 2007 0 CONFIG
+??_I2C_Read_Byte 70 0 COMMON
+__Hram 0 0 ABS
+__Lram 0 0 ABS
+?_main 70 0 COMMON
+__Hfunctab 0 0 CODE
+__Lfunctab 0 0 CODE
+_I2C_Stop 7B7 0 CODE
+_TRISC3 43B 0 ABS
+_TRISC4 43C 0 ABS
+__Hcommon 0 0 ABS
+__Lcommon 0 0 ABS
+__Heeprom_data 0 0 EEDATA
+__Leeprom_data 0 0 EEDATA
+_SSPADD 93 0 ABS
+_SSPBUF 13 0 ABS
+__Habs1 0 0 ABS
+__Labs1 0 0 ABS
+_SSPCON 14 0 ABS
+__Hsfr0 0 0 ABS
+__Lsfr0 0 0 ABS
+__Hsfr1 0 0 ABS
+__Lsfr1 0 0 ABS
+__Hsfr2 0 0 ABS
+__Lsfr2 0 0 ABS
+__Hsfr3 0 0 ABS
+__Lsfr3 0 0 ABS
+_I2C_Write_Byte 7BE 0 CODE
+__Hcode 0 0 ABS
+__Lcode 0 0 ABS
+??_main 71 0 COMMON
+__Hinit 0 0 CODE
+__Linit 0 0 CODE
+__end_of_main 800 0 CODE
+__Htext 0 0 ABS
+__Ltext 0 0 ABS
+??_I2C_Send_ACK 70 0 COMMON
+end_of_initialization 7AC 0 CODE
+__size_of_I2C_Stop 0 0 ABS
+?_I2C_Stop 70 0 COMMON
+__size_of_I2C_Start 0 0 ABS
+_InitI2C 7D5 0 CODE
+__Hstrings 0 0 ABS
+__Lstrings 0 0 ABS
+_I2C_Start 7B0 0 CODE
+__Hbank0 0 0 ABS
+__Lbank0 0 0 ABS
+__Hbank1 0 0 ABS
+__Lbank1 0 0 ABS
+__Hbank2 0 0 ABS
+__Lbank2 0 0 ABS
+__Hbank3 0 0 ABS
+__Lbank3 0 0 ABS
+_ACKSTAT 48E 0 ABS
+__Hpowerup 0 0 CODE
+_SSPSTAT 94 0 ABS
+__Lpowerup 0 0 CODE
+__Hclrtext 0 0 ABS
+__Lclrtext 0 0 ABS
+??_InitI2C 70 0 COMMON
+?_I2C_Write_Byte 70 0 COMMON
+__end_of_I2C_Stop 7BE 0 CODE
+??_I2C_Start 70 0 COMMON
+__Hidloc 0 0 IDLOC
+__Lidloc 0 0 IDLOC
+__end_of_InitI2C 7E0 0 CODE
+I2C_Write_Byte@Byte 70 0 COMMON
+__Hcinit 0 0 ABS
+__Lcinit 0 0 ABS
+__size_of_main 0 0 ABS
+?_I2C_Send_ACK 70 0 COMMON
+??_I2C_Stop 70 0 COMMON
+__Hpa_nodes 0 0 ABS
+__Lpa_nodes 0 0 ABS
+__end_of_I2C_Write_Byte 7C5 0 CODE
+__end_of_I2C_Read_Byte 7D5 0 CODE
+__ptext80 7B0 0 CODE
+__ptext81 7D5 0 CODE
+__end_of_I2C_Send_ACK 7CD 0 CODE
+__ptext82 0 0 CODE
+?_InitI2C 70 0 COMMON
+__ptext75 0 0 CODE
+__ptext76 7CD 0 CODE
+__ptext77 7BE 0 CODE
+__ptext78 7C5 0 CODE
+__Hend_init 3 0 CODE
+__Lend_init 0 0 CODE
+__ptext79 7B7 0 CODE
+?_I2C_Start 70 0 COMMON
+__Hreset_vec 0 0 CODE
+__Lreset_vec 0 0 CODE
+_I2C_Send_ACK 7C5 0 CODE
+intlevel0 0 0 CODE
+intlevel1 0 0 CODE
+intlevel2 0 0 CODE
+intlevel3 0 0 CODE
+intlevel4 0 0 CODE
+intlevel5 0 0 CODE
+__size_of_I2C_Write_Byte 0 0 ABS
+__HcstackCOMMON 0 0 ABS
+__LcstackCOMMON 0 0 ABS
+__pcstackCOMMON 70 0 COMMON
+__end_of_I2C_Start 7B7 0 CODE
+start_initialization 7AC 0 CODE
+__Hmaintext 0 0 ABS
+__Lmaintext 0 0 ABS
+__pmaintext 7E0 0 CODE
+__size_of_InitI2C 0 0 ABS
+__size_of_I2C_Read_Byte 0 0 ABS
+??_I2C_Write_Byte 70 0 COMMON
+%segments
+reset_vec 0 5 CODE 0
+config 400E 400F CONFIG 400E
+cstackCOMMON 70 70 COMMON 70
+maintext FC0 FFF CODE FC0
+text81 FAA FBF CODE FAA
+text76 F9A FA9 CODE F9A
+text78 F8A F99 CODE F8A
+text77 F7C F89 CODE F7C
+text79 F6E F7B CODE F6E
+text80 F60 F6D CODE F60
+cinit F58 F5F CODE F58
+%locals
+startup.obj
+startup.as
+65 0 0 CODE
+I2C.obj
+C:\Users\Saeed\Desktop\PIC16F877 I2C Code\Code\Main.c
+11 2007 0 CONFIG
+I2C.as
+94 7AC 0 CODE
+95 7AD 0 CODE
+C:\Users\Saeed\Desktop\PIC16F877 I2C Code\Code\Main.c
+19 7E0 0 CODE
+21 7E5 0 CODE
+22 7EA 0 CODE
+23 7F0 0 CODE
+24 7F5 0 CODE
+25 7FA 0 CODE
+27 7FF 0 CODE
+30 800 0 CODE
+C:\Users\Saeed\Desktop\PIC16F877 I2C Code\Code\I2C.c
+79 7CD 0 CODE
+80 7CF 0 CODE
+81 7D2 0 CODE
+83 7D3 0 CODE
+84 7D4 0 CODE
+67 7BE 0 CODE
+68 7BF 0 CODE
+69 7C1 0 CODE
+70 7C3 0 CODE
+73 7C4 0 CODE
+48 7C5 0 CODE
+49 7C7 0 CODE
+50 7C8 0 CODE
+51 7CB 0 CODE
+52 7CC 0 CODE
+38 7B7 0 CODE
+39 7B9 0 CODE
+40 7BC 0 CODE
+41 7BD 0 CODE
+20 7B0 0 CODE
+21 7B2 0 CODE
+22 7B5 0 CODE
+23 7B6 0 CODE
+8 7D5 0 CODE
+11 7D6 0 CODE
+8 7D7 0 CODE
+9 7D8 0 CODE
+11 7D9 0 CODE
+12 7DA 0 CODE
+13 7DC 0 CODE
+14 7DF 0 CODE

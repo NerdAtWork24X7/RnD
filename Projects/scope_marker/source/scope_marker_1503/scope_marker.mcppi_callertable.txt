@@ -1,0 +1,8 @@
+main
+	__CC2DW
+	sys_init
+	check_cond
+	exe_cond
+		Load_TMR2
+		Load_PWM3
+interrupt

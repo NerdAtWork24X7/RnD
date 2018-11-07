@@ -1,0 +1,30 @@
+*** Error 18 "memory.c" Line 2(9,16): File can not be opened
+    Not in local "pic.h"
+    Not in local "C:\Users\sahil\Desktop\PIC Project\tractor\source code\mplab\pic.h"
+    Not in last "C:\Users\sahil\Desktop\PIC Project\tractor\source code\mplab\pic.h"
+    Not in project "C:\Users\sahil\Desktop\PIC Project\tractor\source code\mplab\pic.h"
+    Not in "C:\Users\sahil\Desktop\PIC Project\tractor\source code\mplab\pic.h"
+    Not in "C:\Program Files (x86)\PICC\devices\pic.h"
+    Not in "C:\Program Files (x86)\PICC\drivers\pic.h"
+*** Error 12 "memory.c" Line 14(5,11): Undefined identifier   EEADRL
+*** Error 12 "memory.c" Line 15(5,11): Undefined identifier   EEDATL
+*** Error 12 "memory.c" Line 16(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 17(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 18(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 20(19,29): Undefined identifier   INTCONbits
+*** Error 12 "memory.c" Line 21(5,15): Undefined identifier   INTCONbits
+*** Error 12 "memory.c" Line 22(5,11): Undefined identifier   EECON2
+*** Error 12 "memory.c" Line 23(5,11): Undefined identifier   EECON2
+*** Error 12 "memory.c" Line 24(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 26(12,22): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 30(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 31(5,15): Undefined identifier   INTCONbits
+*** Error 12 "memory.c" Line 36(5,11): Undefined identifier   EEADRL
+*** Error 12 "memory.c" Line 37(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 38(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 39(5,15): Undefined identifier   EECON1bits
+*** Error 12 "memory.c" Line 40(8,9): Undefined identifier  -- NOP
+*** Error 12 "memory.c" Line 41(8,9): Undefined identifier  -- NOP
+*** Error 12 "memory.c" Line 43(13,19): Undefined identifier   EEDATL
+C:\Users\sahil\Desktop\PIC Project\tractor\source code\mplab\memory.o ===>  21 Errors,  0 Warnings.
+Build Failed.

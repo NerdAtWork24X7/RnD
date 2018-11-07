@@ -1,0 +1,25 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F886 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\Feed machine\source code\Feed_machine.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\Feed machine\source code\" -IP"C:\Users\Sahil\Desktop\PIC Project\Feed machine\source code\" "Feed_machine.c" "EEPROM.c" "I2C.c" "LCD.c" "socket.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CString.mcl" "__Lib_Conversions.mcl" "__Lib_SoftI2C.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F886.c
+diagnostics: 917	123	Compiled Successfully	P16F886.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 45	123	Compiled Successfully	Feed_machine.c
+diagnostics: 0	122	Compilation Started	types.h
+hint: 21	1163	Variable 'exit' has been declared, but not used	EEPROM.c
+diagnostics: 120	123	Compiled Successfully	EEPROM.c
+hint: 76	1164	Variable 'flag' has been eliminated by optimizer	EEPROM.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 42	123	Compiled Successfully	I2C.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 199	123	Compiled Successfully	LCD.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 151	123	Compiled Successfully	socket.c
+diagnostics: 0	127	All files Compiled in 1061 ms	 
+hint: 0	1144	Used RAM (bytes): 89 (25%)  Free RAM (bytes): 263 (75%)	Used RAM (bytes): 89 (25%)  Free RAM (bytes): 263 (75%)
+hint: 0	1144	Used ROM (program words): 4499 (55%)  Free ROM (program words): 3693 (45%)	Used ROM (program words): 4499 (55%)  Free ROM (program words): 3693 (45%)
+diagnostics: 0	125	Project Linked Successfully	Feed_machine.mcppi
+diagnostics: 0	128	Linked in 218 ms	 
+diagnostics: 0	129	Project 'Feed_machine.mcppi' completed: 1497 ms	 
+diagnostics: 0	103	Finished successfully: 11 Jun 2016, 21:48:14	Feed_machine.mcppi

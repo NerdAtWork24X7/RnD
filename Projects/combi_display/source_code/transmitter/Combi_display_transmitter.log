@@ -1,0 +1,20 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F887 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\transmitter\Combi_display_transmitter.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\transmitter\" -SP"C:\Users\Sahil\Desktop\PIC Project\keypad\source_code\" -IP"C:\Users\Sahil\Desktop\PIC Project\combi_display\source_code\transmitter\" "Combi_display_transmitter.c" "I2C.c" "keypad.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_SoftI2C.mcl" "__Lib_I2C_c34.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F887.c
+diagnostics: 973	123	Compiled Successfully	P16F887.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+warning: 38	1503	Result is not defined in function: 'main'	Combi_display_transmitter.c
+diagnostics: 38	123	Compiled Successfully	Combi_display_transmitter.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 31	123	Compiled Successfully	I2C.c
+diagnostics: 0	122	Compilation Started	types.h
+diagnostics: 78	123	Compiled Successfully	keypad.c
+diagnostics: 0	127	All files Compiled in 1529 ms	 
+hint: 0	1144	Used RAM (bytes): 18 (5%)  Free RAM (bytes): 334 (95%)	Used RAM (bytes): 18 (5%)  Free RAM (bytes): 334 (95%)
+hint: 0	1144	Used ROM (program words): 512 (6%)  Free ROM (program words): 7680 (94%)	Used ROM (program words): 512 (6%)  Free ROM (program words): 7680 (94%)
+diagnostics: 0	125	Project Linked Successfully	Combi_display_transmitter.mcppi
+diagnostics: 0	128	Linked in 78 ms	 
+diagnostics: 0	129	Project 'Combi_display_transmitter.mcppi' completed: 2012 ms	 
+diagnostics: 0	103	Finished successfully: 24 Apr 2016, 21:54:56	Combi_display_transmitter.mcppi

@@ -1,0 +1,7 @@
+main
+	Init
+		ShowDigit
+		EEPROM_Read
+	Released
+	ShowDigit
+	EEPROM_Write

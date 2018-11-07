@@ -1,0 +1,16 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F676 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\Gear_display\Gear_Indicator_v1.3\Gear_display.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\Gear_display\Gear_Indicator_v1.3\" -IP"C:\Users\Sahil\Desktop\PIC Project\Gear_display\Gear_Indicator_v1.3\" "main.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_EEPROM.mcl"	 
+hint: 0	1139	Available RAM: 48 [bytes], Available ROM: 1024 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F676.c
+diagnostics: 372	123	Compiled Successfully	P16F676.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+diagnostics: 0	122	Compilation Started	types.h
+warning: 91	1503	Result is not defined in function: 'main'	main.c
+diagnostics: 91	123	Compiled Successfully	main.c
+diagnostics: 0	127	All files Compiled in 47 ms	 
+hint: 0	1144	Used RAM (bytes): 6 (12%)  Free RAM (bytes): 42 (88%)	Used RAM (bytes): 6 (12%)  Free RAM (bytes): 42 (88%)
+hint: 0	1144	Used ROM (program words): 226 (22%)  Free ROM (program words): 798 (78%)	Used ROM (program words): 226 (22%)  Free ROM (program words): 798 (78%)
+diagnostics: 0	125	Project Linked Successfully	Gear_display.mcppi
+diagnostics: 0	128	Linked in 63 ms	 
+diagnostics: 0	129	Project 'Gear_display.mcppi' completed: 234 ms	 
+diagnostics: 0	103	Finished successfully: 10 Apr 2016, 23:38:06	Gear_display.mcppi

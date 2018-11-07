@@ -1,0 +1,100 @@
+C51 COMPILER V9.50a   UART                                                                 12/06/2015 10:44:32 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN Uart.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE Uart.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"types.h"
+   3          #include"delay.h"
+   4          #include<stdio.h>
+   5          
+   6          #define STDIO_LIB 0
+   7          #define DOUBLE_BAUD 0
+   8          
+   9          #define XTAL 11.0592
+  10          #define BAUD 9600
+  11          #define LOADVAL (256-(((XTAL/(12*32)/BAUD))*1000*1000))
+  12          
+  13          void init_uart(void)
+  14          {
+  15   1              SCON=0x50;
+  16   1              TMOD|=0x20;
+  17   1              TH1=TL1=LOADVAL;
+  18   1      
+  19   1              #if DOUBLE_BAUD>0
+                              PCON=0x80;
+                      #endif
+  22   1      
+  23   1              #if STDIO_LIB>0
+                              TI=1;
+                      #endif
+  26   1      
+  27   1              TR1=1;
+  28   1      }
+  29          
+  30          void uart_tx(u8 dat)
+  31          {
+  32   1              SBUF=dat;
+  33   1              while(TI==0);
+  34   1              TI=0;
+  35   1              delay_1ms(50);
+  36   1      }
+  37          
+  38          void uart_tx_s(u8 *s)
+  39          {
+  40   1              while(*s)
+  41   1               {
+  42   2                 uart_tx(*s);
+  43   2                 s++;
+  44   2               }
+  45   1      }
+  46          
+  47          /*u8 uart_rx(void)
+  48          {       
+  49                  while(RI==0);
+  50                  RI=0;
+  51                  return SBUF;
+  52          }
+  53          
+  54          void uart_sint(u16 n)
+  55          {
+C51 COMPILER V9.50a   UART                                                                 12/06/2015 10:44:32 PAGE 2   
+
+  56                  u8 arr[5]={0};
+  57                  s8 i=0;
+  58                  if(n==0)
+  59                    uart_tx('0');
+  60                  
+  61                  else
+  62                    {
+  63                          while(n>0)
+  64                           {
+  65                                  arr[i++]=(n%10)+48;
+  66                                  n/=10;
+  67                           }
+  68                          
+  69                          for(--i;i>=0;i--)
+  70                           {
+  71                                  uart_tx(arr[i]);
+  72                           }
+  73                    }
+  74          }
+  75            */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

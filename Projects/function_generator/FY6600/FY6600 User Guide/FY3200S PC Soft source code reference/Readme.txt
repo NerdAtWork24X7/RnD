@@ -1,0 +1,1 @@
+The code based on VB prepared for reference only, does not provide technical support.

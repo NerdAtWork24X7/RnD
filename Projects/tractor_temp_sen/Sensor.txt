@@ -1,0 +1,16 @@
+Sensor types:
+1)Thermocouples - (-220 to 1800 degree),not accurate,voltage 
+2)RTDs - (-200 to 800 deg) , Very accurate , resistance , good stability,Linear
+3)Thermistors - (-100 to 150 deg) NTC,PTC ,highly sensitive,Non linear,Cheap
+4)Silicon Junction Temperature Sensor (-55 to 150 deg) good accuracy,Easy to mcu,cheap
+
+
+Connecting temp sensor to mcu
+#1)Analog sensor -> ADC              
+#2)Analog sensor -> Amplifier -> ADC 
+3)Digital sensor -> SPI/I2C pins
+4)Digital sensor -> GPIO
+5)Parallel digital sensors connection
+
+
+http://www.microchip.com/forums/m708098.aspx

@@ -1,0 +1,11 @@
+main
+	__CC2DW
+	sys_init
+		TMR0_Initialize
+	check_cond
+		CHCK_COND
+	exe_cond
+interrupt
+	TMR0_ISR
+		TMR0_Reload
+		TMR0_CallBack_Half_Sec

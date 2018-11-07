@@ -1,0 +1,50 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F887 -RA -DL -O11111114 -fo8 -N"C:\Users\Sahil\Desktop\PIC Project\seven_seg_clock\source\seven_seg_clock.mcppi" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"E:\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Sahil\Desktop\PIC Project\seven_seg_clock\source\" "seven_seg_clock.c" "I2C.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 352 [bytes], Available ROM: 8192 [bytes]	 
+diagnostics: 0	122	Compilation Started	P16F887.c
+diagnostics: 973	123	Compiled Successfully	P16F887.c
+diagnostics: 0	122	Compilation Started	__Lib_Delays.c
+diagnostics: 123	123	Compiled Successfully	__Lib_Delays.c
+error: 1	304	 error: Can't open include file "p18cxxx.h"     #include <p18cxxx.h>	C:\Users\Sahil\Desktop\PIC Project\seven_seg_clock\source\seven_seg_clock.c
+error: 2	304	 error: Can't open include file "delays.h"     #include <delays.h> 2 errors in preprocessor.	C:\Users\Sahil\Desktop\PIC Project\seven_seg_clock\source\seven_seg_clock.c
+diagnostics: 0	122	Compilation Started	seven_seg_clock.c
+warning: 9	1507	Unknown pragma line ignored: ''	seven_seg_clock.c
+warning: 9	1507	Unknown pragma line ignored: ''	seven_seg_clock.c
+error: 26	324	Undeclared identifier '_startup_endasm' in expression	seven_seg_clock.c
+error: 35	324	Undeclared identifier 'init_18F2550' in expression	seven_seg_clock.c
+error: 68	324	Undeclared identifier 'PORTBbits' in expression	seven_seg_clock.c
+error: 69	324	Undeclared identifier 'PORTBbits' in expression	seven_seg_clock.c
+error: 70	324	Undeclared identifier 'PORTBbits' in expression	seven_seg_clock.c
+error: 71	324	Undeclared identifier 'Delay10TCYx' in expression	seven_seg_clock.c
+error: 72	324	Undeclared identifier 'PORTBbits' in expression	seven_seg_clock.c
+error: 77	380	Arguments cannot have explicit memory specificator	seven_seg_clock.c
+error: 80	315	Invalid expression	seven_seg_clock.c
+error: 80	300	Syntax Error: ')' expected,  but 'data' found	seven_seg_clock.c
+error: 80	402	; expected, but ')' found	seven_seg_clock.c
+error: 80	424	'}' expected ';' found	seven_seg_clock.c
+error: 82	312	Internal error ''	seven_seg_clock.c
+diagnostics: 0	122	Compilation Started	types.h
+error: 13	324	Undeclared identifier 'Soft_I2C_Start' in expression	I2C.c
+error: 14	324	Undeclared identifier 'Soft_I2C_Write' in expression	I2C.c
+error: 14	317	Operator '' is not applicable to these operands ''	I2C.c
+error: 14	402	; expected, but ')' found	I2C.c
+error: 14	424	'}' expected ';' found	I2C.c
+error: 23	324	Undeclared identifier 'Soft_I2C_Start' in expression	I2C.c
+error: 24	324	Undeclared identifier 'Soft_I2C_Write' in expression	I2C.c
+error: 24	317	Operator '' is not applicable to these operands ''	I2C.c
+error: 24	402	; expected, but ')' found	I2C.c
+error: 24	424	'}' expected ';' found	I2C.c
+hint: 22	1163	Variable 'buf' has been declared, but not used	I2C.c
+warning: 31	1503	Result is not defined in function: 'read_I2C'	I2C.c
+error: 50	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 51	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 52	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 54	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 55	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 56	324	Undeclared identifier 'change_date' in expression	I2C.c
+error: 56	315	Invalid expression	I2C.c
+error: 56	322	Pointer required	I2C.c
+error: 58	315	Invalid expression	I2C.c
+error: 56	317	Operator '' is not applicable to these operands ''	I2C.c
+error: 56	402	; expected, but '}' found	I2C.c
+error: 58	424	'}' expected '}' found	I2C.c
+error: 0	102	Finished (with errors): 17 Jun 2016, 21:27:56	seven_seg_clock.mcppi

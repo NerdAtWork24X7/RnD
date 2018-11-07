@@ -1,0 +1,155 @@
+C51 COMPILER V9.50a   RTC                                                                  12/06/2015 10:44:33 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE RTC
+OBJECT MODULE PLACED IN rtc.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE rtc.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include"types.h"
+   3          #include"i2c.h"
+   4          #include"delay.h"
+   5          #include"lcd.h"
+   6          #include"keypad.h"
+   7          #include"string.h"
+   8          #include"stdlib.h" 
+   9          
+  10          extern u8 td_flag;
+  11          u8 sec,min,hrs,day,date,month,year; 
+  12          code u8 s_day[8][10]={" ","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"}; 
+  13          
+  14          /*void read_time()
+  15          {
+  16                  sec=rtc_read(0xD0,0x00);
+  17                  min=rtc_read(0xD0,0x01);
+  18                  hrs=rtc_read(0xD0,0x02);
+  19                  day=rtc_read(0xD0,0x03);
+  20                  date=rtc_read(0xD0,0x04);
+  21                  month=rtc_read(0xD0,0x05);
+  22                  year=rtc_read(0xD0,0x06);
+  23          } */
+  24          
+  25          
+  26          u8 ascii_bcd(u8 *value)
+  27          {
+  28   1              u8 dat=0;
+  29   1              if(value[1]=='\0')
+  30   1               {
+  31   2                      dat=value[0]-48;
+  32   2                      return dat; 
+  33   2               }
+  34   1               else
+  35   1                {
+  36   2                  dat=((value[1]-48)&(0x0f))|((value[0]-48)<<4);
+  37   2                      return dat;
+  38   2                }
+  39   1      }
+  40                    
+  41          
+  42          void edit_time()
+  43          {
+  44   1               u8 value[2];
+  45   1               td_flag=2;
+  46   1               lcd_cmd(0x80);         lcd_str("******MENU******");
+  47   1               lcd_cmd(0xC0);         lcd_str("M-Mode E-Enter");
+  48   1                              
+  49   1               if(keyscan()=='M')
+  50   1                {
+  51   2                      while(!colscan());
+  52   2                      do                                      //edit sec
+  53   2                       {
+  54   3                         memset(value,0,2);
+  55   3                         lcd_cmd(0x01);lcd_cmd(0x80);lcd_str("Enter sec");
+C51 COMPILER V9.50a   RTC                                                                  12/06/2015 10:44:33 PAGE 2   
+
+  56   3                         strcpy(value,get_value());
+  57   3                         if(atoi(value)>60) 
+  58   3                          { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Sec must be<60"); delay_1ms(1000); }
+  59   3                       }while(atoi(value)>60);
+  60   2                        I2C_device_write(0xD0,0x00,ascii_bcd(value));
+  61   2                      
+  62   2                      do                                                 //edit min
+  63   2                       {
+  64   3                              memset(value,0,2);
+  65   3                              lcd_cmd(0x01);lcd_cmd(0x80);    lcd_str("Enter min");
+  66   3                              strcpy(value,get_value());
+  67   3                              if(atoi(value)>60) 
+  68   3                               { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Min must be<60"); delay_1ms(1000); }
+  69   3                       }while(atoi(value)>60);
+  70   2                        I2C_device_write(0xD0,0x01,ascii_bcd(value));
+  71   2      
+  72   2                      do
+  73   2                       {
+  74   3                         memset(value,0,2);
+  75   3                         lcd_cmd(0x01);lcd_cmd(0x80); lcd_str("Enter Hrs");
+  76   3                         strcpy(value,get_value());
+  77   3                         if(atoi(value)>24) 
+  78   3                   { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Hrs must be<24"); delay_1ms(1000);}
+  79   3                       }while(atoi(value)>24);
+  80   2                   I2C_device_write(0xD0,0x02,ascii_bcd(value));
+  81   2      
+  82   2                       do
+  83   2                        {
+  84   3                          memset(value,0,2);
+  85   3                              lcd_cmd(0x01);lcd_cmd(0x80);    lcd_str("Enter Day");
+  86   3                              strcpy(value,get_value());
+  87   3                              if(atoi(value)>7) 
+  88   3                               { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Day must be<7"); delay_1ms(1000); }
+  89   3                         }while(atoi(value)>7);
+  90   2                         I2C_device_write(0xD0,0x03,ascii_bcd(value));
+  91   2      
+  92   2      
+  93   2                       do
+  94   2                        {
+  95   3                          memset(value,0,2);
+  96   3                          lcd_cmd(0x01);lcd_cmd(0x80);        lcd_str("Enter Date");
+  97   3                          strcpy(value,get_value());
+  98   3                          if(atoi(value)>31) 
+  99   3                           { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Date must be<31"); delay_1ms(1000); }
+ 100   3                        }while(atoi(value)>31);
+ 101   2                         I2C_device_write(0xD0,0x04,ascii_bcd(value));
+ 102   2      
+ 103   2                       do
+ 104   2                        {
+ 105   3                         memset(value,0,2);
+ 106   3                         lcd_cmd(0x01);lcd_cmd(0x80); lcd_str("Enter month");
+ 107   3                         strcpy(value,get_value());
+ 108   3                         if(atoi(value)>12) 
+ 109   3                         { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("month must be<12"); delay_1ms(1000); }
+ 110   3                        }while(atoi(value)>12);
+ 111   2                         I2C_device_write(0xD0,0x05,ascii_bcd(value));
+ 112   2      
+ 113   2                      do
+ 114   2                       {
+ 115   3                         memset(value,0,2);
+ 116   3                         lcd_cmd(0x01); lcd_cmd(0x80);        lcd_str("Enter year");
+ 117   3                         strcpy(value,get_value());
+C51 COMPILER V9.50a   RTC                                                                  12/06/2015 10:44:33 PAGE 3   
+
+ 118   3                         if(atoi(value)>99) 
+ 119   3                          { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("year must be<99");delay_1ms(1000); }
+ 120   3                       }while(atoi(value)>99);
+ 121   2                    I2C_device_write(0xD0,0x06,ascii_bcd(value));        
+ 122   2                              
+ 123   2              }//if
+ 124   1              else
+ 125   1               { lcd_cmd(0x01); lcd_cmd(0x80); lcd_str("Date not set"); delay_1ms(1000); }
+ 126   1      }
+ 127          
+ 128          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    981    ----
+   CONSTANT SIZE    =    307    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

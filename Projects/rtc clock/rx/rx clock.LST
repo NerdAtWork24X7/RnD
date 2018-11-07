@@ -1,0 +1,218 @@
+C51 COMPILER V9.50a   RX_CLOCK                                                             03/21/2014 21:26:09 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE RX_CLOCK
+OBJECT MODULE PLACED IN rx clock.OBJ
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE rx clock.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit set=P3^4;
+   3          sbit mov=P3^3;
+   4          sbit inc=P3^5;
+   5          sbit dec=P3^6;
+   6          sbit ent=P3^7;
+   7          void all_disp();
+   8          #define First_Line 0x80
+   9          #define Second_Line 0xc0
+  10          #define Curser_On 0x0f
+  11          #define Curser_Off 0x0c
+  12          #define Clear_Display 0x01
+  13          #define Data_Port P2
+  14          
+  15          sbit Lcd_rs = P0^5;
+  16          sbit Lcd_rw = P0^4;
+  17          sbit Lcd_en = P0^3;
+  18          
+  19          void Lcd8_Init();
+  20          void Lcd8_Command(unsigned char);
+  21          void Lcd8_Write(unsigned char,unsigned char);
+  22          void Lcd8_Display(unsigned char,const unsigned char*,unsigned int);
+  23          void Lcd8_Decimal2(unsigned char,unsigned char);
+  24          void Delay(unsigned int);
+  25          
+  26          #define SEC 0x00
+  27          #define MIN 0x01
+  28          #define HOUR 0x02
+  29          #define DATE 0x04
+  30          #define MONTH 0x05
+  31          #define YEAR 0x06
+  32          unsigned char lr,mybyte;
+  33          unsigned char i,j,a[10],cur=0;
+  34          unsigned char packet,sec,hour,min,date,month,year,sec1,hour1,min1,sec2, hour2,min2,hh,mm,ss,dd,mn,yy;
+  35          unsigned char count[6]={0x86,0x89,0x8c,0xc6,0xc9,0xcc};
+  36          unsigned char dec_hex(unsigned char tt)
+  37          {
+  38   1      if(tt>59)
+  39   1      tt+=36;
+  40   1      else if(tt>49)
+  41   1      tt+=30;
+  42   1      else if(tt>39)
+  43   1      tt+=24;
+  44   1      else if(tt>29)
+  45   1      tt+=18;
+  46   1      else if(tt>19)
+  47   1      tt+=12;
+  48   1      else if(tt>9)
+  49   1      tt+=6;
+  50   1      return(tt);
+  51   1      }
+  52          
+  53          void all_disp()
+  54          {
+  55   1        
+C51 COMPILER V9.50a   RX_CLOCK                                                             03/21/2014 21:26:09 PAGE 2   
+
+  56   1      if(packet=='T')
+  57   1        {
+  58   2          
+  59   2          Delay(18000000);
+  60   2          RI=0;
+  61   2          hour=SBUF;
+  62   2          Lcd8_Decimal2(0xc6,hour);
+  63   2          Delay(10000000);
+  64   2          RI=0;
+  65   2      Lcd8_Write(0xc8,'.');
+  66   2          min=SBUF;
+  67   2          Lcd8_Decimal2(0xc9,min);
+  68   2          Delay(10000000);
+  69   2          RI=0;
+  70   2      
+  71   2          
+  72   2      Lcd8_Write(0xcb,'.');
+  73   2          sec=SBUF;
+  74   2          Lcd8_Decimal2(0xcc,sec);
+  75   2          Delay(1000000);
+  76   2          RI=0; 
+  77   2      }
+  78   1      
+  79   1      
+  80   1      }
+  81          void main()
+  82          {
+  83   1      
+  84   1        TMOD=0x20;
+  85   1        TH1=0xFD;
+  86   1        SCON=0X50;
+  87   1        TR1=1;
+  88   1      Lcd8_Init();
+  89   1      Lcd8_Display(0x80,"SV CORP",7);
+  90   1      Delay(65000);
+  91   1      Delay(65000);
+  92   1      Lcd8_Command(0x01);
+  93   1      
+  94   1      Lcd8_Display(Second_Line,"Time:",5);
+  95   1      
+  96   1        
+  97   1        
+  98   1      while(1)
+  99   1      {
+ 100   2      packet=SBUF;
+ 101   2      RI=0;
+ 102   2        all_disp();
+ 103   2      
+ 104   2        
+ 105   2      }
+ 106   1      }
+ 107          
+ 108          void Lcd8_Init()
+ 109          {
+ 110   1      Lcd8_Command(0x38); //to select function set
+ 111   1      Lcd8_Command(0x06); //entry mode set
+ 112   1      Lcd8_Command(0x0c); //display on
+ 113   1      Lcd8_Command(0x01); //clear display
+ 114   1      
+ 115   1      }
+ 116          
+ 117          void Lcd8_Command(unsigned char com)
+C51 COMPILER V9.50a   RX_CLOCK                                                             03/21/2014 21:26:09 PAGE 3   
+
+ 118          {
+ 119   1      
+ 120   1      Data_Port=com;
+ 121   1      Lcd_en=1;
+ 122   1      Lcd_rs=Lcd_rw=0;
+ 123   1      Delay(125);
+ 124   1      Lcd_en=0;
+ 125   1      Delay(125);
+ 126   1      
+ 127   1      
+ 128   1      }
+ 129          
+ 130          void Lcd8_Write(unsigned char com,unsigned char lr)
+ 131          {
+ 132   1        
+ 133   1      Lcd8_Command(com);
+ 134   1      Data_Port=lr;// Data
+ 135   1      Lcd_en=Lcd_rs=1;
+ 136   1      Lcd_rw=0;
+ 137   1      Delay(125);
+ 138   1      Lcd_en=0;
+ 139   1      Delay(125);
+ 140   1      
+ 141   1      
+ 142   1      }
+ 143          
+ 144          void Lcd8_Display(unsigned char com,const unsigned char *word,unsigned int n)
+ 145          {
+ 146   1      unsigned char Lcd_i;
+ 147   1      for(Lcd_i=0;Lcd_i<n;Lcd_i++)
+ 148   1      {
+ 149   2      Lcd8_Write(com+Lcd_i,word[Lcd_i]);
+ 150   2      
+ 151   2        
+ 152   2      }
+ 153   1      }
+ 154          
+ 155          void Lcd8_Decimal2(unsigned char com,unsigned char val)
+ 156          {
+ 157   1      unsigned int Lcd_hr,Lcd_t,Lcd_o;
+ 158   1      
+ 159   1      Lcd_hr=val%100;
+ 160   1      Lcd_t=Lcd_hr/10;
+ 161   1      Lcd_o=Lcd_hr%10;
+ 162   1      
+ 163   1      Lcd8_Write(com,Lcd_t+0x30);
+ 164   1      Lcd8_Write(com+1,Lcd_o+0x30);
+ 165   1        
+ 166   1      }
+ 167          
+ 168          
+ 169          
+ 170          
+ 171          
+ 172          
+ 173          void Delay(unsigned int del)
+ 174          {
+ 175   1      while(del--);
+ 176   1      }
+ 177          
+ 178          void del()
+ 179          {
+C51 COMPILER V9.50a   RX_CLOCK                                                             03/21/2014 21:26:09 PAGE 4   
+
+ 180   1      Delay(65000);
+ 181   1      Delay(65000);
+ 182   1        
+ 183   1      }
+ 184          
+ 185          
+ 186          
+ 187          
+ 188          
+ 189            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    438    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     40      11
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
