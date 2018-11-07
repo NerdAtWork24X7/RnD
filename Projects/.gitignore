@@ -7,5 +7,7 @@
 *.bmk
 *.pdsbak
 *.zip
-All_Resources/
 *.pdf
+*.xlsx
+*.docx
+All_Resources/
