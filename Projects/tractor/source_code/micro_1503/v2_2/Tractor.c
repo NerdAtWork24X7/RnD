@@ -4,50 +4,21 @@
 #include "tmr2.h"
 #include "pwm3.h"
 
-/*#define COND1 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND2 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(Eng_On))
-#define COND3 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND4 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(Eng_On))
-#define COND5 ((SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND6 ((SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND7 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND8 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND9 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND10 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND11 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND12 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND13 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!Eng_On))  */
-
-/*
-#define COND1 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND2 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND3 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(!Eng_On))
-#define COND4 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(Eng_On))
-#define COND5 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND6 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(Eng_On))
-#define COND7 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND8 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(Eng_On))
-#define COND9 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND10 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)& (Eng_On))
-#define COND11 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!Eng_On))
-#define COND12 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(Eng_On))
-#define COND13 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!Eng_On))
- */
-
-
 #define COND1 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
-#define COND2 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND3 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
-#define COND4 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND5 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND6 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND7 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND8 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND9 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND10 ((SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)& (!ENGINE_SENSE))
-#define COND11 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND12 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND13 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
+#define COND2 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
+#define COND3 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
+#define COND4 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
+#define COND5 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
+#define COND6 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
+#define COND7 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
+#define COND8 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
+#define COND9 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
+#define COND10 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)& (!ENGINE_SENSE))
+#define COND11 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
+#define COND12 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
+
+#define TOTAL_COND 12
+#define DEBO_TIME 10
 
 
 #define NO_CYCLE_1  1000
@@ -81,8 +52,8 @@ void CHCK_COND(uint8 x)
 {
    uint8 i;
    guc_deb[x]++;
-   for(i=0;i<=13 && i!=x;i++){guc_deb[i] = 0;}
-   if(guc_deb[x] > 10){ guc_choice = x; guc_deb[x] = 0;}
+   for(i=0;i<=TOTAL_COND && i!=x;i++){guc_deb[i] = 0;}
+   if(guc_deb[x] > DEBO_TIME){ guc_choice = x; guc_deb[x] = 0;}
 }
 
 
@@ -101,20 +72,17 @@ void check_cond()
     if(COND10){ CHCK_COND(10); }
     if(COND11){ CHCK_COND(11); }
     if(COND12){ CHCK_COND(12); }
-    if(COND13){ CHCK_COND(13); }
     asm CLRWDT ;
 
 }
 
 void exe_cond()
 {
-  if(guc_choice == 1 || guc_choice == 2 || guc_choice == 3
-    || guc_choice == 4 || guc_choice == 5){guc_buzz_state=1;}
+  if(guc_choice == 1 || guc_choice == 6 || guc_choice == 9
+    || guc_choice == 10){guc_buzz_state=1;}
   else { guc_buzz_state=0;}
 
-  if(guc_choice == 6 || guc_choice == 7 || guc_choice == 8
-    || guc_choice == 9 || guc_choice == 10 || guc_choice == 11
-    || guc_choice == 12)
+  if(guc_choice == 8 || guc_choice == 11 || guc_choice == 12)
     {P_IND = 1;}
   else { P_IND = 0;}
 
@@ -124,131 +92,28 @@ void exe_cond()
   else {RELAY_STR = 1;}
  #endif
   
-  if(guc_choice == 2)
+  if(guc_choice == 10)
    {
 //     if( rel_lock == 0)
      {
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
        RELAY_SOL = 0;rel_lock = 1;
-       while(COND2)asm CLRWDT ;
+       while(COND10)asm CLRWDT ;
        guc_buzz_state=0;
      }
    }
-  else if(guc_choice == 6)
+  else if(guc_choice == 12)
    {
 //     if( rel_lock == 0)
      {
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
        RELAY_SOL = 0;rel_lock = 1;
-       while(COND6)asm CLRWDT ;
+       while(COND12)asm CLRWDT ;
        guc_buzz_state=0;
      }
    }
   else { RELAY_SOL = 0;}
 
- /* switch(guc_choice)
-    {
-      case 1: RELAY_STR = 0;
-              guc_buzz_state=1;
-              P_IND = 0;
-              RELAY_SOL = 0;
-              while(COND1);
-              break;
-      
-      case 2: RELAY_STR = 1;
-              guc_buzz_state=1;
-              P_IND = 0;
-              RELAY_SOL = 1;
-              while(guc_sec<6);
-              RELAY_SOL = 0;
-              while(COND2);
-              break;
-      
-      case 3: RELAY_STR = 1;
-              guc_buzz_state=1;
-              P_IND = 0;
-              RELAY_SOL = 0;
-              while(COND3);
-              break;
-              
-      case 4: RELAY_STR = 1;
-              guc_buzz_state=1;
-              P_IND = 0;
-              RELAY_SOL = 0;
-              while(COND4);
-              break;
-              
-      case 5: RELAY_STR = 0;
-              guc_buzz_state=1;
-              P_IND = 0;
-              RELAY_SOL = 0;
-              while(COND5);
-              break;
-              
-      case 6: RELAY_STR = 1;
-              guc_buzz_state = 0;
-              P_IND = 1;
-              RELAY_SOL = 1;
-              while(guc_sec<6);
-              RELAY_SOL = 0;
-              while(COND6);
-              break;
-      
-      case 7: RELAY_STR = 1;
-              guc_buzz_state=0;
-              P_IND = 1;
-              RELAY_SOL = 0;
-              while(COND7);
-              break;
-
-      case 8: RELAY_STR = 1;
-              guc_buzz_state=0;
-              P_IND = 1;
-              RELAY_SOL = 0;
-              while(COND8);
-              break;
-
-      case 9: RELAY_STR = 0;
-              guc_buzz_state=0;
-              P_IND = 1;
-              RELAY_SOL = 0;
-              while(COND9);
-              break;
-
-      case 10: RELAY_STR = 1;
-               guc_buzz_state=0;
-               P_IND = 1;
-               RELAY_SOL = 0;
-               while(COND10);
-               break;
-               
-      case 11: RELAY_STR = 1;
-               guc_buzz_state=0;
-               P_IND = 1;
-               RELAY_SOL = 0;
-               while(COND11);
-               break;
-               
-      case 12: RELAY_STR = 1;
-               guc_buzz_state=0;
-               P_IND = 1;
-               RELAY_SOL = 0;
-               while(COND12);
-               break;
-
-      case 13: RELAY_STR = 0;
-               guc_buzz_state=0;
-               P_IND = 0;
-               RELAY_SOL = 0;
-               while(COND13);
-               break;
-              
-      default: RELAY_STR = 1;
-               guc_buzz_state = 0;
-               P_IND = 0;
-               RELAY_SOL = 0;
-               break;
-    } */
 }
 
 /*

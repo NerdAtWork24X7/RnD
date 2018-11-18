@@ -49,10 +49,10 @@ Count=0
 Count=3
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\
 Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\
-Path2=D:\PIC Project\tractor\source code\micro_1503\v2_2\
+Path2=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v2_2\
 [HEADER_PATH]
 Count=1
-Path0=D:\PIC Project\tractor\source code\micro_1503\v2_2\
+Path0=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v2_2\
 [HEADERS]
 Count=5
 File0=pwm3.h
