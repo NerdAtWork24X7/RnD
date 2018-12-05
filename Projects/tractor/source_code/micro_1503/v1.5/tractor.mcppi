@@ -44,15 +44,13 @@ Count=0
 [OTHER_FILES]
 Count=0
 [SEARCH_PATH]
-Count=4
+Count=5
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\
 Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\
-Path2=D:\PIC Project\tractor\source code\micro_1503\v1.5\
-Path3=D:\PIC Project\tractor\source code\micro_1503\v2_2\
+Path2=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v1.5\
 [HEADER_PATH]
-Count=2
-Path0=D:\PIC Project\tractor\source code\micro_1503\v2_2\
-Path1=D:\PIC Project\tractor\source code\micro_1503\v1.5\
+Count=3
+Path2=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v1.5\
 [HEADERS]
 Count=5
 File0=pwm3.h

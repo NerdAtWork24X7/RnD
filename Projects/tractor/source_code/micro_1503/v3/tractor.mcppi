@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=Tractor.c
+Value=tractor.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -46,17 +46,13 @@ Count=0
 [OTHER_FILES]
 Count=0
 [SEARCH_PATH]
-Count=5
+Count=3
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\
 Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\
-Path2=D:\PIC Project\tractor\source code\micro(different)\v3\
-Path3=D:\PIC Project\tractor\source code\micro(different)\v2\
-Path4=D:\PIC Project\tractor\source code\micro(different)\
+Path2=D:\PIC_Project\tractor\source_code\micro_1503\v3\
 [HEADER_PATH]
-Count=3
-Path0=D:\PIC Project\tractor\source code\micro(different)\
-Path1=D:\PIC Project\tractor\source code\micro(different)\v2\
-Path2=D:\PIC Project\tractor\source code\micro(different)\v3\
+Count=1
+Path0=D:\PIC_Project\tractor\source_code\micro_1503\v3\
 [HEADERS]
 Count=5
 File0=pwm3.h

@@ -13,8 +13,8 @@ typedef signed long int32;
 #define SEAT_SWITCH  PORTC.RC2    /* Input */
 #define ENGINE_SENSE PORTA.RA5    /* Input */
 #define BUZZER       PORTA.RA2    /* Output */
-#define RELAY_STR    PORTC.RC3    /* Output */
-#define P_IND        PORTC.RC4    /* Output */
+#define RELAY_STR    PORTC.RC4    /* Output */
+#define P_IND        PORTC.RC3    /* Output */
 #define RELAY_SOL    PORTC.RC5    /* Output */
 
 
