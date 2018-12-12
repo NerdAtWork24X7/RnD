@@ -1,0 +1,1 @@
+C:\Users\Sahil\AppData\Local\Programs\Python\Python35-32\Lib\site-packages\PyQt5\pyuic5.bat -x "D:\scripting_project\python_scripts\Auto_Wallpaper\Gui.ui" -o "D:\scripting_project\python_scripts\Auto_Wallpaper\Gui.py"

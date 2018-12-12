@@ -1,0 +1,1 @@
+python backup_script.py -target D:\scripting_project\python_scripts\test -source D:\scripting_project\python_scripts\Assignments 
