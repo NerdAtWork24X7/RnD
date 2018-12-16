@@ -1,4 +1,4 @@
-0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1503 -RA -DL -O11111114 -fo8 -N"D:\PIC Project\tractor\source code\micro(different)\v3\tractor.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"D:\PIC Project\tractor\source code\micro(different)\v3\" -SP"D:\PIC Project\tractor\source code\micro(different)\v2\" -SP"D:\PIC Project\tractor\source code\micro(different)\" -IP"D:\PIC Project\tractor\source code\micro(different)\" -IP"D:\PIC Project\tractor\source code\micro(different)\v2\" -IP"D:\PIC Project\tractor\source code\micro(different)\v3\" "pwm3.c" "tmr0.c" "tmr2.c" "Tractor.c" "tmr1.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_PWM_150x.mcl"	 
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F1503 -RA -DL -O11111114 -fo8 -N"D:\PIC_Project\tractor\source_code\micro_1503\v3\tractor.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\" -SP"D:\PIC_Project\tractor\source_code\micro_1503\v3\" -IP"D:\PIC_Project\tractor\source_code\micro_1503\v3\" "pwm3.c" "tmr0.c" "tmr2.c" "Tractor.c" "tmr1.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_PWM_150x.mcl"	 
 hint: 0	1139	Available RAM: 112 [bytes], Available ROM: 2048 [bytes]	 
 diagnostics: 0	122	Compilation Started	P16F1503.c
 diagnostics: 1571	123	Compiled Successfully	P16F1503.c
@@ -15,10 +15,10 @@ hint: 244	1163	Variable 'flag' has been declared, but not used	Tractor.c
 diagnostics: 262	123	Compiled Successfully	Tractor.c
 diagnostics: 0	122	Compilation Started	types.h
 diagnostics: 69	123	Compiled Successfully	tmr1.c
-diagnostics: 0	127	All files Compiled in 281 ms	 
+diagnostics: 0	127	All files Compiled in 234 ms	 
 hint: 0	1144	Used RAM (bytes): 43 (38%)  Free RAM (bytes): 69 (62%)	Used RAM (bytes): 43 (38%)  Free RAM (bytes): 69 (62%)
 hint: 0	1144	Used ROM (program words): 1148 (56%)  Free ROM (program words): 900 (44%)	Used ROM (program words): 1148 (56%)  Free ROM (program words): 900 (44%)
 diagnostics: 0	125	Project Linked Successfully	tractor.mcppi
-diagnostics: 0	128	Linked in 94 ms	 
-diagnostics: 0	129	Project 'tractor.mcppi' completed: 547 ms	 
-diagnostics: 0	103	Finished successfully: 02 May 2018, 19:07:08	tractor.mcppi
+diagnostics: 0	128	Linked in 62 ms	 
+diagnostics: 0	129	Project 'tractor.mcppi' completed: 468 ms	 
+diagnostics: 0	103	Finished successfully: 14 Nov 2018, 19:41:21	tractor.mcppi

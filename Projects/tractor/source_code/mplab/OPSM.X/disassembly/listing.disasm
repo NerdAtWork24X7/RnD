@@ -1,0 +1,690 @@
+Disassembly Listing for OPSM
+Generated From:
+E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/dist/default/debug/OPSM.X.debug.elf
+Dec 15, 2018 12:48:09 AM
+
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/source/src/main.c  ---------------------
+1:             /* 
+2:              * File:   main.c
+3:              * Author: Vs-Corp
+4:              *
+5:              * Created on December 15, 2018, 12:35 AM
+6:              */
+7:             
+8:             #include <stdio.h>
+9:             #include <stdlib.h>
+10:            #include "mcc.h"
+11:            
+12:            /*
+13:             * 
+14:             */
+15:            int main(int argc, char** argv) {
+16:            
+17:                SYSTEM_Initialize();
+0081  3180     MOVLP 0x0
+0082  205C     CALL 0x5C
+0083  3180     MOVLP 0x0
+18:                INTERRUPT_GlobalInterruptEnable();
+0084  178B     BSF INTCON, 0x7
+19:                while(1);
+0085  2885     GOTO 0x85
+20:                return (EXIT_SUCCESS);
+21:            }
+0086  2814     GOTO 0x14
+22:            
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/mcc_generated_files/tmr2.c  ------------
+1:             /**
+2:               TMR2 Generated Driver File
+3:             
+4:               @Company
+5:                 Microchip Technology Inc.
+6:             
+7:               @File Name
+8:                 tmr2.c
+9:             
+10:              @Summary
+11:                This is the generated driver implementation file for the TMR2 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+12:            
+13:              @Description
+14:                This source file provides APIs for TMR2.
+15:                Generation Information :
+16:                    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+17:                    Device            :  PIC16F1503
+18:                    Driver Version    :  2.01
+19:                The generated drivers are tested against the following:
+20:                    Compiler          :  XC8 1.45
+21:                    MPLAB 	          :  MPLAB X 4.15
+22:            */
+23:            
+24:            /*
+25:                (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+26:                
+27:                Subject to your compliance with these terms, you may use Microchip software and any 
+28:                derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+29:                license terms applicable to your use of third party software (including open source software) that 
+30:                may accompany Microchip software.
+31:                
+32:                THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+33:                EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+34:                IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+35:                FOR A PARTICULAR PURPOSE.
+36:                
+37:                IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+38:                INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+39:                WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+40:                HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+41:                THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+42:                CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+43:                OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+44:                SOFTWARE.
+45:            */
+46:            
+47:            /**
+48:              Section: Included Files
+49:            */
+50:            
+51:            #include <xc.h>
+52:            #include "tmr2.h"
+53:            
+54:            /**
+55:              Section: Global Variables Definitions
+56:            */
+57:            
+58:            /**
+59:              Section: TMR2 APIs
+60:            */
+61:            
+62:            void TMR2_Initialize(void)
+63:            {
+64:                // Set TMR2 to the options selected in the User Interface
+65:            
+66:                // PR2 255; 
+67:                PR2 = 0xFF;
+0079  30FF     MOVLW 0xFF
+007A  0020     MOVLB 0x0
+007B  009B     MOVWF PR2
+68:            
+69:                // TMR2 0; 
+70:                TMR2 = 0x00;
+007C  019A     CLRF TMR2
+71:            
+72:                // Clearing IF flag.
+73:                PIR1bits.TMR2IF = 0;
+007D  1091     BCF PIR1, 0x1
+74:            
+75:                // T2CKPS 1:1; T2OUTPS 1:1; TMR2ON on; 
+76:                T2CON = 0x04;
+007E  3004     MOVLW 0x4
+007F  009C     MOVWF T2CON
+77:            }
+0080  0008     RETURN
+78:            
+79:            void TMR2_StartTimer(void)
+80:            {
+81:                // Start the Timer by writing to TMRxON bit
+82:                T2CONbits.TMR2ON = 1;
+83:            }
+84:            
+85:            void TMR2_StopTimer(void)
+86:            {
+87:                // Stop the Timer by writing to TMRxON bit
+88:                T2CONbits.TMR2ON = 0;
+89:            }
+90:            
+91:            uint8_t TMR2_ReadTimer(void)
+92:            {
+93:                uint8_t readVal;
+94:            
+95:                readVal = TMR2;
+96:            
+97:                return readVal;
+98:            }
+99:            
+100:           void TMR2_WriteTimer(uint8_t timerVal)
+101:           {
+102:               // Write to the Timer2 register
+103:               TMR2 = timerVal;
+104:           }
+105:           
+106:           void TMR2_LoadPeriodRegister(uint8_t periodVal)
+107:           {
+108:              PR2 = periodVal;
+109:           }
+110:           
+111:           bool TMR2_HasOverflowOccured(void)
+112:           {
+113:               // check if  overflow has occurred by checking the TMRIF bit
+114:               bool status = PIR1bits.TMR2IF;
+115:               if(status)
+116:               {
+117:                   // Clearing IF flag.
+118:                   PIR1bits.TMR2IF = 0;
+119:               }
+120:               return status;
+121:           }
+122:           /**
+123:             End of File
+124:           */
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/mcc_generated_files/tmr0.c  ------------
+1:             /**
+2:               TMR0 Generated Driver File
+3:             
+4:               @Company
+5:                 Microchip Technology Inc.
+6:             
+7:               @File Name
+8:                 tmr0.c
+9:             
+10:              @Summary
+11:                This is the generated driver implementation file for the TMR0 driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+12:            
+13:              @Description
+14:                This source file provides APIs for TMR0.
+15:                Generation Information :
+16:                    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+17:                    Device            :  PIC16F1503
+18:                    Driver Version    :  2.01
+19:                The generated drivers are tested against the following:
+20:                    Compiler          :  XC8 1.45
+21:                    MPLAB 	          :  MPLAB X 4.15
+22:            */
+23:            
+24:            /*
+25:                (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+26:                
+27:                Subject to your compliance with these terms, you may use Microchip software and any 
+28:                derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+29:                license terms applicable to your use of third party software (including open source software) that 
+30:                may accompany Microchip software.
+31:                
+32:                THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+33:                EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+34:                IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+35:                FOR A PARTICULAR PURPOSE.
+36:                
+37:                IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+38:                INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+39:                WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+40:                HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+41:                THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+42:                CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+43:                OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+44:                SOFTWARE.
+45:            */
+46:            
+47:            /**
+48:              Section: Included Files
+49:            */
+50:            
+51:            #include <xc.h>
+52:            #include "tmr0.h"
+53:            
+54:            /**
+55:              Section: Global Variables Definitions
+56:            */
+57:            
+58:            volatile uint8_t timer0ReloadVal;
+59:            void (*TMR0_InterruptHandler)(void);
+60:            /**
+61:              Section: TMR0 APIs
+62:            */
+63:            
+64:            void TMR0_Initialize(void)
+65:            {
+66:                // Set TMR0 to the options selected in the User Interface
+67:            	
+68:                // PSA assigned; PS 1:256; TMRSE Increment_hi_lo; mask the nWPUEN and INTEDG bits
+69:                OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD7 & 0x3F)); 
+0032  0021     MOVLB 0x1
+0033  0815     MOVF OPTION_REG, W
+0034  39C0     ANDLW 0xC0
+0035  3817     IORLW 0x17
+0036  0095     MOVWF OPTION_REG
+70:            	
+71:                // TMR0 240; 
+72:                TMR0 = 0xF0;
+0037  30F0     MOVLW 0xF0
+0038  0020     MOVLB 0x0
+0039  0095     MOVWF TMR0
+73:            	
+74:                // Load the TMR value to reload variable
+75:                timer0ReloadVal= 240;
+003A  30F0     MOVLW 0xF0
+003B  00F2     MOVWF 0x72
+003C  0872     MOVF 0x72, W
+003D  00F9     MOVWF timer0ReloadVal
+76:            
+77:                // Clear Interrupt flag before enabling the interrupt
+78:                INTCONbits.TMR0IF = 0;
+003E  110B     BCF INTCON, 0x2
+79:            
+80:                // Enabling TMR0 interrupt
+81:                INTCONbits.TMR0IE = 1;
+003F  168B     BSF INTCON, 0x5
+82:            
+83:                // Set Default Interrupt Handler
+84:                TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
+0040  3096     MOVLW 0x96
+0041  00F0     MOVWF __pcstackCOMMON
+0042  3000     MOVLW 0x0
+0043  00F1     MOVWF 0x71
+0044  3180     MOVLP 0x0
+0045  208D     CALL 0x8D
+0046  3180     MOVLP 0x0
+85:            }
+0047  0008     RETURN
+86:            
+87:            uint8_t TMR0_ReadTimer(void)
+88:            {
+89:                uint8_t readVal;
+90:            
+91:                readVal = TMR0;
+92:            
+93:                return readVal;
+94:            }
+95:            
+96:            void TMR0_WriteTimer(uint8_t timerVal)
+97:            {
+98:                // Write to the Timer0 register
+99:                TMR0 = timerVal;
+100:           }
+101:           
+102:           void TMR0_Reload(void)
+103:           {
+104:               // Write to the Timer0 register
+105:               TMR0 = timer0ReloadVal;
+106:           }
+107:           
+108:           void TMR0_ISR(void)
+109:           {
+110:               static volatile uint16_t CountCallBack = 0;
+111:           
+112:               // Clear the TMR0 interrupt flag
+113:               INTCONbits.TMR0IF = 0;
+001A  110B     BCF INTCON, 0x2
+114:           
+115:               TMR0 = timer0ReloadVal;
+001B  0879     MOVF timer0ReloadVal, W
+001C  0020     MOVLB 0x0
+001D  0095     MOVWF TMR0
+116:           
+117:               // callback function - called every 500th pass
+118:               if (++CountCallBack >= TMR0_INTERRUPT_TICKER_FACTOR)
+001E  3001     MOVLW 0x1
+001F  07FA     ADDWF __pbssCOMMON, F
+0020  3000     MOVLW 0x0
+0021  3DFB     ADDWFC 0x7B, F
+0022  3001     MOVLW 0x1
+0023  027B     SUBWF 0x7B, W
+0024  30F4     MOVLW 0xF4
+0025  1903     BTFSC STATUS, 0x2
+0026  027A     SUBWF __pbssCOMMON, W
+0027  1C03     BTFSS STATUS, 0x0
+0028  282A     GOTO 0x2A
+0029  282B     GOTO 0x2B
+002A  2831     GOTO 0x31
+119:               {
+120:                   // ticker function call
+121:                   TMR0_CallBack();
+002B  3180     MOVLP 0x0
+002C  206C     CALL 0x6C
+002D  3180     MOVLP 0x0
+122:           
+123:                   // reset ticker counter
+124:                   CountCallBack = 0;
+002E  01FA     CLRF __pbssCOMMON
+002F  01FB     CLRF 0x7B
+0030  2831     GOTO 0x31
+125:               }
+126:           
+127:               // add your TMR0 interrupt custom code
+128:           }
+0031  0008     RETURN
+129:           
+130:           void TMR0_CallBack(void)
+131:           {
+132:               // Add your custom callback code here
+133:           
+134:               if(TMR0_InterruptHandler)
+006C  0877     MOVF TMR0_InterruptHandler, W
+006D  0478     IORWF 0x78, W
+006E  1903     BTFSC STATUS, 0x2
+006F  2871     GOTO 0x71
+0070  2872     GOTO 0x72
+0071  2878     GOTO 0x78
+135:               {
+136:                   TMR0_InterruptHandler();
+0072  0878     MOVF 0x78, W
+0073  008A     MOVWF PCLATH
+0074  0877     MOVF TMR0_InterruptHandler, W
+0075  000A     CALLW
+0076  3180     MOVLP 0x0
+0077  2878     GOTO 0x78
+137:               }
+138:           }
+0078  0008     RETURN
+139:           
+140:           void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
+141:               TMR0_InterruptHandler = InterruptHandler;
+008D  0871     MOVF 0x71, W
+008E  00F8     MOVWF 0x78
+008F  0870     MOVF __pcstackCOMMON, W
+0090  00F7     MOVWF TMR0_InterruptHandler
+142:           }
+0091  0008     RETURN
+143:           
+144:           void TMR0_DefaultInterruptHandler(void){
+145:               // add your TMR0 interrupt custom code
+146:               // or set custom function using TMR0_SetInterruptHandler()
+147:           }
+0096  0008     RETURN
+148:           
+149:           /**
+150:             End of File
+151:           */
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/mcc_generated_files/pin_manager.c  -----
+1:             /**
+2:               Generated Pin Manager File
+3:             
+4:               Company:
+5:                 Microchip Technology Inc.
+6:             
+7:               File Name:
+8:                 pin_manager.c
+9:             
+10:              Summary:
+11:                This is the Pin Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+12:            
+13:              Description:
+14:                This header file provides implementations for pin APIs for all pins selected in the GUI.
+15:                Generation Information :
+16:                    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+17:                    Device            :  PIC16F1503
+18:                    Driver Version    :  2.11
+19:                The generated drivers are tested against the following:
+20:                    Compiler          :  XC8 1.45
+21:                    MPLAB             :  MPLAB X 4.15
+22:            
+23:                Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
+24:            */
+25:            
+26:            /*
+27:                (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+28:                
+29:                Subject to your compliance with these terms, you may use Microchip software and any 
+30:                derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+31:                license terms applicable to your use of third party software (including open source software) that 
+32:                may accompany Microchip software.
+33:                
+34:                THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+35:                EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+36:                IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+37:                FOR A PARTICULAR PURPOSE.
+38:                
+39:                IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+40:                INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+41:                WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+42:                HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+43:                THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+44:                CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+45:                OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+46:                SOFTWARE.
+47:            */
+48:            
+49:            #include <xc.h>
+50:            #include "pin_manager.h"
+51:            #include "stdbool.h"
+52:            
+53:            
+54:            
+55:            
+56:            
+57:            void PIN_MANAGER_Initialize(void)
+58:            {
+59:                /**
+60:                LATx registers
+61:                */
+62:                LATA = 0x00;
+0048  0022     MOVLB 0x2
+0049  018C     CLRF LATA
+63:                LATC = 0x00;
+004A  018E     CLRF LATC
+64:            
+65:                /**
+66:                TRISx registers
+67:                */
+68:                TRISA = 0x3F;
+004B  303F     MOVLW 0x3F
+004C  0021     MOVLB 0x1
+004D  008C     MOVWF TRISA
+69:                TRISC = 0x3F;
+004E  303F     MOVLW 0x3F
+004F  008E     MOVWF TRISC
+70:            
+71:                /**
+72:                ANSELx registers
+73:                */
+74:                ANSELC = 0x0F;
+0050  300F     MOVLW 0xF
+0051  0023     MOVLB 0x3
+0052  008E     MOVWF ANSELC
+75:                ANSELA = 0x17;
+0053  3017     MOVLW 0x17
+0054  008C     MOVWF ANSELA
+76:            
+77:                /**
+78:                WPUx registers
+79:                */
+80:                WPUA = 0x00;
+0055  0024     MOVLB 0x4
+0056  018C     CLRF WPUA
+81:                OPTION_REGbits.nWPUEN = 1;
+0057  0021     MOVLB 0x1
+0058  1795     BSF OPTION_REG, 0x7
+82:            
+83:            
+84:            
+85:                /**
+86:                APFCONx registers
+87:                */
+88:                APFCON = 0x00;
+0059  0022     MOVLB 0x2
+005A  019D     CLRF APFCON
+89:            
+90:            
+91:            
+92:            
+93:               
+94:                
+95:            }
+005B  0008     RETURN
+96:              
+97:            void PIN_MANAGER_IOC(void)
+98:            {   
+99:            }
+100:           
+101:           /**
+102:            End of File
+103:           */
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/mcc_generated_files/mcc.c  -------------
+1:             /**
+2:               @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs Source File
+3:             
+4:               @Company:
+5:                 Microchip Technology Inc.
+6:             
+7:               @File Name:
+8:                 mcc.c
+9:             
+10:              @Summary:
+11:                This is the mcc.c file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+12:            
+13:              @Description:
+14:                This header file provides implementations for driver APIs for all modules selected in the GUI.
+15:                Generation Information :
+16:                    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+17:                    Device            :  PIC16F1503
+18:                    Driver Version    :  2.00
+19:                The generated drivers are tested against the following:
+20:                    Compiler          :  XC8 1.45 or later
+21:                    MPLAB             :  MPLAB X 4.15
+22:            */
+23:            
+24:            /*
+25:                (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+26:                
+27:                Subject to your compliance with these terms, you may use Microchip software and any 
+28:                derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+29:                license terms applicable to your use of third party software (including open source software) that 
+30:                may accompany Microchip software.
+31:                
+32:                THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+33:                EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+34:                IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+35:                FOR A PARTICULAR PURPOSE.
+36:                
+37:                IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+38:                INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+39:                WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+40:                HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+41:                THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+42:                CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+43:                OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+44:                SOFTWARE.
+45:            */
+46:            
+47:            #include "mcc.h"
+48:            
+49:            
+50:            void SYSTEM_Initialize(void)
+51:            {
+52:            
+53:                PIN_MANAGER_Initialize();
+005C  3180     MOVLP 0x0
+005D  2048     CALL 0x48
+005E  3180     MOVLP 0x0
+54:                OSCILLATOR_Initialize();
+005F  3180     MOVLP 0x0
+0060  2087     CALL 0x87
+0061  3180     MOVLP 0x0
+55:                WDT_Initialize();
+0062  3180     MOVLP 0x0
+0063  2092     CALL 0x92
+0064  3180     MOVLP 0x0
+56:                TMR2_Initialize();
+0065  3180     MOVLP 0x0
+0066  2079     CALL 0x79
+0067  3180     MOVLP 0x0
+57:                TMR0_Initialize();
+0068  3180     MOVLP 0x0
+0069  2032     CALL 0x32
+006A  3180     MOVLP 0x0
+58:            }
+006B  0008     RETURN
+59:            
+60:            void OSCILLATOR_Initialize(void)
+61:            {
+62:                // SCS INTOSC; IRCF 16MHz_HF; 
+63:                OSCCON = 0x7A;
+0087  307A     MOVLW 0x7A
+0088  0021     MOVLB 0x1
+0089  0099     MOVWF OSCCON
+64:                // SBOREN disabled; BORFS disabled; 
+65:                BORCON = 0x00;
+008A  0022     MOVLB 0x2
+008B  0196     CLRF BORCON
+66:            }
+008C  0008     RETURN
+67:            
+68:            void WDT_Initialize(void)
+69:            {
+70:                // WDTPS 1:65536; SWDTEN ON; 
+71:                WDTCON = 0x17;
+0092  3017     MOVLW 0x17
+0093  0021     MOVLB 0x1
+0094  0097     MOVWF WDTCON
+72:            }
+0095  0008     RETURN
+73:            
+74:            /**
+75:             End of File
+76:            */
+---  E:/Repository/RnD/Projects/tractor/source_code/mplab/OPSM.X/mcc_generated_files/interrupt_manager.c  
+1:             /**
+2:               Generated Interrupt Manager Source File
+3:             
+4:               @Company:
+5:                 Microchip Technology Inc.
+6:             
+7:               @File Name:
+8:                 interrupt_manager.c
+9:             
+10:              @Summary:
+11:                This is the Interrupt Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+12:            
+13:              @Description:
+14:                This header file provides implementations for global interrupt handling.
+15:                For individual peripheral handlers please see the peripheral driver for
+16:                all modules selected in the GUI.
+17:                Generation Information :
+18:                    Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
+19:                    Device            :  PIC16F1503
+20:                    Driver Version    :  2.03
+21:                The generated drivers are tested against the following:
+22:                    Compiler          :  XC8 1.45 or later
+23:                    MPLAB 	          :  MPLAB X 4.15
+24:            */
+25:            
+26:            /*
+27:                (c) 2018 Microchip Technology Inc. and its subsidiaries. 
+28:                
+29:                Subject to your compliance with these terms, you may use Microchip software and any 
+30:                derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
+31:                license terms applicable to your use of third party software (including open source software) that 
+32:                may accompany Microchip software.
+33:                
+34:                THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
+35:                EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
+36:                IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
+37:                FOR A PARTICULAR PURPOSE.
+38:                
+39:                IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+40:                INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
+41:                WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
+42:                HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
+43:                THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
+44:                CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
+45:                OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
+46:                SOFTWARE.
+47:            */
+48:            
+49:            #include "interrupt_manager.h"
+50:            #include "mcc.h"
+51:            
+52:            void __interrupt() INTERRUPT_InterruptManager (void)
+0004  147E     BSF 0xFE, 0x0
+0005  3180     MOVLP 0x0
+53:            {
+54:                // interrupt handler
+55:                if(INTCONbits.TMR0IE == 1 && INTCONbits.TMR0IF == 1)
+0006  1E8B     BTFSS 0x8B, 0x5
+0007  2809     GOTO 0x9
+0008  280A     GOTO 0xA
+0009  2812     GOTO 0x12
+000A  1D0B     BTFSS 0x8B, 0x2
+000B  280D     GOTO 0xD
+000C  280E     GOTO 0xE
+000D  2812     GOTO 0x12
+56:                {
+57:                    TMR0_ISR();
+000E  3180     MOVLP 0x0
+000F  201A     CALL 0x1A
+0010  3180     MOVLP 0x0
+0011  2812     GOTO 0x12
+58:                }
+59:            }
+0012  107E     BCF 0xFE, 0x0
+0013  0009     RETFIE
+60:            /**
+61:             End of File
+62:            */

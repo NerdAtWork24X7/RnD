@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=tractor.c
+Value=APP_OPSM.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -16,29 +16,27 @@ Value=0
 [EEPROM_DEFINITION]
 Value=
 [FILES]
-Count=5
 File0=pwm3.c
 File1=tmr0.c
 File2=tmr2.c
-File3=Tractor.c
-File4=tmr1.c
+File3=APP_OPSM.c
+Count=4
 [BINARIES]
 Count=0
 [IMAGES]
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-Count=10
-File0=pwm3.c
-File1=tmr2.c
-File2=pwm3.h
-File3=tmr2.h
-File4=types.h
-File5=Tractor.c
-File6=tmr0.h
-File7=tmr0.c
-File8=tmr1.c
-File9=tmr1.h
+File0=APP_OPSM.c
+File1=tmr0.c
+File2=APP_OPSM.h
+File3=tmr2.c
+File4=pwm3.c
+File5=pwm3.h
+File6=tmr2.h
+File7=types.h
+File8=tmr0.h
+Count=9
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -46,26 +44,27 @@ Count=0
 [OTHER_FILES]
 Count=0
 [SEARCH_PATH]
-Count=3
-Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\
-Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16_Enh\
-Path2=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v2_2\
+Count=0
 [HEADER_PATH]
-Count=1
-Path0=E:\Repository\RnD\Projects\tractor\source_code\micro_1503\v2_2\
+Count=0
 [HEADERS]
-Count=5
 File0=pwm3.h
 File1=tmr2.h
 File2=types.h
 File3=tmr0.h
-File4=tmr1.h
+File4=APP_OPSM.h
+Count=5
 [PLDS]
 Count=0
 [Useses]
+File0=Software_UART
 Count=1
-File0=PWM
 [EXPANDED_NODES]
-Node0=Sources
-Node1=Header Files
-Count=2
+0=tractor.mcppi
+1=Sources
+6=Header Files
+Count=3
+[LIB_EXPANDED_NODES]
+0=mikroE Libraries
+1=System Libraries
+Count=3

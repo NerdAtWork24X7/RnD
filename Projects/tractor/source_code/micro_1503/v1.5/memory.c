@@ -40,6 +40,39 @@ uint8 DATAEE_ReadByte(uint8 bAdd)
 
     return (EEDATL);
 }
+
+
+/*
+void Check_Demo()
+{
+    uint8 udemo,ldemo;
+    
+    WDTCON = 0x16;
+    if(PORTC.RC5==0)
+     {
+       DATAEE_WriteByte(DEMO_ADDR,0xFF);
+       DATAEE_WriteByte(DEMO_ADDR+1,0xFF);
+       while(1);
+     }
+    udemo=DATAEE_ReadByte(DEMO_ADDR);
+    ldemo=DATAEE_ReadByte(DEMO_ADDR+1);
+    Demo=(((udemo<<8)&0xFF00)|ldemo);
+
+    if(Demo==0xFFFF)
+    {
+        Demo=0;
+    }
+    if(Demo>800) { while(1); }
+    else 
+    {
+        Demo++;
+        ldemo = (uint8)(Demo & 0x00FF);
+        udemo = (uint8)(((Demo>>8)&0x00FF));
+        
+        DATAEE_WriteByte(DEMO_ADDR,udemo);
+        DATAEE_WriteByte((DEMO_ADDR+1),ldemo);
+    }   
+}      */
 /**
  End of File
 */

@@ -1,6 +1,5 @@
 #include "tmr2.h"
 #include "types.h"
-/*void (*TMR2_InterruptHandler)(void);*/
 
 void TMR2_Initialize(void)
 {

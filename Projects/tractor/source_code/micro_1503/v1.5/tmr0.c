@@ -1,12 +1,8 @@
-#include "tmr0.h"
-#include "types.h"
-#include "pwm3.h"
+#include "APP_OPSM.h"
 
 
-volatile uint8 timer0ReloadVal,sec,guc_togg_half=1;
+volatile uint8 timer0ReloadVal,guc_togg_half=1;
 volatile uint16 one_sec,half_sec,guc_min=0;
-extern volatile uint8 guc_sec,guc_buzz_state;
-extern volatile uint16 demo_time;
 
 void TMR0_Initialize(void)
 {   
@@ -25,6 +21,7 @@ void TMR0_Reload(void)
 
 void TMR0_ISR(void)
 {
+    void *data_ptr;
     TMR0_Reload();
     TMR0IF_bit = 0;     /*Clear the TMR0 interrupt flag8*/
     asm CLRWDT ;
@@ -32,6 +29,15 @@ void TMR0_ISR(void)
      {
        one_sec=0;
        guc_sec++;
+       #if DEBUG == 1
+       Process_Uart();
+       data_ptr = &Diag_data_var;
+       {
+        Soft_UART_Write(*((uint8*)data_ptr));
+        Soft_UART_Write(diag_choice);
+       }
+       #endif
+       
        #if(DEMO == 1)
          guc_min++;
          if(guc_min>60)
