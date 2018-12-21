@@ -793,9 +793,13 @@ _exe_cond:
 	XORLW      3
 	BTFSC      STATUS+0, 2
 	GOTO       L__exe_cond72
-;APP_OPSM.c,67 :: 		|| guc_choice == 4 ){guc_buzz_state=1;}
+;APP_OPSM.c,67 :: 		|| guc_choice == 4 || guc_choice == 5 ){guc_buzz_state=1;}
 	MOVF       _guc_choice+0, 0
 	XORLW      4
+	BTFSC      STATUS+0, 2
+	GOTO       L__exe_cond72
+	MOVF       _guc_choice+0, 0
+	XORLW      5
 	BTFSC      STATUS+0, 2
 	GOTO       L__exe_cond72
 	GOTO       L_exe_cond39
@@ -807,11 +811,7 @@ L_exe_cond39:
 ;APP_OPSM.c,68 :: 		else { guc_buzz_state=0;}
 	CLRF       _guc_buzz_state+0
 L_exe_cond40:
-;APP_OPSM.c,70 :: 		if(guc_choice == 5 || guc_choice == 6 || guc_choice == 7 || guc_choice == 8
-	MOVF       _guc_choice+0, 0
-	XORLW      5
-	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond71
+;APP_OPSM.c,70 :: 		if( guc_choice == 6 || guc_choice == 7 || guc_choice == 8
 	MOVF       _guc_choice+0, 0
 	XORLW      6
 	BTFSC      STATUS+0, 2

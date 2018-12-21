@@ -21,7 +21,9 @@ void TMR0_Reload(void)
 
 void TMR0_ISR(void)
 {
+    #if DEBUG == 1
     void *data_ptr;
+    #endif
     TMR0_Reload();
     TMR0IF_bit = 0;     /*Clear the TMR0 interrupt flag8*/
     asm CLRWDT ;

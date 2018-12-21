@@ -7,33 +7,17 @@ _interrupt:
 	GOTO       L_interrupt2
 	BTFSS      TMR0IF_bit+0, BitPos(TMR0IF_bit+0)
 	GOTO       L_interrupt2
-L__interrupt67:
+L__interrupt66:
 ;APP_OPSM.c,18 :: 		TMR0_ISR();
 	CALL       _TMR0_ISR+0
-;APP_OPSM.c,20 :: 		if(UART_counter >= 20)
-	MOVLW      20
-	SUBWF      _UART_counter+0, 0
-	BTFSS      STATUS+0, 0
-	GOTO       L_interrupt3
-;APP_OPSM.c,22 :: 		Soft_UART_Break();
-	CALL       _Soft_UART_Break+0
-;APP_OPSM.c,23 :: 		UART_counter = 0;
-	CLRF       _UART_counter+0
-;APP_OPSM.c,24 :: 		}
-L_interrupt3:
-;APP_OPSM.c,25 :: 		UART_counter++;
-	INCF       _UART_counter+0, 0
-	MOVWF      R0
-	MOVF       R0, 0
-	MOVWF      _UART_counter+0
 ;APP_OPSM.c,27 :: 		}
-	GOTO       L_interrupt4
+	GOTO       L_interrupt3
 L_interrupt2:
 ;APP_OPSM.c,30 :: 		}
-L_interrupt4:
+L_interrupt3:
 ;APP_OPSM.c,31 :: 		}
 L_end_interrupt:
-L__interrupt72:
+L__interrupt71:
 	RETFIE     %s
 ; end of _interrupt
 
@@ -41,78 +25,110 @@ _CHCK_COND:
 
 ;APP_OPSM.c,33 :: 		void CHCK_COND(uint8 x)
 ;APP_OPSM.c,36 :: 		guc_deb[x]++;
-	MOVLW      _guc_deb+0
-	MOVWF      R1
-	MOVLW      hi_addr(_guc_deb+0)
-	MOVWF      R2
 	MOVF       FARG_CHCK_COND_x+0, 0
-	ADDWF      R1, 1
-	BTFSC      STATUS+0, 0
-	INCF       R2, 1
-	MOVF       R1, 0
-	MOVWF      FSR0L
+	MOVWF      R0
+	CLRF       R1
+	LSLF       R0, 1
+	RLF        R1, 1
+	MOVLW      _guc_deb+0
+	ADDWF      R0, 0
+	MOVWF      R2
+	MOVLW      hi_addr(_guc_deb+0)
+	ADDWFC     R1, 0
+	MOVWF      R3
 	MOVF       R2, 0
+	MOVWF      FSR0L
+	MOVF       R3, 0
 	MOVWF      FSR0H
 	MOVF       INDF0+0, 0
 	MOVWF      R0
+	ADDFSR     0, 1
+	MOVF       INDF0+0, 0
+	MOVWF      R1
 	INCF       R0, 1
-	MOVF       R1, 0
-	MOVWF      FSR1L
+	BTFSC      STATUS+0, 2
+	INCF       R1, 1
 	MOVF       R2, 0
+	MOVWF      FSR1L
+	MOVF       R3, 0
 	MOVWF      FSR1H
 	MOVF       R0, 0
 	MOVWF      INDF1+0
+	MOVF       R1, 0
+	ADDFSR     1, 1
+	MOVWF      INDF1+0
 ;APP_OPSM.c,37 :: 		for(i=0;i<=TOTAL_COND && i!=x;i++){guc_deb[i] = 0;}
-	CLRF       R3+0
-L_CHCK_COND5:
-	MOVF       R3+0, 0
+	CLRF       R4+0
+L_CHCK_COND4:
+	MOVF       R4+0, 0
 	SUBLW      14
 	BTFSS      STATUS+0, 0
-	GOTO       L_CHCK_COND6
-	MOVF       R3+0, 0
+	GOTO       L_CHCK_COND5
+	MOVF       R4+0, 0
 	XORWF      FARG_CHCK_COND_x+0, 0
 	BTFSC      STATUS+0, 2
-	GOTO       L_CHCK_COND6
-L__CHCK_COND68:
+	GOTO       L_CHCK_COND5
+L__CHCK_COND67:
+	MOVF       R4+0, 0
+	MOVWF      R0
+	CLRF       R1
+	LSLF       R0, 1
+	RLF        R1, 1
 	MOVLW      _guc_deb+0
+	ADDWF      R0, 0
 	MOVWF      FSR1L
 	MOVLW      hi_addr(_guc_deb+0)
+	ADDWFC     R1, 0
 	MOVWF      FSR1H
-	MOVF       R3+0, 0
-	ADDWF      FSR1L, 1
-	BTFSC      STATUS+0, 0
-	INCF       FSR1H, 1
 	CLRF       INDF1+0
-	INCF       R3+0, 1
-	GOTO       L_CHCK_COND5
-L_CHCK_COND6:
+	ADDFSR     1, 1
+	CLRF       INDF1+0
+	INCF       R4+0, 1
+	GOTO       L_CHCK_COND4
+L_CHCK_COND5:
 ;APP_OPSM.c,38 :: 		if(guc_deb[x] > DEBO_TIME){ guc_choice = x; guc_deb[x] = 0;}
+	MOVF       FARG_CHCK_COND_x+0, 0
+	MOVWF      R0
+	CLRF       R1
+	LSLF       R0, 1
+	RLF        R1, 1
 	MOVLW      _guc_deb+0
+	ADDWF      R0, 0
 	MOVWF      FSR0L
 	MOVLW      hi_addr(_guc_deb+0)
+	ADDWFC     R1, 0
 	MOVWF      FSR0H
-	MOVF       FARG_CHCK_COND_x+0, 0
-	ADDWF      FSR0L, 1
-	BTFSC      STATUS+0, 0
-	INCF       FSR0H, 1
 	MOVF       INDF0+0, 0
 	MOVWF      R1
+	ADDFSR     0, 1
+	MOVF       INDF0+0, 0
+	MOVWF      R2
+	MOVF       R2, 0
+	SUBLW      46
+	BTFSS      STATUS+0, 2
+	GOTO       L__CHCK_COND73
 	MOVF       R1, 0
-	SUBLW      10
+	SUBLW      224
+L__CHCK_COND73:
 	BTFSC      STATUS+0, 0
-	GOTO       L_CHCK_COND10
+	GOTO       L_CHCK_COND9
 	MOVF       FARG_CHCK_COND_x+0, 0
 	MOVWF      _guc_choice+0
+	MOVF       FARG_CHCK_COND_x+0, 0
+	MOVWF      R0
+	CLRF       R1
+	LSLF       R0, 1
+	RLF        R1, 1
 	MOVLW      _guc_deb+0
+	ADDWF      R0, 0
 	MOVWF      FSR1L
 	MOVLW      hi_addr(_guc_deb+0)
+	ADDWFC     R1, 0
 	MOVWF      FSR1H
-	MOVF       FARG_CHCK_COND_x+0, 0
-	ADDWF      FSR1L, 1
-	BTFSC      STATUS+0, 0
-	INCF       FSR1H, 1
 	CLRF       INDF1+0
-L_CHCK_COND10:
+	ADDFSR     1, 1
+	CLRF       INDF1+0
+L_CHCK_COND9:
 ;APP_OPSM.c,39 :: 		}
 L_end_CHCK_COND:
 	RETURN
@@ -173,12 +189,12 @@ L__check_cond85:
 	BCF        3, 0
 L__check_cond86:
 	BTFSS      3, 0
-	GOTO       L_check_cond11
+	GOTO       L_check_cond10
 	MOVLW      1
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond12
-L_check_cond11:
+	GOTO       L_check_cond11
+L_check_cond10:
 ;APP_OPSM.c,46 :: 		else if(COND2){ CHCK_COND(2); }
 	BTFSC      PORTC+0, 1
 	GOTO       L__check_cond87
@@ -222,12 +238,12 @@ L__check_cond95:
 	BCF        3, 0
 L__check_cond96:
 	BTFSS      3, 0
-	GOTO       L_check_cond13
+	GOTO       L_check_cond12
 	MOVLW      2
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond14
-L_check_cond13:
+	GOTO       L_check_cond13
+L_check_cond12:
 ;APP_OPSM.c,47 :: 		else if(COND3){ CHCK_COND(3); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond97
@@ -271,12 +287,12 @@ L__check_cond105:
 	BCF        R0, 0
 L__check_cond106:
 	BTFSS      R0, 0
-	GOTO       L_check_cond15
+	GOTO       L_check_cond14
 	MOVLW      3
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond16
-L_check_cond15:
+	GOTO       L_check_cond15
+L_check_cond14:
 ;APP_OPSM.c,48 :: 		else if(COND4){ CHCK_COND(4); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond107
@@ -313,12 +329,12 @@ L__check_cond113:
 	BCF        R0, 0
 L__check_cond114:
 	BTFSS      R0, 0
-	GOTO       L_check_cond17
+	GOTO       L_check_cond16
 	MOVLW      4
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond18
-L_check_cond17:
+	GOTO       L_check_cond17
+L_check_cond16:
 ;APP_OPSM.c,49 :: 		else if(COND5){ CHCK_COND(5); }
 	BTFSS      PORTC+0, 2
 	GOTO       L__check_cond115
@@ -348,12 +364,12 @@ L__check_cond119:
 	BCF        3, 0
 L__check_cond120:
 	BTFSS      3, 0
-	GOTO       L_check_cond19
+	GOTO       L_check_cond18
 	MOVLW      5
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond20
-L_check_cond19:
+	GOTO       L_check_cond19
+L_check_cond18:
 ;APP_OPSM.c,50 :: 		else if(COND6){ CHCK_COND(6); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond121
@@ -397,12 +413,12 @@ L__check_cond129:
 	BCF        3, 0
 L__check_cond130:
 	BTFSS      3, 0
-	GOTO       L_check_cond21
+	GOTO       L_check_cond20
 	MOVLW      6
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond22
-L_check_cond21:
+	GOTO       L_check_cond21
+L_check_cond20:
 ;APP_OPSM.c,51 :: 		else if(COND7){ CHCK_COND(7); }
 	BTFSC      PORTC+0, 1
 	GOTO       L__check_cond131
@@ -453,12 +469,12 @@ L__check_cond141:
 	BCF        R0, 0
 L__check_cond142:
 	BTFSS      R0, 0
-	GOTO       L_check_cond23
+	GOTO       L_check_cond22
 	MOVLW      7
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond24
-L_check_cond23:
+	GOTO       L_check_cond23
+L_check_cond22:
 ;APP_OPSM.c,52 :: 		else if(COND8){ CHCK_COND(8); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond143
@@ -509,12 +525,12 @@ L__check_cond153:
 	BCF        R0, 0
 L__check_cond154:
 	BTFSS      R0, 0
-	GOTO       L_check_cond25
+	GOTO       L_check_cond24
 	MOVLW      8
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond26
-L_check_cond25:
+	GOTO       L_check_cond25
+L_check_cond24:
 ;APP_OPSM.c,53 :: 		else if(COND9){ CHCK_COND(9); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond155
@@ -572,12 +588,12 @@ L__check_cond167:
 	BCF        R0, 0
 L__check_cond168:
 	BTFSS      R0, 0
-	GOTO       L_check_cond27
+	GOTO       L_check_cond26
 	MOVLW      9
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond28
-L_check_cond27:
+	GOTO       L_check_cond27
+L_check_cond26:
 ;APP_OPSM.c,54 :: 		else if(COND10){ CHCK_COND(10); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond169
@@ -628,12 +644,12 @@ L__check_cond179:
 	BCF        R0, 0
 L__check_cond180:
 	BTFSS      R0, 0
-	GOTO       L_check_cond29
+	GOTO       L_check_cond28
 	MOVLW      10
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond30
-L_check_cond29:
+	GOTO       L_check_cond29
+L_check_cond28:
 ;APP_OPSM.c,55 :: 		else if(COND11){ CHCK_COND(11); }
 	BTFSS      PORTC+0, 2
 	GOTO       L__check_cond181
@@ -670,12 +686,12 @@ L__check_cond187:
 	BCF        R0, 0
 L__check_cond188:
 	BTFSS      R0, 0
-	GOTO       L_check_cond31
+	GOTO       L_check_cond30
 	MOVLW      11
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond32
-L_check_cond31:
+	GOTO       L_check_cond31
+L_check_cond30:
 ;APP_OPSM.c,56 :: 		else if(COND12){ CHCK_COND(12); }
 	BTFSC      PORTC+0, 2
 	GOTO       L__check_cond189
@@ -719,28 +735,28 @@ L__check_cond197:
 	BCF        R0, 0
 L__check_cond198:
 	BTFSS      R0, 0
-	GOTO       L_check_cond33
+	GOTO       L_check_cond32
 	MOVLW      12
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-	GOTO       L_check_cond34
-L_check_cond33:
+	GOTO       L_check_cond33
+L_check_cond32:
 ;APP_OPSM.c,57 :: 		else {CHCK_COND(14);}
 	MOVLW      14
 	MOVWF      FARG_CHCK_COND_x+0
 	CALL       _CHCK_COND+0
-L_check_cond34:
-L_check_cond32:
-L_check_cond30:
-L_check_cond28:
-L_check_cond26:
-L_check_cond24:
-L_check_cond22:
-L_check_cond20:
-L_check_cond18:
-L_check_cond16:
-L_check_cond14:
-L_check_cond12:
+L_check_cond33:
+L_check_cond31:
+L_check_cond29:
+L_check_cond27:
+L_check_cond25:
+L_check_cond23:
+L_check_cond21:
+L_check_cond19:
+L_check_cond17:
+L_check_cond15:
+L_check_cond13:
+L_check_cond11:
 ;APP_OPSM.c,59 :: 		asm CLRWDT ;
 	CLRWDT
 ;APP_OPSM.c,61 :: 		}
@@ -755,61 +771,61 @@ _exe_cond:
 	MOVF       _guc_choice+0, 0
 	XORLW      1
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond70
+	GOTO       L__exe_cond69
 	MOVF       _guc_choice+0, 0
 	XORLW      6
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond70
+	GOTO       L__exe_cond69
 	MOVF       _guc_choice+0, 0
 	XORLW      9
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond70
+	GOTO       L__exe_cond69
 ;APP_OPSM.c,66 :: 		|| guc_choice == 10){guc_buzz_state=1;}
 	MOVF       _guc_choice+0, 0
 	XORLW      10
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond70
-	GOTO       L_exe_cond37
-L__exe_cond70:
+	GOTO       L__exe_cond69
+	GOTO       L_exe_cond36
+L__exe_cond69:
 	MOVLW      1
 	MOVWF      _guc_buzz_state+0
-	GOTO       L_exe_cond38
-L_exe_cond37:
+	GOTO       L_exe_cond37
+L_exe_cond36:
 ;APP_OPSM.c,67 :: 		else { guc_buzz_state=0;}
 	CLRF       _guc_buzz_state+0
-L_exe_cond38:
+L_exe_cond37:
 ;APP_OPSM.c,69 :: 		if(guc_choice == 8 || guc_choice == 11 || guc_choice == 12)
 	MOVF       _guc_choice+0, 0
 	XORLW      8
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond69
+	GOTO       L__exe_cond68
 	MOVF       _guc_choice+0, 0
 	XORLW      11
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond69
+	GOTO       L__exe_cond68
 	MOVF       _guc_choice+0, 0
 	XORLW      12
 	BTFSC      STATUS+0, 2
-	GOTO       L__exe_cond69
-	GOTO       L_exe_cond41
-L__exe_cond69:
+	GOTO       L__exe_cond68
+	GOTO       L_exe_cond40
+L__exe_cond68:
 ;APP_OPSM.c,70 :: 		{P_IND = 1;}
 	BSF        PORTC+0, 3
-	GOTO       L_exe_cond42
-L_exe_cond41:
+	GOTO       L_exe_cond41
+L_exe_cond40:
 ;APP_OPSM.c,71 :: 		else { P_IND = 0;}
 	BCF        PORTC+0, 3
-L_exe_cond42:
+L_exe_cond41:
 ;APP_OPSM.c,79 :: 		if(guc_choice == 10)
 	MOVF       _guc_choice+0, 0
 	XORLW      10
 	BTFSS      STATUS+0, 2
-	GOTO       L_exe_cond43
+	GOTO       L_exe_cond42
 ;APP_OPSM.c,81 :: 		guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
 	CLRF       _guc_sec+0
 	CLRF       _guc_sec+1
 	BSF        PORTC+0, 5
-L_exe_cond44:
+L_exe_cond43:
 	MOVLW      0
 	SUBWF      _guc_sec+1, 0
 	BTFSS      STATUS+0, 2
@@ -818,15 +834,15 @@ L_exe_cond44:
 	SUBWF      _guc_sec+0, 0
 L__exe_cond200:
 	BTFSC      STATUS+0, 0
-	GOTO       L_exe_cond45
 	GOTO       L_exe_cond44
-L_exe_cond45:
+	GOTO       L_exe_cond43
+L_exe_cond44:
 ;APP_OPSM.c,82 :: 		RELAY_SOL = 0;rel_lock = 1;
 	BCF        PORTC+0, 5
 	MOVLW      1
 	MOVWF      _rel_lock+0
 ;APP_OPSM.c,83 :: 		while(COND10)asm CLRWDT ;
-L_exe_cond46:
+L_exe_cond45:
 	BTFSC      PORTC+0, 2
 	GOTO       L__exe_cond201
 	BSF        3, 0
@@ -876,25 +892,25 @@ L__exe_cond211:
 	BCF        R1, 0
 L__exe_cond212:
 	BTFSS      R1, 0
-	GOTO       L_exe_cond47
-	CLRWDT
 	GOTO       L_exe_cond46
-L_exe_cond47:
+	CLRWDT
+	GOTO       L_exe_cond45
+L_exe_cond46:
 ;APP_OPSM.c,84 :: 		guc_buzz_state=0;
 	CLRF       _guc_buzz_state+0
 ;APP_OPSM.c,85 :: 		}
-	GOTO       L_exe_cond48
-L_exe_cond43:
+	GOTO       L_exe_cond47
+L_exe_cond42:
 ;APP_OPSM.c,86 :: 		else if(guc_choice == 12)
 	MOVF       _guc_choice+0, 0
 	XORLW      12
 	BTFSS      STATUS+0, 2
-	GOTO       L_exe_cond49
+	GOTO       L_exe_cond48
 ;APP_OPSM.c,89 :: 		guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
 	CLRF       _guc_sec+0
 	CLRF       _guc_sec+1
 	BSF        PORTC+0, 5
-L_exe_cond50:
+L_exe_cond49:
 	MOVLW      0
 	SUBWF      _guc_sec+1, 0
 	BTFSS      STATUS+0, 2
@@ -903,15 +919,15 @@ L_exe_cond50:
 	SUBWF      _guc_sec+0, 0
 L__exe_cond213:
 	BTFSC      STATUS+0, 0
-	GOTO       L_exe_cond51
 	GOTO       L_exe_cond50
-L_exe_cond51:
+	GOTO       L_exe_cond49
+L_exe_cond50:
 ;APP_OPSM.c,90 :: 		RELAY_SOL = 0;rel_lock = 1;
 	BCF        PORTC+0, 5
 	MOVLW      1
 	MOVWF      _rel_lock+0
 ;APP_OPSM.c,91 :: 		while(COND12)asm CLRWDT ;
-L_exe_cond52:
+L_exe_cond51:
 	BTFSC      PORTC+0, 2
 	GOTO       L__exe_cond214
 	BSF        3, 0
@@ -954,24 +970,24 @@ L__exe_cond222:
 	BCF        R1, 0
 L__exe_cond223:
 	BTFSS      R1, 0
-	GOTO       L_exe_cond53
-	CLRWDT
 	GOTO       L_exe_cond52
-L_exe_cond53:
+	CLRWDT
+	GOTO       L_exe_cond51
+L_exe_cond52:
 ;APP_OPSM.c,92 :: 		guc_buzz_state=0;
 	CLRF       _guc_buzz_state+0
 ;APP_OPSM.c,93 :: 		}
-	GOTO       L_exe_cond54
-L_exe_cond49:
+	GOTO       L_exe_cond53
+L_exe_cond48:
 ;APP_OPSM.c,94 :: 		else { RELAY_SOL = 0;}
 	BCF        PORTC+0, 5
-L_exe_cond54:
-L_exe_cond48:
+L_exe_cond53:
+L_exe_cond47:
 ;APP_OPSM.c,96 :: 		if (guc_choice == 14)
 	MOVF       _guc_choice+0, 0
 	XORLW      14
 	BTFSS      STATUS+0, 2
-	GOTO       L_exe_cond55
+	GOTO       L_exe_cond54
 ;APP_OPSM.c,98 :: 		guc_buzz_state=0;
 	CLRF       _guc_buzz_state+0
 ;APP_OPSM.c,99 :: 		P_IND = 0;
@@ -981,7 +997,7 @@ L_exe_cond48:
 ;APP_OPSM.c,101 :: 		BUZZER = 0;
 	BCF        PORTA+0, 2
 ;APP_OPSM.c,102 :: 		}
-L_exe_cond55:
+L_exe_cond54:
 ;APP_OPSM.c,103 :: 		}
 L_end_exe_cond:
 	RETURN
@@ -1020,22 +1036,6 @@ _sys_init:
 	MOVWF      WDTCON+0
 ;APP_OPSM.c,126 :: 		TMR0_Initialize();
 	CALL       _TMR0_Initialize+0
-;APP_OPSM.c,134 :: 		Soft_UART_Init(&PORTA, 1, 0, 9600, 0);
-	MOVLW      PORTA+0
-	MOVWF      FARG_Soft_UART_Init_port+0
-	MOVLW      hi_addr(PORTA+0)
-	MOVWF      FARG_Soft_UART_Init_port+1
-	MOVLW      1
-	MOVWF      FARG_Soft_UART_Init_rx_pin+0
-	CLRF       FARG_Soft_UART_Init_tx_pin+0
-	MOVLW      128
-	MOVWF      FARG_Soft_UART_Init_baud_rate+0
-	MOVLW      37
-	MOVWF      FARG_Soft_UART_Init_baud_rate+1
-	CLRF       FARG_Soft_UART_Init_baud_rate+2
-	CLRF       FARG_Soft_UART_Init_baud_rate+3
-	CLRF       FARG_Soft_UART_Init_inverted+0
-	CALL       _Soft_UART_Init+0
 ;APP_OPSM.c,137 :: 		GIE_bit = 1;     /* Enable INTs  */
 	BSF        GIE_bit+0, BitPos(GIE_bit+0)
 ;APP_OPSM.c,142 :: 		}
@@ -1048,44 +1048,44 @@ _process_uart:
 ;APP_OPSM.c,144 :: 		void process_uart()
 ;APP_OPSM.c,146 :: 		if(ENGINE_SENSE) Diag_data_var.diag_engine_sense = 1;
 	BTFSS      PORTA+0, 5
-	GOTO       L_process_uart56
+	GOTO       L_process_uart55
 	BSF        _Diag_data_var+0, 0
-L_process_uart56:
+L_process_uart55:
 ;APP_OPSM.c,147 :: 		if(HAND_BRAKE)  Diag_data_var.diag_hand_brake = 1;
 	BTFSS      PORTC+0, 0
-	GOTO       L_process_uart57
+	GOTO       L_process_uart56
 	BSF        _Diag_data_var+0, 1
-L_process_uart57:
+L_process_uart56:
 ;APP_OPSM.c,148 :: 		if(PTO)         Diag_data_var.diag_pto = 1;
 	BTFSS      PORTC+0, 1
-	GOTO       L_process_uart58
+	GOTO       L_process_uart57
 	BSF        _Diag_data_var+0, 2
-L_process_uart58:
+L_process_uart57:
 ;APP_OPSM.c,149 :: 		if(SEAT_SWITCH) Diag_data_var.diag_seat_switch = 1;
 	BTFSS      PORTC+0, 2
-	GOTO       L_process_uart59
+	GOTO       L_process_uart58
 	BSF        _Diag_data_var+0, 3
-L_process_uart59:
+L_process_uart58:
 ;APP_OPSM.c,150 :: 		if(P_IND)       Diag_data_var.diag_p_ind = 1;
 	BTFSS      PORTC+0, 3
-	GOTO       L_process_uart60
+	GOTO       L_process_uart59
 	BSF        _Diag_data_var+0, 4
-L_process_uart60:
+L_process_uart59:
 ;APP_OPSM.c,151 :: 		if(RELAY_SOL)   Diag_data_var.diag_Relay_Sol = 1;
 	BTFSS      PORTC+0, 5
-	GOTO       L_process_uart61
+	GOTO       L_process_uart60
 	BSF        _Diag_data_var+0, 5
-L_process_uart61:
+L_process_uart60:
 ;APP_OPSM.c,152 :: 		if(BUZZER)      Diag_data_var.diag_buzzer = 1;
 	BTFSS      PORTA+0, 2
-	GOTO       L_process_uart62
+	GOTO       L_process_uart61
 	BSF        _Diag_data_var+0, 6
-L_process_uart62:
+L_process_uart61:
 ;APP_OPSM.c,153 :: 		if(RELAY_STR)   Diag_data_var.diag_relay_str = 1;
 	BTFSS      PORTC+0, 4
-	GOTO       L_process_uart63
+	GOTO       L_process_uart62
 	BSF        _Diag_data_var+0, 7
-L_process_uart63:
+L_process_uart62:
 ;APP_OPSM.c,154 :: 		}
 L_end_process_uart:
 	RETURN
@@ -1100,27 +1100,27 @@ _main:
 	CLRF       _demo_time+0
 	CLRF       _demo_time+1
 ;APP_OPSM.c,161 :: 		while(1)
-L_main64:
+L_main63:
 ;APP_OPSM.c,163 :: 		check_cond();                 /*Check the condition*/
 	CALL       _check_cond+0
 ;APP_OPSM.c,164 :: 		if(guc_choice > 0)
 	MOVF       _guc_choice+0, 0
 	SUBLW      0
 	BTFSC      STATUS+0, 0
-	GOTO       L_main66
+	GOTO       L_main65
 ;APP_OPSM.c,166 :: 		diag_choice = guc_choice;
 	MOVF       _guc_choice+0, 0
 	MOVWF      _diag_choice+0
 ;APP_OPSM.c,167 :: 		exe_cond();
 	CALL       _exe_cond+0
 ;APP_OPSM.c,168 :: 		}
-L_main66:
+L_main65:
 ;APP_OPSM.c,169 :: 		guc_choice=0;                 /*Clear the condition*/
 	CLRF       _guc_choice+0
 ;APP_OPSM.c,177 :: 		asm CLRWDT ;
 	CLRWDT
 ;APP_OPSM.c,178 :: 		}
-	GOTO       L_main64
+	GOTO       L_main63
 ;APP_OPSM.c,179 :: 		}
 L_end_main:
 	GOTO       $+0

@@ -1,8 +1,8 @@
 #include "APP_OPSM.h"
 
-volatile uint8 guc_choice=0,rel_lock=0;
+volatile uint8 guc_choice=0;
 //volatile uint16 guc_cycle[13];
-volatile uint16 guc_deb[15]={0};
+volatile uint16 guc_deb[TOTAL_COND]={0};
 volatile uint16 guc_sec=0;
 volatile uint8 guc_buzz_state=0;
 volatile uint16 demo_time=0;
@@ -54,19 +54,23 @@ void check_cond()
     else if(COND10){ CHCK_COND(10); }
     else if(COND11){ CHCK_COND(11); }
     else if(COND12){ CHCK_COND(12); }
-    else {CHCK_COND(14);}
-
+    else if(COND13){ CHCK_COND(13); }
+    else if(COND14){ CHCK_COND(14); }
+    else if(COND15){ CHCK_COND(15); }
+    else if(COND15){ CHCK_COND(16); }
+    else {CHCK_COND(17);}
+    
     asm CLRWDT ;
 
 }
 
 void exe_cond()
 {
-  if(guc_choice == 1 || guc_choice == 6 || guc_choice == 9
+  if(guc_choice == 1 || guc_choice == 2 || guc_choice == 9
     || guc_choice == 10){guc_buzz_state=1;}
   else { guc_buzz_state=0;}
 
-  if(guc_choice == 8 || guc_choice == 11 || guc_choice == 12)
+  if(guc_choice == 17)
     {P_IND = 1;}
   else { P_IND = 0;}
 
@@ -76,24 +80,24 @@ void exe_cond()
   else {RELAY_STR = 1;}
  #endif
   
-  if(guc_choice == 10)
+  if(guc_choice == 9)
    {
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;rel_lock = 1;
-       while(COND10)asm CLRWDT ;
+       RELAY_SOL = 0;
+       while(COND9)asm CLRWDT ;
        guc_buzz_state=0;
    }
-  else if(guc_choice == 12)
+  else if(guc_choice == 10)
    {
 
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;rel_lock = 1;
-       while(COND12)asm CLRWDT ;
+       RELAY_SOL = 0;
+       while(COND10)asm CLRWDT ;
        guc_buzz_state=0;
    }
   else { RELAY_SOL = 0;}
 
-  if (guc_choice == 14)
+  if (guc_choice == 17)
   {
     guc_buzz_state=0;
     P_IND = 0;

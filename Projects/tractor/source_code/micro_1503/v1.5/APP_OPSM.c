@@ -64,10 +64,10 @@ void check_cond()
 void exe_cond()
 {
   if(guc_choice == 1 || guc_choice == 2 || guc_choice == 3
-    || guc_choice == 4 ){guc_buzz_state=1;}
+    || guc_choice == 4 || guc_choice == 5 ){guc_buzz_state=1;}
   else { guc_buzz_state=0;}
 
-  if(guc_choice == 5 || guc_choice == 6 || guc_choice == 7 || guc_choice == 8
+  if( guc_choice == 6 || guc_choice == 7 || guc_choice == 8
     || guc_choice == 9 || guc_choice == 10 || guc_choice == 11
     || guc_choice == 12 )
     {P_IND = 1;}
@@ -170,7 +170,7 @@ void main()
         exe_cond();
       }
       guc_choice=0;                 /*Clear the condition*/
-	  
+          
       #if(DEMO == 1)
       if(demo_time > 360)
        {
