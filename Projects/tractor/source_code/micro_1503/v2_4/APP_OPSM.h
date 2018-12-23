@@ -21,7 +21,7 @@
 
 
 
-#define DEBO_TIME 12000
+#define DEBO_TIME 20000
 
 #define TOTAL_COND 15
 

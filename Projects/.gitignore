@@ -10,4 +10,9 @@
 *.pdf
 *.xlsx
 *.docx
+*.workspace
+*.dct
+*.log
+*.lst
+*.dic
 All_Resources/

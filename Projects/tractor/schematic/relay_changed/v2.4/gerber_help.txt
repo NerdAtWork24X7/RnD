@@ -1,0 +1,10 @@
+ cmp 	 Top Copper
+ sol 	 Bottom Copper
+ stc 	 Top Soldermask
+ sts 	 Bottom Soldermask
+ plc 	 Top Silkscreen
+ pls 	 Bottom Silkscreen
+ drd 	 NC Drill
+ drill   hole location
+ BM	bottom mirror
+

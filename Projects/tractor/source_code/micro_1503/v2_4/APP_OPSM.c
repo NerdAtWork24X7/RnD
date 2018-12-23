@@ -53,10 +53,35 @@ void check_cond()
     else if(COND11){ CHCK_COND(11); }
     else if(COND12){ CHCK_COND(12); }
     else {guc_choice = 14;}
+}
 
-    asm CLRWDT ;
+void reset_all()
+{
+    guc_buzz_state=0;
+    P_IND = 0;
+    RELAY_SOL = 0;
+    BUZZER = 0;
+}
+
+void wait_cond()
+{
+    if(guc_choice == 1){ while(COND1); }
+    else if(guc_choice == 2){ while(COND2); }
+    else if(guc_choice == 3){ while(COND3); }
+    else if(guc_choice == 4){ while(COND4); }
+    else if(guc_choice == 5){ while(COND5); }
+    else if(guc_choice == 6){ while(COND6); }
+    else if(guc_choice == 7){ while(COND7); }
+    else if(guc_choice == 8){ while(COND8); }
+    else if(guc_choice == 9){ while(COND9); }
+    else if(guc_choice == 10){ while(COND10); }
+    else if(guc_choice == 11){ while(COND11); }
+    else if(guc_choice == 12){ while(COND12); }
+    reset_all();
 
 }
+
+
 
 void exe_cond()
 {
@@ -77,27 +102,16 @@ void exe_cond()
   if(guc_choice == 10)
    {
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;rel_lock = 1;
-       while(COND10)asm CLRWDT ;
-       guc_buzz_state=0;
+       RELAY_SOL = 0;
    }
   else if(guc_choice == 12)
    {
-
        guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;rel_lock = 1;
-       while(COND12)asm CLRWDT ;
-       guc_buzz_state=0;
+       RELAY_SOL = 0;
    }
   else { RELAY_SOL = 0;}
 
-  if (guc_choice == 14)
-  {
-    guc_buzz_state=0;
-    P_IND = 0;
-    RELAY_SOL = 0;
-    BUZZER = 0;
-  }
+  wait_cond();
 }
 
 
