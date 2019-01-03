@@ -52,66 +52,79 @@ void check_cond()
     else if(COND10){ CHCK_COND(10); }
     else if(COND11){ CHCK_COND(11); }
     else if(COND12){ CHCK_COND(12); }
-    else {guc_choice = 14;}
+    else if(COND13){ CHCK_COND(13); }
+    else if(COND14){ CHCK_COND(14); }
+    else if(COND15){ CHCK_COND(15); }
+    else if(COND16){ CHCK_COND(16); }
+    else {guc_choice = (TOTAL_COND - 1);}
+    
+    asm CLRWDT ;
+
 }
 
 void reset_all()
 {
-    guc_buzz_state=0;
-    P_IND = 0;
-    RELAY_SOL = 0;
-    BUZZER = 0;
+   guc_buzz_state=0;
+   RELAY_SOL = 0;
+   BUZZER = 0;
+   
+   P_IND = 0;
+   RELAY_STR = 0;
 }
-
-void wait_cond()
-{
-    if(guc_choice == 1){ while(COND1); }
-    else if(guc_choice == 2){ while(COND2); }
-    else if(guc_choice == 3){ while(COND3); }
-    else if(guc_choice == 4){ while(COND4); }
-    else if(guc_choice == 5){ while(COND5); }
-    else if(guc_choice == 6){ while(COND6); }
-    else if(guc_choice == 7){ while(COND7); }
-    else if(guc_choice == 8){ while(COND8); }
-    else if(guc_choice == 9){ while(COND9); }
-    else if(guc_choice == 10){ while(COND10); }
-    else if(guc_choice == 11){ while(COND11); }
-    else if(guc_choice == 12){ while(COND12); }
-    reset_all();
-
-}
-
-
 
 void exe_cond()
 {
-  if(guc_choice == 1 || guc_choice == 6 || guc_choice == 9
-    || guc_choice == 10){guc_buzz_state=1;}
-  else { guc_buzz_state=0;}
+  switch(guc_choice)
+  {
+    case 1: guc_sec=0; while(guc_sec<5 & COND1);
+            if(COND1){ guc_buzz_state=1;} while(COND1);
+            reset_all(); break;
+    
+    case 5: RELAY_SOL = 1; guc_sec=0; while(guc_sec<5 & COND5);
+            if(COND5){ guc_buzz_state=1;} while(COND5);
+            reset_all(); break;
+            
+    case 6: RELAY_SOL = 1; guc_buzz_state=0; while(COND6); reset_all(); break;
+    
+    case 7: RELAY_SOL = 1; guc_buzz_state=0; while(COND7); reset_all(); break;
+    
+    case 8: RELAY_SOL = 1; guc_buzz_state=0; while(COND8); reset_all(); break;
+    
+    case 9: guc_sec=0; while(guc_sec<5 & COND9);
+            if(COND9){ guc_buzz_state=1;} while(COND9);
+            reset_all(); break;
+    
+    case 13: guc_sec=0; while(guc_sec<5 & COND13);
+            if(COND13)
+            { 
+              guc_buzz_state=1;
+              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+            } 
+            while(COND13); reset_all(); break;
+            
+    case 14: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND14);
+            if(COND14)
+            {
+              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+            }
+            while(COND14); reset_all(); break;
 
-  if(guc_choice == 8 || guc_choice == 11 || guc_choice == 12)
-    {P_IND = 1;}
-  else { P_IND = 0;}
+    case 15: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND15);
+            if(COND15)
+            {
+              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+            }
+            while(COND15); reset_all(); break;
 
- #if START_REL == 1
-  if(guc_choice == 1 || guc_choice == 5 || guc_choice == 9
-    || guc_choice == 13){RELAY_STR = 0;}
-  else {RELAY_STR = 1;}
- #endif
-  
-  if(guc_choice == 10)
-   {
-       guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;
-   }
-  else if(guc_choice == 12)
-   {
-       guc_sec=0; RELAY_SOL = 1;while(guc_sec<6);
-       RELAY_SOL = 0;
-   }
-  else { RELAY_SOL = 0;}
-
-  wait_cond();
+    case 16: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND16);
+            if(COND16)
+            {
+              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+            }
+            while(COND16); reset_all(); break;
+    
+    default: reset_all(); break;
+  }
 }
 
 

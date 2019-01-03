@@ -6,24 +6,28 @@
 #include "tmr2.h"
 #include "pwm3.h"
 
-#define COND1 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
-#define COND2 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
-#define COND3 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND4 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND5 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(ENGINE_SENSE))
-#define COND6 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)&(ENGINE_SENSE))
-#define COND7 ((SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND8 ((!SEAT_SWITCH)&(!PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND9 ((!SEAT_SWITCH)&(!PTO)&(!HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND10 ((!SEAT_SWITCH)&(PTO)&(!HAND_BRAKE)& (!ENGINE_SENSE))
-#define COND11 ((SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
-#define COND12 ((!SEAT_SWITCH)&(PTO)&(HAND_BRAKE)&(!ENGINE_SENSE))
+#define COND1 ((!ENGINE_SENSE)&(!PTO)&(!SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND2 ((!ENGINE_SENSE)&(!PTO)&(!SEAT_SWITCH)&(HAND_BRAKE))
+#define COND3 ((!ENGINE_SENSE)&(!PTO)&(SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND4 ((!ENGINE_SENSE)&(!PTO)&(SEAT_SWITCH)&(HAND_BRAKE))
+#define COND5 ((!ENGINE_SENSE)&(PTO)&(!SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND6 ((!ENGINE_SENSE)&(PTO)&(!SEAT_SWITCH)&(HAND_BRAKE))
+#define COND7 ((!ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND8 ((!ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(HAND_BRAKE))
+#define COND9 ((ENGINE_SENSE)&(!PTO)&(!SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND10 ((ENGINE_SENSE)&(!PTO)&(!SEAT_SWITCH)&(HAND_BRAKE))
+#define COND11 ((ENGINE_SENSE)&(!PTO)&(SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND12 ((ENGINE_SENSE)&(!PTO)&(SEAT_SWITCH)&(HAND_BRAKE))
+#define COND13 ((ENGINE_SENSE)&(PTO)&(!SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND14 ((ENGINE_SENSE)&(PTO)&(!SEAT_SWITCH)&(HAND_BRAKE))
+#define COND15 ((ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(!HAND_BRAKE))
+#define COND16 ((ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(HAND_BRAKE))
 
 
 
-#define DEBO_TIME 20000
+#define DEBO_TIME 10
 
-#define TOTAL_COND 15
+#define TOTAL_COND 18
 
 #define NO_CYCLE_1  1000
 #define NO_CYCLE_2  1000
@@ -44,6 +48,7 @@
 #define RELAY_STR    PORTC.RC4    /* Output */
 #define BUZZER       PORTA.RA2    /* Output */
 
+#define P_IND_EN 0
 #define START_REL 0
 #define PWM_EN    0
 
@@ -72,7 +77,7 @@ typedef union
 
 extern volatile uint8 guc_choice;
 //extern volatile uint16 guc_cycle[13];
-extern volatile uint8 guc_deb[15];
+extern volatile uint8 guc_deb[TOTAL_COND];
 extern volatile uint16 guc_sec;
 extern volatile uint8 guc_buzz_state;
 extern volatile uint16 demo_time;

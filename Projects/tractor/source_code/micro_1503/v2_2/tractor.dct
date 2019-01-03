@@ -387,6 +387,8 @@ dhen
 dhen_bit
 diag_buzzer
 diag_choice
+diag_data
+diag_data_bit
 diag_data_var
 diag_engine_sense
 diag_hand_brake
@@ -1051,7 +1053,6 @@ port_to_tris_offset
 porta
 portc
 pr2
-process_uart
 ps0
 ps0_bit
 ps1
@@ -1236,7 +1237,6 @@ rcen
 rcen_bit
 rd
 rd_bit
-rel_lock
 res032
 rsen
 rsen_bit

@@ -38,13 +38,13 @@ L_end_TMR0_Reload:
 _TMR0_ISR:
 
 ;tmr0.c,22 :: 		void TMR0_ISR(void)
-;tmr0.c,25 :: 		TMR0_Reload();
+;tmr0.c,27 :: 		TMR0_Reload();
 	CALL       _TMR0_Reload+0
-;tmr0.c,26 :: 		TMR0IF_bit = 0;     /*Clear the TMR0 interrupt flag8*/
+;tmr0.c,28 :: 		TMR0IF_bit = 0;     /*Clear the TMR0 interrupt flag8*/
 	BCF        TMR0IF_bit+0, BitPos(TMR0IF_bit+0)
-;tmr0.c,27 :: 		asm CLRWDT ;
+;tmr0.c,29 :: 		asm CLRWDT ;
 	CLRWDT
-;tmr0.c,28 :: 		if(one_sec>1048)           /*Timer for 1 sec*/
+;tmr0.c,30 :: 		if(one_sec>1048)           /*Timer for 1 sec*/
 	MOVF       _one_sec+1, 0
 	SUBLW      4
 	BTFSS      STATUS+0, 2
@@ -54,10 +54,10 @@ _TMR0_ISR:
 L__TMR0_ISR8:
 	BTFSC      STATUS+0, 0
 	GOTO       L_TMR0_ISR0
-;tmr0.c,30 :: 		one_sec=0;
+;tmr0.c,32 :: 		one_sec=0;
 	CLRF       _one_sec+0
 	CLRF       _one_sec+1
-;tmr0.c,31 :: 		guc_sec++;
+;tmr0.c,33 :: 		guc_sec++;
 	MOVLW      1
 	ADDWF      _guc_sec+0, 0
 	MOVWF      R0
@@ -68,26 +68,26 @@ L__TMR0_ISR8:
 	MOVWF      _guc_sec+0
 	MOVF       R1, 0
 	MOVWF      _guc_sec+1
-;tmr0.c,50 :: 		if(guc_buzz_state==1)
+;tmr0.c,52 :: 		if(guc_buzz_state==1)
 	MOVF       _guc_buzz_state+0, 0
 	XORLW      1
 	BTFSS      STATUS+0, 2
 	GOTO       L_TMR0_ISR1
-;tmr0.c,52 :: 		guc_togg_half ^= 1;
+;tmr0.c,54 :: 		guc_togg_half ^= 1;
 	MOVLW      1
 	XORWF      _guc_togg_half+0, 1
-;tmr0.c,53 :: 		TMR0_CallBack_Half_Sec();
+;tmr0.c,55 :: 		TMR0_CallBack_Half_Sec();
 	CALL       _TMR0_CallBack_Half_Sec+0
-;tmr0.c,54 :: 		}
+;tmr0.c,56 :: 		}
 	GOTO       L_TMR0_ISR2
 L_TMR0_ISR1:
-;tmr0.c,65 :: 		BUZZER = 0;
+;tmr0.c,67 :: 		BUZZER = 0;
 	BCF        PORTA+0, 2
-;tmr0.c,67 :: 		}
+;tmr0.c,69 :: 		}
 L_TMR0_ISR2:
-;tmr0.c,68 :: 		}
+;tmr0.c,70 :: 		}
 L_TMR0_ISR0:
-;tmr0.c,69 :: 		one_sec++;
+;tmr0.c,71 :: 		one_sec++;
 	MOVLW      1
 	ADDWF      _one_sec+0, 0
 	MOVWF      R0
@@ -98,33 +98,33 @@ L_TMR0_ISR0:
 	MOVWF      _one_sec+0
 	MOVF       R1, 0
 	MOVWF      _one_sec+1
-;tmr0.c,70 :: 		}
+;tmr0.c,72 :: 		}
 L_end_TMR0_ISR:
 	RETURN
 ; end of _TMR0_ISR
 
 _TMR0_CallBack_Half_Sec:
 
-;tmr0.c,72 :: 		void TMR0_CallBack_Half_Sec(void)
-;tmr0.c,75 :: 		if(guc_togg_half==1)
+;tmr0.c,74 :: 		void TMR0_CallBack_Half_Sec(void)
+;tmr0.c,77 :: 		if(guc_togg_half==1)
 	MOVF       _guc_togg_half+0, 0
 	XORLW      1
 	BTFSS      STATUS+0, 2
 	GOTO       L_TMR0_CallBack_Half_Sec3
-;tmr0.c,80 :: 		BUZZER=1;
+;tmr0.c,82 :: 		BUZZER=1;
 	BSF        PORTA+0, 2
-;tmr0.c,82 :: 		}
+;tmr0.c,84 :: 		}
 L_TMR0_CallBack_Half_Sec3:
-;tmr0.c,84 :: 		if(guc_togg_half==0)
+;tmr0.c,86 :: 		if(guc_togg_half==0)
 	MOVF       _guc_togg_half+0, 0
 	XORLW      0
 	BTFSS      STATUS+0, 2
 	GOTO       L_TMR0_CallBack_Half_Sec4
-;tmr0.c,94 :: 		BUZZER = 0;
+;tmr0.c,96 :: 		BUZZER = 0;
 	BCF        PORTA+0, 2
-;tmr0.c,96 :: 		}
+;tmr0.c,98 :: 		}
 L_TMR0_CallBack_Half_Sec4:
-;tmr0.c,97 :: 		}
+;tmr0.c,99 :: 		}
 L_end_TMR0_CallBack_Half_Sec:
 	RETURN
 ; end of _TMR0_CallBack_Half_Sec

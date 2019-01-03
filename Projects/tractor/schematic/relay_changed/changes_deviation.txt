@@ -1,0 +1,17 @@
+in v1.5
+1)voltage level upto 40v
+2)ignition type changed
+3)PIndicator added
+4)Change in truth table
+5)Changes in SW 
+Total iteration cost - 15K
+
+in v2.4
+1)Addition of start relay
+2)PIndicator added
+3)input levels changed to gnd
+4)buzzer current rating changed 
+5)change in truth table
+6)Changes in SW
+Total iteration cost - 25k
+ 

@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=tmr0.c
+Value=APP_OPSM.h
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -27,15 +27,15 @@ Count=0
 Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
-File0=APP_OPSM.c
-File1=tmr0.c
-File2=APP_OPSM.h
-File3=tmr2.c
-File4=pwm3.c
-File5=pwm3.h
-File6=tmr2.h
-File7=types.h
-File8=tmr0.h
+File0=tmr0.c
+File1=APP_OPSM.h
+File2=tmr2.c
+File3=pwm3.c
+File4=pwm3.h
+File5=tmr2.h
+File6=types.h
+File7=tmr0.h
+File8=APP_OPSM.c
 Count=9
 [EEPROM]
 Count=0
@@ -57,8 +57,7 @@ Count=5
 [PLDS]
 Count=0
 [Useses]
-File0=Software_UART
-Count=1
+Count=0
 [EXPANDED_NODES]
 0=tractor.mcppi
 1=Sources
@@ -67,4 +66,4 @@ Count=3
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
-Count=3
+Count=2
