@@ -2535,6 +2535,9 @@ grid 2.5 mm, outline 2.5 x 5 mm</description>
 <circle x="0" y="0" radius="2.54" width="0.127" layer="39"/>
 <wire x1="0.7" y1="-0.7" x2="0.7" y2="0.7" width="0.254" layer="21" curve="-136.451629"/>
 <circle x="0" y="0" radius="2.54" width="0.127" layer="21"/>
+<wire x1="-0.9" y1="-1.44" x2="-0.5" y2="-1.44" width="0.127" layer="21"/>
+<wire x1="-0.7" y1="-1.24" x2="-0.7" y2="-1.64" width="0.127" layer="21"/>
+<wire x1="0.4" y1="-1.44" x2="0.7" y2="-1.44" width="0.127" layer="21"/>
 </package>
 <package name="C025-030X050">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;&lt;p&gt;
@@ -2866,6 +2869,9 @@ grid 5 mm, outline 4.5 x 7.5 mm</description>
 <text x="-3.556" y="2.667" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 <text x="-3.556" y="-3.81" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 <wire x1="0.6" y1="-0.6" x2="0.6" y2="0.7" width="0.3048" layer="21" curve="-95.599339"/>
+<wire x1="-1.6" y1="1.4" x2="-1" y2="1.4" width="0.127" layer="21"/>
+<wire x1="-1.3" y1="1.7" x2="-1.3" y2="1.1" width="0.127" layer="21"/>
+<wire x1="0.9" y1="1.5" x2="1.3" y2="1.5" width="0.127" layer="21"/>
 </package>
 <package name="C050-030X075">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;&lt;p&gt;
@@ -8410,6 +8416,9 @@ grid 5 mm, outline 7.5 x 7.5 mm</description>
 <text x="-3.175" y="-5.461" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 <circle x="0" y="0" radius="3.81" width="0.127" layer="21"/>
 <wire x1="0.9" y1="-0.8" x2="0.9" y2="0.8" width="0.254" layer="21" curve="-116.565051"/>
+<wire x1="-1.5" y1="1.6" x2="-0.9" y2="1.6" width="0.127" layer="21"/>
+<wire x1="-1.2" y1="1.9" x2="-1.2" y2="1.3" width="0.127" layer="21"/>
+<wire x1="1" y1="1.7" x2="1.5" y2="1.7" width="0.127" layer="21"/>
 </package>
 <package name="C050H075X075">
 <description>&lt;b&gt;CAPACITOR&lt;/b&gt;&lt;p&gt;
@@ -11631,6 +11640,7 @@ Source: http://focus.ti.com/lit/ds/slos063b/slos063b.pdf</description>
 <rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.2" layer="51"/>
 <wire x1="2.4" y1="1.9" x2="-2.4" y2="1.9" width="0.2032" layer="21"/>
 <wire x1="2.4" y1="-1.9" x2="-2.4" y2="-1.9" width="0.2032" layer="21"/>
+<circle x="-1.9" y="-0.9" radius="0.22360625" width="0.127" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -12105,9 +12115,9 @@ Block, Siemens and generic&lt;p&gt;
 <pad name="3" x="1.27" y="1.27" drill="0.8128" shape="octagon"/>
 <text x="-2.605" y="3.04" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 <text x="3.175" y="-1.905" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
-<text x="-1.905" y="-1.27" size="1.27" layer="51" ratio="10">1</text>
-<text x="0.635" y="-1.27" size="1.27" layer="51" ratio="10">2</text>
-<text x="0" y="0.635" size="1.27" layer="51" ratio="10">3</text>
+<text x="-2.305" y="-0.67" size="0.6096" layer="25" ratio="10">E</text>
+<text x="1.735" y="-0.67" size="0.6096" layer="25" ratio="10">B</text>
+<text x="0.1" y="1.735" size="0.6096" layer="25" ratio="10">C</text>
 </package>
 </packages>
 <symbols>
@@ -12204,7 +12214,7 @@ Block, Siemens and generic&lt;p&gt;
 <part name="BUZ" library="wirepad" deviceset="2,54/1,1" device=""/>
 <part name="0V" library="wirepad" deviceset="2,54/1,1" device="" value="0V"/>
 <part name="+12V" library="wirepad" deviceset="2,54/1,1" device="" value="+12V"/>
-<part name="PAD_3" library="wirepad" deviceset="2,54/1,1" device=""/>
+<part name="SOL" library="wirepad" deviceset="2,54/1,1" device=""/>
 <part name="ENG_9" library="wirepad" deviceset="2,54/1,1" device=""/>
 <part name="PTO" library="wirepad" deviceset="2,54/1,1" device=""/>
 <part name="SS" library="wirepad" deviceset="2,54/1,1" device=""/>
@@ -12297,7 +12307,7 @@ Block, Siemens and generic&lt;p&gt;
 <wire x1="157.48" y1="2.54" x2="190.5" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="157.48" y1="0" x2="190.5" y2="0" width="0.1524" layer="94"/>
 <text x="161.13799375" y="9.538525" size="1.27" layer="94" align="top-center">Name:-</text>
-<text x="163.36895" y="2.00005" size="1.27" layer="94" align="top-center">Version:- 2.4</text>
+<text x="163.86895" y="2.00005" size="1.27" layer="94" align="top-center">Version:- 2.4.1</text>
 <text x="160.657003125" y="6.91876875" size="1.27" layer="94" align="top-center">Date:-</text>
 <text x="169.101040625" y="9.431596875" size="1.27" layer="94" align="top-center">ECU - Driver</text>
 <text x="164.879021875" y="4.512871875" size="1.27" layer="94" align="top-center">BY:- Sahil Vartak</text>
@@ -12465,8 +12475,7 @@ Block, Siemens and generic&lt;p&gt;
 <attribute name="NAME" x="3.937" y="146.6342" size="1.778" layer="95"/>
 <attribute name="VALUE" x="3.937" y="141.478" size="1.778" layer="96"/>
 </instance>
-<instance part="PAD_3" gate="1" x="22.86" y="124.46" rot="MR270">
-<attribute name="NAME" x="21.0058" y="125.603" size="1.778" layer="95" rot="MR270"/>
+<instance part="SOL" gate="1" x="22.86" y="124.46" rot="MR270">
 <attribute name="VALUE" x="26.162" y="125.603" size="1.778" layer="96" rot="MR270"/>
 </instance>
 <instance part="ENG_9" gate="1" x="76.2" y="22.86" rot="MR180">
@@ -13147,7 +13156,7 @@ Block, Siemens and generic&lt;p&gt;
 <net name="R_3" class="0">
 <segment>
 <wire x1="22.86" y1="116.84" x2="22.86" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="PAD_3" gate="1" pin="P"/>
+<pinref part="SOL" gate="1" pin="P"/>
 <junction x="22.86" y="121.92"/>
 <pinref part="K2" gate="G$1" pin="C1"/>
 <junction x="22.86" y="116.84"/>
@@ -13564,23 +13573,6 @@ Block, Siemens and generic&lt;p&gt;
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="113,1,85.3161,31.75,IC3,,,,,"/>
-<approved hash="113,1,148.593,89.1794,BUZ,,,,,"/>
-<approved hash="113,1,7.3406,113.027,0V,,,,,"/>
-<approved hash="113,1,21.5925,99.1028,PAD_3,,,,,"/>
-<approved hash="113,1,78.9337,-1.26746,ENG_9,,,,,"/>
-<approved hash="113,1,125.733,12.4206,PTO,,,,,"/>
-<approved hash="113,1,105.413,12.4206,SS,,,,,"/>
-<approved hash="113,1,143.513,12.4206,HB,,,,,"/>
-<approved hash="113,1,117.119,74.9325,DAT,,,,,"/>
-<approved hash="113,1,117.119,72.3925,CLK,,,,,"/>
-<approved hash="113,1,60.6806,72.3875,CLR,,,,,"/>
-<approved hash="113,1,120.647,84.0994,GND,,,,,"/>
-<approved hash="113,1,65.7606,92.7075,VCC,,,,,"/>
-<approved hash="113,1,4.8006,11.4325,PIND,,,,,"/>
-<approved hash="113,1,4.8006,44.4525,S_RE,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 <compatibility>
