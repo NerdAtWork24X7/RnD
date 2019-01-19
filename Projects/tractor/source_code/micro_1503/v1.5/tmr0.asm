@@ -68,25 +68,6 @@ L__TMR0_ISR9:
 	MOVWF      _guc_sec+0
 	MOVF       R1, 0
 	MOVWF      _guc_sec+1
-;tmr0.c,33 :: 		Process_Uart();
-	CALL       _Process_Uart+0
-;tmr0.c,34 :: 		data_ptr = &Diag_data_var;
-	MOVLW      _Diag_data_var+0
-	MOVWF      TMR0_ISR_data_ptr_L0+0
-	MOVLW      hi_addr(_Diag_data_var+0)
-	MOVWF      TMR0_ISR_data_ptr_L0+1
-;tmr0.c,36 :: 		Soft_UART_Write(*((uint8*)data_ptr));
-	MOVF       TMR0_ISR_data_ptr_L0+0, 0
-	MOVWF      FSR0L
-	MOVF       TMR0_ISR_data_ptr_L0+1, 0
-	MOVWF      FSR0H
-	MOVF       INDF0+0, 0
-	MOVWF      FARG_Soft_UART_Write_udata+0
-	CALL       _Soft_UART_Write+0
-;tmr0.c,37 :: 		Soft_UART_Write(diag_choice);
-	MOVF       _diag_choice+0, 0
-	MOVWF      FARG_Soft_UART_Write_udata+0
-	CALL       _Soft_UART_Write+0
 ;tmr0.c,49 :: 		}
 L_TMR0_ISR0:
 ;tmr0.c,51 :: 		if(half_sec>512) /*Timer count for 0.5 sec*/

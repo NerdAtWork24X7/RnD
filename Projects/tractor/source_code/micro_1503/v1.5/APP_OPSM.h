@@ -23,7 +23,7 @@
 
 #define DEBO_TIME 10
 
-#define TOTAL_COND 14
+#define TOTAL_COND 16
 
 #define NO_CYCLE_1  1000
 #define NO_CYCLE_2  1000
@@ -49,7 +49,7 @@
 #define PWM_OFF   0x00
 #define PWM_ON    0xD0
 
-#define DEBUG  1
+#define DEBUG  0
 
 #define DEMO 0
 

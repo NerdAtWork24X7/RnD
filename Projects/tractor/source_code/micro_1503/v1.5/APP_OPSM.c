@@ -2,7 +2,7 @@
 
 volatile uint8 guc_choice=0,rel_lock=0;
 //volatile uint16 guc_cycle[13];
-volatile uint8 guc_deb[15]={0};
+volatile uint8 guc_deb[TOTAL_COND]={0};
 volatile uint16 guc_sec=0;
 volatile uint8 guc_buzz_state=0;
 volatile uint16 demo_time=0;
@@ -55,7 +55,7 @@ void check_cond()
     else if(COND11){ CHCK_COND(11); }
     else if(COND12){ CHCK_COND(12); }
     else if(COND13){ CHCK_COND(13); }
-    else {CHCK_COND(14);}
+    else {guc_choice = 14;}
     
     asm CLRWDT ;
 

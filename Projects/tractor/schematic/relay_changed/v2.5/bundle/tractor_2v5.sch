@@ -7,7 +7,7 @@
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -12306,12 +12306,10 @@ Block, Siemens and generic&lt;p&gt;
 <wire x1="157.48" y1="5.08" x2="190.5" y2="5.08" width="0.1524" layer="94"/>
 <wire x1="157.48" y1="2.54" x2="190.5" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="157.48" y1="0" x2="190.5" y2="0" width="0.1524" layer="94"/>
-<text x="161.13799375" y="9.538525" size="1.27" layer="94" align="top-center">Name:-</text>
-<text x="163.86895" y="2.00005" size="1.27" layer="94" align="top-center">Version:- 2.4.1</text>
-<text x="160.657003125" y="6.91876875" size="1.27" layer="94" align="top-center">Date:-</text>
-<text x="169.101040625" y="9.431596875" size="1.27" layer="94" align="top-center">ECU - Driver</text>
-<text x="164.879021875" y="4.512871875" size="1.27" layer="94" align="top-center">BY:- Sahil Vartak</text>
-<text x="168.1390625" y="6.972234375" size="1.27" layer="94" align="top-center">03-Jan-2019</text>
+<text x="158.43799375" y="9.638525" size="1.27" layer="94" align="top-left">Name:- ECU - Driver</text>
+<text x="158.46895" y="1.80005" size="1.27" layer="94" align="top-left">Version:- 2.5</text>
+<text x="158.357003125" y="6.91876875" size="1.27" layer="94" align="top-left">Date:- 12-Jan-2019</text>
+<text x="158.499021875" y="4.312871875" size="1.27" layer="94" align="top-left">BY:- Sahil Vartak</text>
 </plain>
 <instances>
 <instance part="C3" gate="G$1" x="114.3" y="139.7" rot="MR180">
@@ -12478,9 +12476,8 @@ Block, Siemens and generic&lt;p&gt;
 <instance part="SOL" gate="1" x="22.86" y="124.46" rot="MR270">
 <attribute name="VALUE" x="26.162" y="125.603" size="1.778" layer="96" rot="MR270"/>
 </instance>
-<instance part="ENG_9" gate="1" x="76.2" y="22.86" rot="MR180">
-<attribute name="NAME" x="75.057" y="21.0058" size="1.778" layer="95" rot="MR180"/>
-<attribute name="VALUE" x="75.057" y="26.162" size="1.778" layer="96" rot="MR180"/>
+<instance part="ENG_9" gate="1" x="68.58" y="20.32" rot="MR90">
+<attribute name="VALUE" x="65.278" y="19.177" size="1.778" layer="96" rot="MR90"/>
 </instance>
 <instance part="PTO" gate="1" x="127" y="33.02" rot="R90">
 <attribute name="NAME" x="125.1458" y="31.877" size="1.778" layer="95" rot="R90"/>
@@ -13190,12 +13187,6 @@ Block, Siemens and generic&lt;p&gt;
 <pinref part="D4" gate="D" pin="C"/>
 <junction x="172.72" y="109.22"/>
 </segment>
-<segment>
-<wire x1="27.94" y1="104.14" x2="27.94" y2="106.68" width="0.1524" layer="91"/>
-<label x="27.94" y="104.14" size="1.778" layer="95" rot="R270" xref="yes"/>
-<pinref part="K2" gate="G$1" pin="NC"/>
-<junction x="27.94" y="106.68"/>
-</segment>
 </net>
 <net name="N$3" class="0">
 <segment>
@@ -13469,13 +13460,20 @@ Block, Siemens and generic&lt;p&gt;
 <junction x="5.08" y="68.58"/>
 </segment>
 </net>
-<net name="N$35" class="0">
+<net name="ENG_12V" class="0">
 <segment>
 <pinref part="ENG_9" gate="1" pin="P"/>
 <pinref part="D12" gate="D" pin="A"/>
-<wire x1="78.74" y1="22.86" x2="83.82" y2="22.86" width="0.1524" layer="91"/>
-<junction x="78.74" y="22.86"/>
+<wire x1="68.58" y1="22.86" x2="83.82" y2="22.86" width="0.1524" layer="91"/>
+<junction x="68.58" y="22.86"/>
 <junction x="83.82" y="22.86"/>
+<label x="76.2" y="22.86" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="K2" gate="G$1" pin="NC"/>
+<wire x1="27.94" y1="106.68" x2="27.94" y2="101.6" width="0.1524" layer="91"/>
+<label x="27.94" y="101.6" size="1.778" layer="95" rot="R180" xref="yes"/>
+<junction x="27.94" y="106.68"/>
 </segment>
 </net>
 <net name="N$36" class="0">

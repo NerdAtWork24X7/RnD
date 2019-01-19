@@ -6,7 +6,7 @@ Value=0
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=APP_OPSM.h
+Value=APP_OPSM.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
@@ -57,7 +57,8 @@ Count=5
 [PLDS]
 Count=0
 [Useses]
-Count=0
+File0=Software_UART
+Count=1
 [EXPANDED_NODES]
 0=tractor.mcppi
 1=Sources

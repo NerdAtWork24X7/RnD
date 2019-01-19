@@ -81,8 +81,14 @@ extern volatile uint8 guc_deb[TOTAL_COND];
 extern volatile uint16 guc_sec;
 extern volatile uint8 guc_buzz_state;
 extern volatile uint16 demo_time;
+extern volatile uint8 guc_togg_half;
+
+#if DEBUG == 1
 extern volatile Diag_data_t Diag_data_var;
+extern volatile uint8 prev_diag_choice;
 extern volatile uint8 diag_choice;
+#endif
+
 
 extern void CHCK_COND(uint8 x);
 extern void check_cond(void);

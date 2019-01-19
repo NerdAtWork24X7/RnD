@@ -7,12 +7,17 @@ volatile uint16 guc_sec=0;
 volatile uint8 guc_buzz_state=0;
 volatile uint16 demo_time=0;
 volatile uint8 UART_counter=0;
-volatile uint8 diag_choice=0;
-volatile Diag_data_t Diag_data_var = {0};
 
+
+#if DEBUG == 1
+volatile uint8 diag_choice=0;
+volatile uint8 prev_diag_choice=0;
+volatile Diag_data_t Diag_data_var = {0};
+#endif
 
 void interrupt()
 {
+   asm CLRWDT ;
    if(TMR0IE_bit == 1 && TMR0IF_bit == 1)   /* interrupt handler*/
     {
         TMR0_ISR();
@@ -64,7 +69,8 @@ void check_cond()
 
 void reset_all()
 {
-   guc_buzz_state=0;
+   guc_togg_half = 0;
+   guc_buzz_state = 0;
    RELAY_SOL = 0;
    BUZZER = 0;
    
@@ -76,52 +82,51 @@ void exe_cond()
 {
   switch(guc_choice)
   {
-    case 1: guc_sec=0; while(guc_sec<5 & COND1);
-            if(COND1){ guc_buzz_state=1;} while(COND1);
+    case 1: guc_sec = 0; while(guc_sec<5 & COND1);
+            if(COND1){ while(COND1){guc_buzz_state=1;}}
             reset_all(); break;
     
-    case 5: RELAY_SOL = 1; guc_sec=0; while(guc_sec<5 & COND5);
-            if(COND5){ guc_buzz_state=1;} while(COND5);
+    case 5: RELAY_SOL = 1; guc_sec = 0; while(guc_sec<5 & COND5);
+            if(COND5){while(COND5){guc_buzz_state=1;}}
             reset_all(); break;
             
-    case 6: RELAY_SOL = 1; guc_buzz_state=0; while(COND6); reset_all(); break;
+    case 6: while(COND6){RELAY_SOL = 1; guc_buzz_state = 0;} reset_all(); break;
     
-    case 7: RELAY_SOL = 1; guc_buzz_state=0; while(COND7); reset_all(); break;
+    case 7: while(COND7){RELAY_SOL = 1; guc_buzz_state = 0;} reset_all(); break;
     
-    case 8: RELAY_SOL = 1; guc_buzz_state=0; while(COND8); reset_all(); break;
+    case 8: while(COND8){RELAY_SOL = 1; guc_buzz_state = 0;} reset_all(); break;
     
-    case 9: guc_sec=0; while(guc_sec<5 & COND9);
-            if(COND9){ guc_buzz_state=1;} while(COND9);
+    case 9: guc_sec = 0; while(guc_sec < 5 & COND9);
+            if(COND9){ while(COND9){guc_buzz_state = 1;}}
             reset_all(); break;
     
-    case 13: guc_sec=0; while(guc_sec<5 & COND13);
+    case 13: guc_sec = 0; while(guc_sec < 5 & COND13);
             if(COND13)
             { 
-              guc_buzz_state=1;
-              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
-            } 
-            while(COND13); reset_all(); break;
+              while(COND13){guc_buzz_state = 1; RELAY_SOL = 1;}
+            }
+            reset_all(); break;
             
-    case 14: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND14);
+    case 14: guc_buzz_state = 0; guc_sec = 0; while(guc_sec<5 & COND14);
             if(COND14)
             {
-              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+              while(COND14){RELAY_SOL = 1;}
             }
-            while(COND14); reset_all(); break;
+            reset_all(); break;
 
-    case 15: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND15);
+    case 15: guc_buzz_state = 0; guc_sec = 0; while(guc_sec<5 & COND15);
             if(COND15)
             {
-              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+              while(COND15){RELAY_SOL = 1;}
             }
-            while(COND15); reset_all(); break;
+            reset_all(); break;
 
     case 16: guc_buzz_state=0; guc_sec=0; while(guc_sec<5 & COND16);
             if(COND16)
             {
-              guc_sec=0; RELAY_SOL = 1; while(guc_sec<6); RELAY_SOL = 0;
+              while(COND16){RELAY_SOL = 1;}
             }
-            while(COND16); reset_all(); break;
+            reset_all(); break;
     
     default: reset_all(); break;
   }
@@ -191,7 +196,9 @@ void main()
       check_cond();                 /*Check the condition*/
       if(guc_choice > 0)
       {
+        #if DEBUG == 1
         diag_choice = guc_choice;
+        #endif
         exe_cond();
       }
       guc_choice=0;                 /*Clear the condition*/

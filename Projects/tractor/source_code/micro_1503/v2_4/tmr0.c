@@ -4,6 +4,7 @@
 volatile uint8 timer0ReloadVal,guc_togg_half=1;
 volatile uint16 one_sec,guc_min=0;
 
+
 void TMR0_Initialize(void)
 {   
     /* PSA assigned; PS 1:256; TMRSE Increment_hi_lo; mask the nWPUEN and INTEDG bits*/
@@ -26,17 +27,18 @@ void TMR0_ISR(void)
     #endif
     TMR0_Reload();
     TMR0IF_bit = 0;     /*Clear the TMR0 interrupt flag8*/
-    asm CLRWDT ;
     if(one_sec>1048)           /*Timer for 1 sec*/
      {
        one_sec=0;
        guc_sec++;
        #if DEBUG == 1
        Process_Uart();
-       data_ptr = &Diag_data_var;
+       if(diag_choice != prev_diag_choice)
        {
+        data_ptr = &Diag_data_var;
         Soft_UART_Write(*((uint8*)data_ptr));
         Soft_UART_Write(diag_choice);
+        prev_diag_choice = diag_choice;
        }
        #endif
        
