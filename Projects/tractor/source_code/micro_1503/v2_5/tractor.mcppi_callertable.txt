@@ -1,0 +1,10 @@
+main
+	__CC2DW
+	sys_init
+		TMR0_Initialize
+	check_cond
+		CHCK_COND
+	exe_cond
+		reset_all
+interrupt
+	TMR0_ISR
