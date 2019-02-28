@@ -5,7 +5,8 @@ volatile uint16 one_sec,guc_min=0;
 
 void TMR0_Initialize(void)
 {   
-    OPTION_REG = (uint8)((OPTION_REG & 0xC0) | 0xD7 & 0x3F);
+  //  OPTION_REG = (uint8)((OPTION_REG & 0xC0) | 0xD7 & 0x3F);
+    OPTION_REG = 0x17;
     TMR0 = TMR0_RELOAD_VALUE;              /* TMR0 248;*/
     TMR0IF_bit = 0;           /*Clear Interrupt flag before enabling the interrupt*/
     TMR0IE_bit = 1;           /* Enabling TMR0 interrupt */

@@ -28,21 +28,21 @@ void check_cond()
 {
     guc_choice = 0;
     if(COND1){ CHCK_COND(1); }
-    else if(COND2){ CHCK_COND(2); }
-    else if(COND3){ CHCK_COND(3); }
-    else if(COND4){ CHCK_COND(4); }
+   // else if(COND2){ CHCK_COND(2); }
+   // else if(COND3){ CHCK_COND(3); }
+   // else if(COND4){ CHCK_COND(4); }
     else if(COND5){ CHCK_COND(5); }
     else if(COND6){ CHCK_COND(6); }
-    else if(COND7){ CHCK_COND(7); }
-    else if(COND8){ CHCK_COND(8); }
+   // else if(COND7){ CHCK_COND(7); }
+   // else if(COND8){ CHCK_COND(8); }
     else if(COND9){ CHCK_COND(9); }
-    else if(COND10){ CHCK_COND(10); }
-    else if(COND11){ CHCK_COND(11); }
-    else if(COND12){ CHCK_COND(12); }
+   // else if(COND10){ CHCK_COND(10); }
+   // else if(COND11){ CHCK_COND(11); }
+   // else if(COND12){ CHCK_COND(12); }
     else if(COND13){ CHCK_COND(13); }
     else if(COND14){ CHCK_COND(14); }
-    else if(COND15){ CHCK_COND(15); }
-    else if(COND16){ CHCK_COND(16); }
+   // else if(COND15){ CHCK_COND(15); }
+   // else if(COND16){ CHCK_COND(16); }
     else {guc_choice = (TOTAL_COND - 1);}
 }
 
@@ -64,7 +64,7 @@ void reset_all()
 
 void exe_cond()
 {
-  uint8 fl_br = 0;
+ // uint8 fl_br = 0;
   switch(guc_choice)
   {
     case 1: guc_sec = 0; while(guc_sec<6 & COND1);
@@ -75,27 +75,38 @@ void exe_cond()
             if(COND5){while(COND5){guc_buzz_state=1;}}
             break;
             
-    case 6: while(COND6){RELAY_SOL = 1; guc_buzz_state = 0;} break;
+    case 6: while(COND6){RELAY_SOL = 1; guc_buzz_state = 0;}
+            break;
     
     case 9: guc_sec = 0; while(guc_sec < 6 & COND9);
             if(COND9){ while(COND9){guc_buzz_state = 1;}}
             break;
 
-    case 13: guc_sec = 0; while(guc_sec < 6 & COND13);
-            if(COND13)
-            { 
-              guc_sec = 0; guc_buzz_state = 1; RELAY_SOL = 1;
-              while(guc_sec < 6);while(COND13);
+    case 13: guc_sec = 0; 
+            while(guc_sec < 6 & COND13)
+            {
+              if((guc_sec < 2) & (ENGINE_SENSE == 1)){ RELAY_SOL = 1; }
+            };
+            guc_sec = 0; guc_buzz_state = 1; RELAY_SOL = 1;
+            while(guc_sec < 6);while(COND13);
+            while(COND16)
+            {
+              (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
             }
             break;
             
-    case 14: guc_buzz_state = 0; guc_sec = 0; while(guc_sec<6 & COND14);
-            if(COND14)
-            {
-              guc_sec = 0;RELAY_SOL = 1;while(guc_sec < 6);
-              while(COND14);
-            }
-            break;
+    case 14: guc_buzz_state = 0; guc_sec = 0; 
+             while(guc_sec < 6 & COND14)
+             {
+               if((guc_sec < 2) & (ENGINE_SENSE == 1)){ RELAY_SOL = 1; }
+             };
+             guc_sec = 0;RELAY_SOL = 1;while(guc_sec < 6);
+             while(COND14);
+             while(COND16)
+             {
+               (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
+             }
+             break;
 
  /*
     case 13: guc_sec = 0; while(guc_sec < 5 & COND13);
