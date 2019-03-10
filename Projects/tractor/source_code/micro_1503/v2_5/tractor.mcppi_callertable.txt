@@ -5,6 +5,7 @@ main
 	check_cond
 		CHCK_COND
 	exe_cond
+		Chk_HB
 		reset_all
 interrupt
 	TMR0_ISR

@@ -4,6 +4,7 @@ volatile uint8 guc_choice=0;
 volatile uint16 guc_deb[TOTAL_COND]={0};
 volatile uint16 guc_sec=0;
 volatile uint8 guc_buzz_state=0;
+volatile uint8 buz_fl = 0;
 
 void interrupt()
 {
@@ -62,49 +63,64 @@ void reset_all()
 #endif
 }
 
+void Chk_HB()
+{
+  volatile uint8 deb_cnt = 0,deb_buz = 0;
+  while(deb_cnt < 126)
+  {
+// (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
+   (HAND_BRAKE == 0)?(deb_buz++):(deb_buz = 0);
+    if(deb_buz > 126)
+    {
+      if((guc_buzz_state == 0) & (buz_fl)){guc_sec = 0; while(guc_sec<6);}
+      guc_buzz_state = 1;deb_buz = 127; buz_fl = 1;
+    }
+    else{guc_buzz_state = 0;}
+    (COND16 == 0)? (deb_cnt++) : (deb_cnt=0);
+  }
+}
+
 void exe_cond()
 {
- // uint8 fl_br = 0;
+  buz_fl = 1;
   switch(guc_choice)
   {
     case 1: guc_sec = 0; while(guc_sec<6 & COND1);
-            if(COND1){ while(COND1){guc_buzz_state=1;}}
-            break;
-    
-    case 5: RELAY_SOL = 1; guc_sec = 0; while(guc_sec<6 & COND5);
-            if(COND5){while(COND5){guc_buzz_state=1;}}
-            break;
-            
-    case 6: while(COND6){RELAY_SOL = 1; guc_buzz_state = 0;}
-            break;
-    
-    case 9: guc_sec = 0; while(guc_sec < 6 & COND9);
-            if(COND9){ while(COND9){guc_buzz_state = 1;}}
+            guc_buzz_state=1; while(COND1);
             break;
 
-    case 13: guc_sec = 0; 
-            while(guc_sec < 6 & COND13)
+    case 5: RELAY_SOL = 1; guc_sec = 0; while(guc_sec<6 & COND5);
+            if((!SEAT_SWITCH)&(!HAND_BRAKE)&(PTO))
             {
-              if((guc_sec < 2) & (ENGINE_SENSE == 1)){ RELAY_SOL = 1; }
-            };
-            guc_sec = 0; guc_buzz_state = 1; RELAY_SOL = 1;
-            while(guc_sec < 6);while(COND13);
-            while(COND16)
-            {
-              (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
+              Chk_HB();
             }
             break;
-            
-    case 14: guc_buzz_state = 0; guc_sec = 0; 
-             while(guc_sec < 6 & COND14)
+
+    case 6: if((!SEAT_SWITCH)&(HAND_BRAKE)&(PTO))
+            {
+              RELAY_SOL = 1;
+              Chk_HB();
+            }
+            break;
+
+    case 9: guc_sec = 0; while(guc_sec < 6 & COND9);
+            guc_buzz_state = 1; while(COND9);
+            break;
+
+    case 13: guc_sec = 0;while(guc_sec < 6  & COND13);
+             if((!SEAT_SWITCH)&(!HAND_BRAKE)&(PTO))
              {
-               if((guc_sec < 2) & (ENGINE_SENSE == 1)){ RELAY_SOL = 1; }
-             };
-             guc_sec = 0;RELAY_SOL = 1;while(guc_sec < 6);
-             while(COND14);
-             while(COND16)
+               guc_sec = 0; guc_buzz_state = 1 ; buz_fl = 0;
+               RELAY_SOL = 1; while(guc_sec < 6);
+               Chk_HB();
+             }
+             break;
+
+    case 14: guc_sec = 0;while(guc_sec < 6  & COND14);
+             if((!SEAT_SWITCH)&(HAND_BRAKE)&(PTO))
              {
-               (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
+               guc_sec = 0;RELAY_SOL = 1;while(guc_sec < 6);
+               Chk_HB();
              }
              break;
 
@@ -158,12 +174,12 @@ void exe_cond()
 void sys_init()
 {
   OSCCON = 0x72;   /* SCS INTOSC; SPLLEN disabled; IRCF 8MHz_HF; */
-  
+
   PORTA = 0x00;
   LATA = 0x00;
   ANSELA = 0x00;
   TRISA = 0x20;
-  
+
   PORTC = 0x00;
   ANSELC = 0x00;
   LATC = 0x00;
