@@ -20,11 +20,11 @@
 #define COND14 ((!ENGINE_SENSE)&(PTO)&(!SEAT_SWITCH)&(HAND_BRAKE))
 //#define COND15 ((!ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(!HAND_BRAKE))
 //#define COND16 ((!ENGINE_SENSE)&(PTO)&(SEAT_SWITCH)&(HAND_BRAKE))
-#define COND16 ((!SEAT_SWITCH))
+#define COND16 ((!SEAT_SWITCH) & (PTO))
 
 
 
-#define DEBO_TIME 50
+#define DEBO_TIME 20
 
 #define TOTAL_COND 18
 
@@ -44,8 +44,11 @@
 
 #define P_IND        PORTC.RC3    /* Output */
 #define RELAY_SOL    PORTC.RC5    /* Output */
-#define RELAY_STR    PORTC.RC4    /* Output */
-#define BUZZER       PORTA.RA2    /* Output */
+// #define RELAY_STR    PORTC.RC4    /* Output */
+// #define BUZZER       PORTA.RA2    /* Output */
+
+#define BUZZER    PORTC.RC4    /* Output */
+
 
 #define P_IND_EN 0
 #define START_REL 0
@@ -55,6 +58,12 @@ extern volatile uint8 guc_deb[TOTAL_COND];
 extern volatile uint16 guc_sec;
 extern volatile uint8 guc_buzz_state;
 extern volatile uint8 guc_togg_half;
+
+extern volatile uint8 eng_sol;
+extern volatile uint8 eng_direct;
+extern volatile uint8 eng_time;
+extern volatile uint8 buz_time;
+extern volatile uint8 UART_Time;
 
 
 extern void CHCK_COND(uint8 x);

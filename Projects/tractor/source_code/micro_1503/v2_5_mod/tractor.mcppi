@@ -50,9 +50,7 @@ Count=3
 Count=0
 [Useses]
 File0=Software_UART
-File1=Conversions
-File2=C_String
-Count=3
+Count=1
 [EXPANDED_NODES]
 0=tractor.mcppi
 1=Sources
@@ -60,5 +58,5 @@ Count=2
 [LIB_EXPANDED_NODES]
 0=mikroE Libraries
 1=System Libraries
-18=Conversions
+224=Software_UART
 Count=3

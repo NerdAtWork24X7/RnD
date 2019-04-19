@@ -11,12 +11,9 @@ main
 				COMFREM
 	Soft_UART_Write
 		Delay_Cyc
-	check_cond
-		CHCK_COND
-	exe_cond
-		Soft_UART_Write
-			Delay_Cyc
-		Chk_HB
-		reset_all
+	Check_cond
+		Uart_Send
+			Soft_UART_Write
+				Delay_Cyc
 interrupt
 	TMR0_ISR

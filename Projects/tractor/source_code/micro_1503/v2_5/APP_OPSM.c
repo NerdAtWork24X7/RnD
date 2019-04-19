@@ -44,7 +44,7 @@ void check_cond()
     else if(COND14){ CHCK_COND(14); }
    // else if(COND15){ CHCK_COND(15); }
    // else if(COND16){ CHCK_COND(16); }
-    else {guc_choice = (TOTAL_COND - 1);}
+    else {guc_choice = (TOTAL_COND);}
 }
 
 void reset_all()
@@ -66,16 +66,18 @@ void reset_all()
 void Chk_HB()
 {
   volatile uint8 deb_cnt = 0,deb_buz = 0;
-  while(deb_cnt < 126)
+  while(deb_cnt < 200)
   {
-// (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
-   (HAND_BRAKE == 0)?(deb_buz++):(deb_buz = 0);
+     (HAND_BRAKE == 0)?(guc_buzz_state = 1):(guc_buzz_state = 0);
+  
+  /* (HAND_BRAKE == 0)?(deb_buz++):(deb_buz = 0);
     if(deb_buz > 126)
     {
       if((guc_buzz_state == 0) & (buz_fl)){guc_sec = 0; while(guc_sec<6);}
       guc_buzz_state = 1;deb_buz = 127; buz_fl = 1;
     }
     else{guc_buzz_state = 0;}
+    */
     (COND16 == 0)? (deb_cnt++) : (deb_cnt=0);
   }
 }
@@ -83,6 +85,7 @@ void Chk_HB()
 void exe_cond()
 {
   buz_fl = 1;
+  Soft_UART_Write((guc_choice+48));
   switch(guc_choice)
   {
     case 1: guc_sec = 0; while(guc_sec<6 & COND1);
@@ -185,11 +188,12 @@ void sys_init()
   LATC = 0x00;
   TRISC = 0x07;
 
-  BUZZER = 0;
-  RELAY_SOL = 0;
+  reset_all();
 
   WDTCON = 0x17;   /*WDTPS 1:65536; SWDTEN ON; */
   TMR0_Initialize();
+
+  Soft_UART_Init(&PORTA, 1, 0, 9600, 0); // Initialize Soft UART at 14400 bps
 
   GIE_bit = 1;     /* Enable INTs  */
 
@@ -198,14 +202,14 @@ void sys_init()
   #endif
 }
 
-
 void main()
 {
   sys_init();
+  Soft_UART_Write('R');
   while(1)
    {
       check_cond();                 /*Check the condition*/
-      if(guc_choice > 0)
+      if((guc_choice > 0) & (guc_choice < TOTAL_COND))
       {
         exe_cond();
       }
