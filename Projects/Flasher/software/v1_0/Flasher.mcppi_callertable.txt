@@ -1,0 +1,20 @@
+main
+	sys_init
+		reset_all
+		TMR0_Initialize
+		Soft_UART_Init
+			Get_Fosc_kHz
+			Mul_32x32_U
+			Div_32x32_S
+				SDIV3232L
+				COMFREM
+		ADC_Initialize
+interrupt
+	TMR0_ISR
+		Check_ADC
+			ADC_GetConversion
+			Div_16X16_U
+			Mul_16X16_U
+		Execute_Flash
+		Soft_UART_Write
+			Delay_Cyc

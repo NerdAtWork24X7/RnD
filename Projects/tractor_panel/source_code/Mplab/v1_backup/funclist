@@ -1,0 +1,20 @@
+_CopyName: CODE, 5864 0 32
+_Data: CODE, 5896 0 26
+_J1939_EnqueueMessage: CODE, 5280 0 90
+_J1939_Poll: CODE, 5654 0 62
+_main: CODE, 3930 0 928
+_Send2Lcd: CODE, 5824 0 40
+_J1939_Initialization: CODE, 4858 0 166
+_Cmd: CODE, 5922 0 26
+_J1939_AddressClaimHandling: CODE, 5024 0 138
+_J1939_DequeueMessage: CODE, 5522 0 66
+_SetECANMode: CODE, 5948 0 20
+_SendOneMessage: CODE, 4294 0 264
+_J1939_TransmitMessages: CODE, 5162 0 118
+_delay_ms: CODE, 5778 0 46
+_J1939_RequestForAddressClaimHandling: CODE, 5452 0 50
+_CompareName: CODE, 5588 0 44
+_SetAddressFilter: CODE, 5968 0 20
+_lcd_init: CODE, 5370 0 82
+_J1939_ReceiveMessages: CODE, 4590 0 256
+Total: 2474

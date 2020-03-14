@@ -1,0 +1,27 @@
+main
+	__CC2DW
+	sys_init
+		reset_all
+		TMR0_Initialize
+		Soft_UART_Init
+			Get_Fosc_kHz
+			Mul_32x32_U
+			Div_32x32_S
+				SDIV3232L
+				COMFREM
+	Uart_Send
+		ByteToStr
+			Div_8X8_U
+		Soft_UART_Write
+			Delay_Cyc
+	Check_cond
+		Uart_Send
+			ByteToStr
+				Div_8X8_U
+			Soft_UART_Write
+				Delay_Cyc
+	Input_SW
+		reset_all
+interrupt
+	TMR0_ISR
+		Div_8X8_U

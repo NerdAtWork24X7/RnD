@@ -1,0 +1,6 @@
+datasheet/
+input/
+payment/
+**/build
+**/dist
+**/Debug
