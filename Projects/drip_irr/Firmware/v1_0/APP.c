@@ -17,7 +17,6 @@ void interrupt()
 
 void reset_all()
 {
-  BUZZER = 0;
   RELAY_SOL = 0;
   one_sec = 0;
   one_min = 0;
@@ -52,17 +51,17 @@ void Input_SW()
    {
      Stop_mins++;
      if(Stop_mins>59) Stop_mins = 1;
-         luc_stop_min_sw = 0;
-         while(!STOP_MIN_SW); 
+     luc_stop_min_sw = 0;
+     while(!STOP_MIN_SW);
    }
    
    
    if(luc_start_hr_sw > DEBO_TIME)
    {
       Start_Time_hour++;
-          if(Start_Time_hour>23) Start_Time_hour = 1;
-          luc_start_hr_sw = 0;
-          while(!START_HR_SW);  
+      if(Start_Time_hour>23) Start_Time_hour = 1;
+      luc_start_hr_sw = 0;
+      while(!START_HR_SW);
    }
    
    
@@ -71,7 +70,10 @@ void Input_SW()
      reset_all();
      luc_reset = 0;
      while(!RESET_SW);
-   } 
+   }
+   
+   
+    
 }
 
 void Uart_Send()
@@ -120,8 +122,9 @@ void Check_cond()
    }
    if(one_day_flag == 1)
    {
-
-     RELAY_SOL = 1;
+     if(!LDR_SW) RELAY_SOL = 1;
+     else RELAY_SOL = 0;
+     
      if(guc_min >= Stop_mins)
      {
        RELAY_SOL = 0;
@@ -138,7 +141,7 @@ void sys_init()
   PORTA = 0x00;
   LATA = 0x00;
   ANSELA = 0x00;
-  TRISA = 0x20;
+  TRISA = 0x24;
 
   PORTC = 0x00;
   ANSELC = 0x00;

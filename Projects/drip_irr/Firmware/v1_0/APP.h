@@ -23,11 +23,11 @@
 #define STOP_MIN_SW     PORTC.RC1    /* Input */
 #define START_HR_SW     PORTC.RC2    /* Input */
 #define RESET_SW        PORTC.RC3    /* Input */
+#define LDR_SW          PORTA.RA2    /* Input */
+
 
 #define P_IND        PORTC.RC4    /* Output */
 #define RELAY_SOL    PORTC.RC5    /* Output */
-
-#define BUZZER    PORTC.RC4    /* Output */
 
 
 #define P_IND_EN 0
