@@ -1,0 +1,4 @@
+{
+   "profile":"adhoc",               
+   "nodesPerLan" : 4
+}

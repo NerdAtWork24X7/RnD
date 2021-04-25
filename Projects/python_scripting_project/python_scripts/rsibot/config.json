@@ -1,0 +1,28 @@
+{
+  "btcusdt" :
+    {
+      "start_price" : 50000,
+      "Max_Buy_price" : 60000,
+      "Max_Transaction" : 500,
+      "Buy_Threshold" : 0,
+      "Profit_Percentage" : 10,
+      "RSI_PERIOD" : 14,
+      "RSI_OVERBOUGHT" : 70,
+      "RSI_OVERSOLD" : 30,
+      "TRADE_SYMBOL" : "BTCUSD",
+      "TRADE_QUANTITY" : 25
+    },
+  "ethusdt" :
+    {
+      "start_price" : 2700.022,
+      "Max_Buy_price" : 4000,
+      "Max_Transaction" : 500,
+      "Buy_Threshold" : 0,
+      "Profit_Percentage" : 10,
+      "RSI_PERIOD" : 14,
+      "RSI_OVERBOUGHT" : 70,
+      "RSI_OVERSOLD" : 30,
+      "TRADE_SYMBOL" : "ETHUSD",
+      "TRADE_QUANTITY" : 25
+    }
+}

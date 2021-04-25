@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/47119407/how-to-ping-websocket-server-so-it-doesnt-disconnect-me-for-being-idle
+https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#new-order--trade
