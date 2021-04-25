@@ -5,8 +5,8 @@ from binance.enums import *
 import time
 import sys
 
-Coin = str(sys.argv[1])
-#Coin = "ethusdt"
+#Coin = str(sys.argv[1])
+Coin = "ethusdt"
 #Coin = "btcusdt"
 
 with open('config.json', 'r') as f:
@@ -22,6 +22,7 @@ RSI_OVERBOUGHT = float(config_dict[Coin]["RSI_OVERBOUGHT"])
 RSI_OVERSOLD = float(config_dict[Coin]["RSI_OVERSOLD"])
 TRADE_SYMBOL = str(config_dict[Coin]["TRADE_SYMBOL"])
 TRADE_QUANTITY = float(config_dict[Coin]["TRADE_QUANTITY"]) #dollar use to buy or sell one transaction
+Buy_Percentage = float(config_dict[Coin]["Buy_Percentage"]) #buy if price drops below min %
 
 
 
@@ -80,7 +81,7 @@ def Order_File_Read():
 def Profit_File_Update(min_price, close, type):
   global Coin, TRADE_QUANTITY
   Profit_fd = open("Profit_list_" + Coin, "a+")
-  Profit_str = "Trade type = " + type +"  Open = " + str(min_price) + "  Closed = " + str(close) + "  Profit = " + str((close - min_price)/TRADE_QUANTITY) + "\n"
+  Profit_str = "Trade type = " + type +"  Open = " + str(min_price) + "  Closed = " + str(close) + "  Profit = " + str(close - min_price) + " Actual Profit = " + str((close - min_price)/TRADE_QUANTITY) + "\n"
   Profit_fd.write(Profit_str)
   Profit_fd.close()
 
@@ -123,7 +124,9 @@ def on_message(ws, message):
   close_price = float(candle['c'])
   #open_price = float(candle['o'])
   if is_candle_closed:
-    print("candle closed at {}".format(close_price))
+    if (len(closes) < RSI_PERIOD) or (in_position == 0):
+      print("closed at {}".format(close_price))
+
     closes.append(float(close_price))
     # print("closes")
     #print(closes)
@@ -146,42 +149,25 @@ def on_message(ws, message):
         RSI_Reset_Counter = False
         print("current price < Buy price")
 
-    # Take profit Check if current price > Buy price + X%
-    if in_position > 0:  # if we have open position
-      Order_list = Order_File_Read()
-      min_price = float(min(Order_list))
-      Req_Percent = float(min_price + ((min_price * float(Profit_Percentage)) / 100))
-      if float(close_price) > float(Req_Percent):
-        order_succeeded = order(SIDE_SELL, float(TRADE_QUANTITY), TRADE_SYMBOL)
-        if order_succeeded:
-          # Remove entry from list
-          Order_list.remove(str(min_price))
-          # write list back to file
-          Order_File_Update(Order_list)
-          # Update profit file
-          Profit_File_Update(float(min_price), float(close_price), "Percentage")
-          in_position -= 1
-          print("current price > Buy price + X%")
-
     # Calculate RSI
     if (len(closes) > RSI_PERIOD) & (in_position > 0):
       np_closes = numpy.array(closes)
       rsi = talib.RSI(np_closes, RSI_PERIOD)
-      #print("all rsis calculated so far")
-      #print(rsi)
+      # print("all rsis calculated so far")
+      # print(rsi)
       last_rsi = rsi[-1]
-      print("the current rsi is {}".format(last_rsi))
+      print("closed at {}".format(close_price) + "   rsi is {}".format(last_rsi))
 
-      #Sell
+      # Sell
       if last_rsi > RSI_OVERBOUGHT:
         if in_position > 0:
           print("Overbought! Sell! Sell! Sell!")
           # put binance sell logic here
           # Read Order File
           Order_list = Order_File_Read()
-          max_price = float(max(Order_list))
-          Req_Percent = float(max_price + ((max_price * float(5)) / 100))
-          if (float(close_price) > float(max_price)) & (float(close_price) > float(Req_Percent)):
+          min_price = float(min(Order_list))
+          Req_Percent = float(min_price + ((min_price * float(Profit_Percentage)) / 100))
+          if (float(close_price) > float(min_price)) & (float(close_price) > float(Req_Percent)):
             order_succeeded = order(SIDE_SELL, float(TRADE_QUANTITY), TRADE_SYMBOL)
             if order_succeeded:
               # Remove entry from list
@@ -189,13 +175,13 @@ def on_message(ws, message):
               # write list back to file
               Order_File_Update(Order_list)
               # Update profit file
-              Profit_File_Update(min_price, close_price,"Overbought")
+              Profit_File_Update(min_price, close_price, "Overbought")
               in_position -= 1
-              print("current price > Buy price")
+              print("current price > Buy price type RSI")
         else:
           print("It is overbought, but we don't own any. Nothing to do.")
 
-      #Limit buy untill uper threshold is reached
+      # Limit buy untill uper threshold is reached
       if RSI_Reset_Counter == False:
         RSI_OVERSOLD_Threshold = 10
         if float(last_rsi) > ((float(RSI_OVERSOLD) + float(RSI_OVERSOLD_Threshold))):
@@ -216,10 +202,47 @@ def on_message(ws, message):
               Order_File_Update(Order_list)
               in_position += 1
               RSI_Reset_Counter = False
-              print("current price < Buy price")
+              print("current price < Buy price type RSI")
         else:
           print("It is oversold, but you already own it, nothing to do.")
-          
+
+    if in_position > 0:  # if we have open position
+      Order_list = Order_File_Read()
+      min_price = float(min(Order_list))
+      # Take profit Check if current price > Buy price + X%
+      Req_Percent = float(min_price + ((min_price * float(Profit_Percentage)) / 100))
+      if float(close_price) > float(Req_Percent):
+        order_succeeded = order(SIDE_SELL, float(TRADE_QUANTITY), TRADE_SYMBOL)
+        if order_succeeded:
+          # Remove entry from list
+          Order_list.remove(str(min_price))
+          # write list back to file
+          Order_File_Update(Order_list)
+          # Update profit file
+          Profit_File_Update(float(min_price), float(close_price), "Percentage")
+          in_position -= 1
+          print("current price > Buy price + X%")
+
+      # Buy
+      if in_position < Max_Transaction:
+        # put binance buy order logic here
+        Order_list = Order_File_Read()
+        min_price = float(min(Order_list))
+        Req_Percent = float(min_price - ((min_price * float(Profit_Percentage)) / 100))
+        if ((float(close_price) < float(Req_Percent)) & (float(close_price) < float(Max_Buy_price))):
+          order_succeeded = order(SIDE_BUY, float(TRADE_QUANTITY), TRADE_SYMBOL)
+          if order_succeeded:
+            # add entry in list
+            Order_list.append(str(close_price))
+            # write list back to file
+            Order_File_Update(Order_list)
+            in_position += 1
+            RSI_Reset_Counter = False
+            print("current price < Buy price")
+      else:
+        print("Max transaction Reached, but you already own it, nothing to do.")
+
+
 #websocket.enableTrace(True)
 in_position = Check_OrderList()
 print("Position = " + str(in_position))
