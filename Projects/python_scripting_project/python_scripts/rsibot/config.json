@@ -1,30 +1,254 @@
 {
-  "btcusdt" :
+  "ethusdt":
     {
-      "start_price" : 50000,
-      "Max_Buy_price" : 60000,
-      "Max_Transaction" : 500,
-      "Buy_Threshold" : 0,
-      "Profit_Percentage" : 2,
-      "RSI_PERIOD" : 14,
-      "RSI_OVERBOUGHT" : 90,
-      "RSI_OVERSOLD" : 10,
-      "TRADE_SYMBOL" : "BTCUSD",
-      "TRADE_QUANTITY" : 25,
-      "Buy_Percentage" : 3
+      "start_price": 5733.0,
+      "Max_Buy_price": 5733.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "ETHUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
     },
-  "ethusdt" :
+  "btcusdt":
     {
-      "start_price" : 2300.022,
-      "Max_Buy_price" : 4000,
-      "Max_Transaction" : 500,
-      "Buy_Threshold" : 0,
-      "Profit_Percentage" : 2,
-      "RSI_PERIOD" : 14,
-      "RSI_OVERBOUGHT" : 90,
-      "RSI_OVERSOLD" : 10,
-      "TRADE_SYMBOL" : "ETHUSD",
-      "TRADE_QUANTITY" : 25,
-      "Buy_Percentage" : 4
+      "start_price": 60457.3,
+      "Max_Buy_price": 60457.3,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "BTCUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "bnbusdt":
+    {
+      "start_price": 744.3,
+      "Max_Buy_price": 744.3,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "BNBUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "adausdt":
+    {
+      "start_price": 2.0,
+      "Max_Buy_price": 2.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "ADAUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "iotausdt":
+    {
+      "start_price": 2.25,
+      "Max_Buy_price": 2.25,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "IOTAUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "ltcusdt":
+    {
+      "start_price": 427.0,
+      "Max_Buy_price": 427.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "LTCUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "xrpusdt":
+    {
+      "start_price": 1.67,
+      "Max_Buy_price": 1.67,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "XRPUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "dashusdt":
+    {
+      "start_price": 546.0,
+      "Max_Buy_price": 546.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "DASHUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "trxusdt":
+    {
+      "start_price": 0.171,
+      "Max_Buy_price": 0.171,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "TRXUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "xlmusdt":
+    {
+      "start_price": 0.702,
+      "Max_Buy_price": 0.702,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "XLMUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "bchusdt":
+    {
+      "start_price": 1567.0,
+      "Max_Buy_price": 1567.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "BCHUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "etcusdt":
+    {
+      "start_price": 252.0,
+      "Max_Buy_price": 252.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "ETCUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "eosusdt":
+    {
+      "start_price": 12.123,
+      "Max_Buy_price": 12.123,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "EOSUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "zecusdt":
+    {
+      "start_price": 384.0,
+      "Max_Buy_price": 384.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "ZECUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "neousdt":
+    {
+      "start_price": 129.0,
+      "Max_Buy_price": 129.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "NEOUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "xtzusdt":
+    {
+      "start_price": 8.46,
+      "Max_Buy_price": 8.46,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "XTZUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "linkusdt":
+    {
+      "start_price": 60.0,
+      "Max_Buy_price": 60.0,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "LINKUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
+    },
+  "uniusdt":
+    {
+      "start_price": 43.4,
+      "Max_Buy_price": 43.4,
+      "Max_Transaction": 4,
+      "Buy_Threshold": 0,
+      "Profit_Percentage": 5,
+      "RSI_PERIOD": 14,
+      "RSI_OVERBOUGHT": 90,
+      "RSI_OVERSOLD": 10,
+      "TRADE_SYMBOL": "UNIUSDT",
+      "TRADE_QUANTITY": 25,
+      "Buy_Percentage": 5
     }
 }
