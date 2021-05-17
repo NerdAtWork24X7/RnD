@@ -7,7 +7,7 @@ import sys
 from datetime import datetime
 
 # Coin = str(sys.argv[1])
-Coin = "adausdt"
+Coin = "etcusdt"
 # Coin = "btcusdt"
 
 with open('config.json', 'r') as f:
@@ -64,7 +64,7 @@ def Order_File_Read():
   return Order_file
 
 
-def Profit_File_Update(min_price, close, type):
+def Profit_File_Update(min_price, close, type,Final_Qty):
   global Coin, TRADE_QUANTITY,in_position
 
   # datetime object containing current date and time
@@ -77,7 +77,7 @@ def Profit_File_Update(min_price, close, type):
     actual_trade_qty = TRADE_QUANTITY
   Profit_fd = open("Profit_list_" + Coin, "a+")
   Profit_str = "Trade type = " + type + "  Open = " + str(min_price) + "  Closed = " + str(close) + " Profit = " + str(
-    float((close * actual_trade_qty) / min_price) - float(actual_trade_qty)) + "    " + dt_string +"\n"
+    round((float(Final_Qty) - float(actual_trade_qty)),2)) + "    " + dt_string +"\n"
   Profit_fd.write(Profit_str)
   Profit_fd.close()
 
@@ -116,6 +116,7 @@ def buy(close_price, Order_list, Order_Type):
     actual_trade_qty = TRADE_QUANTITY
   else:
     actual_trade_qty = TRADE_QUANTITY
+  print("SIDE_BUY" + "  " + str(float(actual_trade_qty)) + "  " + str(TRADE_SYMBOL)  + "  " +  str(close_price))
   order_succeeded = order(SIDE_BUY, float(actual_trade_qty), TRADE_SYMBOL,close_price)
   if order_succeeded:
     # add entry in list
@@ -131,18 +132,22 @@ def sell(min_price, close_price, Order_list, Order_Type):
   global in_position, TRADE_SYMBOL, TRADE_QUANTITY
   if in_position <= 1:
     actual_trade_qty = TRADE_QUANTITY
+    Final_Qty = round((float((close_price * actual_trade_qty) / min_price) - float(0.1)), 2)
   else:
     actual_trade_qty = TRADE_QUANTITY
-  order_succeeded = order(SIDE_SELL, float(actual_trade_qty), TRADE_SYMBOL,close_price)
-  if order_succeeded:
-    # Remove entry from list
-    Order_list.remove(str(min_price))
-    # write list back to file
-    Order_File_Update(Order_list)
-    # Update profit file
-    Profit_File_Update(min_price, close_price, Order_Type)
-    in_position -= 1
-    print(Order_Type)
+    Final_Qty = round(float((close_price * actual_trade_qty) / min_price), 2)
+  if Final_Qty > actual_trade_qty:
+    print("SIDE_SELL" + "  " + str(Final_Qty) + "  " + str(TRADE_SYMBOL)  + "  " +  str(close_price))
+    order_succeeded = order(SIDE_SELL, float(Final_Qty), TRADE_SYMBOL,close_price)
+    if order_succeeded:
+      # Remove entry from list
+      Order_list.remove(str(min_price))
+      # write list back to file
+      Order_File_Update(Order_list)
+      # Update profit file
+      Profit_File_Update(min_price, close_price, Order_Type,Final_Qty)
+      in_position -= 1
+      print(Order_Type)
 
 
 def on_message(ws, message):
@@ -208,7 +213,8 @@ def on_message(ws, message):
           # put binance sell logic here
           # Read Order File
           Order_list = Order_File_Read()
-          min_price = float(min(Order_list))
+          new_list = [float(i) for i in Order_list]
+          min_price = float(min(new_list))
           Req_Percent = float(min_price + ((min_price * float(Profit_Percentage)) / 100))
           if (float(close_price) > float(min_price)) & (float(close_price) > float(Req_Percent)):
             sell(min_price, close_price, Order_list, "Overbought RSI")
@@ -226,7 +232,8 @@ def on_message(ws, message):
           print("Oversold! Buy! Buy! Buy!")
           # put binance buy order logic here
           Order_list = Order_File_Read()
-          min_price = float(min(Order_list)) - float(Buy_Threshold)
+          new_list = [float(i) for i in Order_list]
+          min_price = float(min(new_list)) - float(Buy_Threshold)
           if ((float(close_price) < float(min_price)) & (float(close_price) < float(Max_Buy_price))):
             buy(close_price, Order_list, "Oversold RSI")
         else:
@@ -234,7 +241,8 @@ def on_message(ws, message):
 
     if in_position > 0:  # if we have open position
       Order_list = Order_File_Read()
-      min_price = float(min(Order_list))
+      new_list = [float(i) for i in Order_list]
+      min_price = float(min(new_list))
       # Take profit Check if current price > Buy price + X%
       Req_Percent = float(min_price + ((min_price * float(Profit_Percentage)) / 100))
       if float(close_price) > float(Req_Percent):
@@ -245,10 +253,11 @@ def on_message(ws, message):
       if (in_position < Max_Transaction):
         # put binance buy order logic here
         Order_list = Order_File_Read()
-        min_price = float(min(Order_list))
+        new_list = [float(i) for i in Order_list]
+        min_price = float(min(new_list))
         Profit_Per = Profit_Percentage
         if in_position > 1:
-         Profit_Per = Profit_Percentage + 3
+         Profit_Per = Profit_Percentage + 4
         Req_Percent = float(min_price - ((min_price * float(Profit_Per)) / 100))
         if ((float(close_price) < float(Req_Percent)) & (float(close_price) < float(Max_Buy_price))):
           buy(close_price, Order_list, "CP < BP -" + str(Profit_Per) + "%")
@@ -256,7 +265,7 @@ def on_message(ws, message):
         print("Max transaction Reached, but you already own it, nothing to do.")
 
 
-websocket.enableTrace(True)
+#websocket.enableTrace(True)
 in_position = Check_OrderList()
 print("Position = " + str(in_position))
 while True:
